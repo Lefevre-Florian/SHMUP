@@ -1,0 +1,70 @@
+using Godot;
+using System;
+using System.Collections.Generic;
+
+namespace Com.IsartDigital.SHMUP.Structure {
+
+	public class BackgroundManager : ParallaxBackground
+	{
+
+        private static BackgroundManager instance;
+
+		[Export] private float speed = 1000f;
+        
+        [Export] private List<float> ratio;
+
+        private List<ParallaxLayer> layers = new List<ParallaxLayer>();
+
+        private const int gameplayLayerIndex = 2;
+
+        private int index = 0;
+        private int length; 
+
+        public float forcedSpeed;
+
+        private BackgroundManager() : base(){ }
+
+        public override void _Ready()
+        {
+            if (instance != null)
+            {
+                QueueFree();
+                return;
+            }
+            instance = this;
+
+            Vector2 lScreenSize = GetViewport().Size;
+
+            foreach (ParallaxLayer lLayer in GetChildren())
+            {
+                layers.Add(lLayer);
+                
+                lLayer.MotionMirroring = new Vector2(lScreenSize.x , 0);
+            }
+            length = layers.Count;
+
+            forcedSpeed = speed * ratio[gameplayLayerIndex];
+        }
+
+        public override void _Process(float pDelta)
+        {
+            for (index = 0; index< length; ++index)
+                layers[index].MotionOffset += new Vector2(-speed * ratio[index] * pDelta, 0);
+        }
+
+        public static BackgroundManager GetInstance()
+        {
+            if (instance == null) instance = new BackgroundManager();
+            return instance;
+        }
+
+        protected override void Dispose(bool pDisposing)
+        {
+            if (pDisposing && instance != null) 
+                instance = this;
+            base.Dispose(pDisposing);
+        }
+
+    }
+
+}
