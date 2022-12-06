@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.2234
+height = 63.9973
+
+[node name="Player" type="KinematicBody2D"]
+
+[node name="Renderer" type="Polygon2D" parent="."]
+color = Color( 0, 0.0392157, 1, 1 )
+offset = Vector2( 0, 30 )
+polygon = PoolVector2Array( 0, -64, 64, -64, 64, 0, -64, 0, -64, -64 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+rotation = 1.5638
+shape = SubResource( 1 )

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 40.7922
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+[node name="Renderer" type="Sprite" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
