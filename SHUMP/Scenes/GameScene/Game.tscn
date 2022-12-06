@@ -5,12 +5,12 @@
 
 [node name="Root" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="BackgroundManager" type="Node" parent="."]
 script = ExtResource( 1 )
 speed = 5000.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="LayerBackground2" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -18,17 +18,7 @@ ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
 polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 
-[node name="Polygon2D4" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 960, 128 )
-color = Color( 0, 1, 1, 1 )
-polygon = PoolVector2Array( -64, -64, 0, -64, 0, 0, -64, 0 )
-
 [node name="LayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Polygon2D5" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
-position = Vector2( 960, 256 )
-color = Color( 0, 1, 0.0862745, 1 )
-polygon = PoolVector2Array( -64, -64, 0, -64, 0, 0, -64, 0 )
 
 [node name="LayerGameplay" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -36,17 +26,7 @@ polygon = PoolVector2Array( -64, -64, 0, -64, 0, 0, -64, 0 )
 position = Vector2( 128, 320 )
 speed = 5000.0
 
-[node name="Polygon2D6" type="Polygon2D" parent="ParallaxBackground/LayerGameplay"]
-position = Vector2( 960, 384 )
-color = Color( 0, 0.0862745, 1, 1 )
-polygon = PoolVector2Array( -64, -64, 0, -64, 0, 0, -64, 0 )
-
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Polygon2D7" type="Polygon2D" parent="ParallaxBackground/LayerForeground"]
-position = Vector2( 960, 512 )
-color = Color( 1, 0, 0, 1 )
-polygon = PoolVector2Array( -64, -64, 0, -64, 0, 0, -64, 0 )
 
 [node name="UI" type="Control" parent="."]
 visible = false
@@ -55,3 +35,5 @@ margin_bottom = 600.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
+
+[node name="GameManager" type="Node" parent="."]

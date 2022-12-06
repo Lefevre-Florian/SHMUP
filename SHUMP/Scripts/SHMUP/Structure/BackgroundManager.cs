@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.Structure {
 
-	public class BackgroundManager : ParallaxBackground
+	public class BackgroundManager : Node
 	{
 
         private static BackgroundManager instance;
@@ -16,6 +16,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private List<ParallaxLayer> layers = new List<ParallaxLayer>();
 
         private const int gameplayLayerIndex = 2;
+
+        private const string PATH_BACKGROUND_PARALLAX = "../ParallaxBackground";
 
         private int index = 0;
         private int length; 
@@ -35,12 +37,15 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
             Vector2 lScreenSize = GetViewport().Size;
 
-            foreach (ParallaxLayer lLayer in GetChildren())
+            foreach (ParallaxLayer lLayer in GetNode<ParallaxBackground>(PATH_BACKGROUND_PARALLAX).GetChildren())
             {
                 layers.Add(lLayer);
                 
-                lLayer.MotionMirroring = new Vector2(lScreenSize.x , 0);
+                if(gameplayLayerIndex != index)
+                    lLayer.MotionMirroring = new Vector2(lScreenSize.x , 0);
+                index++;
             }
+
             length = layers.Count;
 
             forcedSpeed = speed * ratio[gameplayLayerIndex];
@@ -54,7 +59,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         public static BackgroundManager GetInstance()
         {
-            if (instance == null) instance = new BackgroundManager();
+            if (instance == null) 
+                instance = new BackgroundManager();
             return instance;
         }
 

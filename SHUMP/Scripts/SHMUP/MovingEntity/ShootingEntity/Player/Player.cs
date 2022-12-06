@@ -17,6 +17,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         #endregion
 
         private float forcedSpeed;
+        private Vector2 direction;
 
         private Player() : base() { }
 
@@ -29,20 +30,23 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             }
 			instance = this;
 
-            //forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
+            base._Ready();
+
+            forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
 		}
 
         public override void _Input(InputEvent pEvent)
         {
             if (Input.IsActionPressed(MOVE_UP))
-                direction = Vector2.Up;
+                velocity = Vector2.Up * Mathf.Abs(forcedSpeed + speed);
             else if (Input.IsActionPressed(MOVE_DOWN))
-                direction = Vector2.Down;
+                velocity = Vector2.Down * Mathf.Abs(forcedSpeed - speed);
             else if (Input.IsActionPressed(MOVE_LEFT))
-                direction = Vector2.Left;
+                velocity = Vector2.Left * Mathf.Abs(forcedSpeed - speed);
             else if (Input.IsActionPressed(MOVE_RIGHT))
-                direction = Vector2.Right;
-            else direction = Vector2.Zero; 
+                velocity = Vector2.Right * Mathf.Abs(forcedSpeed - speed);
+            else
+                velocity = new Vector2(forcedSpeed ,0);
         }
 
         public static Player GetInstance()
