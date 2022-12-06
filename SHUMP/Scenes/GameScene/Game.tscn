@@ -1,0 +1,20 @@
+[gd_scene format=2]
+
+[node name="Root" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="LayerBackground2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="LayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="LayerGameplay" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="UI" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
