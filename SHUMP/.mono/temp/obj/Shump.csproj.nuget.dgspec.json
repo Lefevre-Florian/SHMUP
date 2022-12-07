@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_Florian_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj": {}
+    "C:\\USERS\\LEFEV\\DESKTOP\\COURS\\ISART\\LEFEVRE_FLORIAN_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_Florian_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj": {
+    "C:\\USERS\\LEFEV\\DESKTOP\\COURS\\ISART\\LEFEVRE_FLORIAN_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_Florian_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj",
+        "projectUniqueName": "C:\\USERS\\LEFEV\\DESKTOP\\COURS\\ISART\\LEFEVRE_FLORIAN_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj",
         "projectName": "Shump",
-        "projectPath": "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_Florian_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj",
+        "projectPath": "C:\\USERS\\LEFEV\\DESKTOP\\COURS\\ISART\\LEFEVRE_FLORIAN_GDP1_A_SHMUP\\SHMUP\\SHUMP\\Shump.csproj",
         "packagesPath": "C:\\Users\\lefev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_Florian_GDP1_A_SHMUP\\SHMUP\\SHUMP\\.mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\lefev\\Desktop\\Cours\\ISART\\LEFEVRE_FLORIAN_GDP1_A_SHMUP\\SHMUP\\SHUMP\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lefev\\AppData\\Roaming\\NuGet\\NuGet.Config",

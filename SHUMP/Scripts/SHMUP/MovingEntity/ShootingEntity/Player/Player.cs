@@ -17,7 +17,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         #endregion
 
         private float forcedSpeed;
-        private Vector2 direction;
 
         private Player() : base() { }
 
