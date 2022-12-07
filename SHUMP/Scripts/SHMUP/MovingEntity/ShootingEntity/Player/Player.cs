@@ -45,13 +45,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         public override void _Input(InputEvent pEvent)
         {
             if (Input.IsActionPressed(MOVE_UP))
-                velocity = Vector2.Up * Mathf.Abs(forcedSpeed + speed);
+                velocity = Vector2.Up * speed;
             else if (Input.IsActionPressed(MOVE_DOWN))
-                velocity = Vector2.Down * Mathf.Abs(forcedSpeed - speed);
+                velocity = Vector2.Down * speed;
             else if (Input.IsActionPressed(MOVE_LEFT))
-                velocity = Vector2.Left * Mathf.Abs(forcedSpeed - speed);
+                velocity = Vector2.Left * speed;
             else if (Input.IsActionPressed(MOVE_RIGHT))
-                velocity = Vector2.Right * Mathf.Abs(forcedSpeed - speed);
+                velocity = Vector2.Right * speed;
             else
                 velocity = new Vector2(forcedSpeed ,0);
 

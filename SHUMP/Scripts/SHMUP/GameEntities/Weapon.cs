@@ -55,6 +55,11 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			canShoot = true;
         }
 
+		public void UpgradeWeapon(float damageUpgrade)
+        {
+
+        }
+
 	}
 
 }

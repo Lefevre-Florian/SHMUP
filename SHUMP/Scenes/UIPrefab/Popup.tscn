@@ -1,0 +1,61 @@
+[gd_scene format=2]
+
+[node name="Popup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackgroundButton" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0.247059 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 832.0
+margin_bottom = 552.0
+
+[node name="Exit" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = -24.0
+margin_right = 16.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.131
+margin_left = 128.0
+margin_top = 8.0
+margin_right = -128.0
+margin_bottom = -7.92801
+text = "Pause"
+
+[node name="Resume" type="Button" parent="Panel"]
+anchor_top = 0.393
+anchor_right = 1.0
+anchor_bottom = 0.525
+margin_left = 192.0
+margin_top = 8.216
+margin_right = -192.0
+margin_bottom = -8.20001
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="Panel"]
+anchor_top = 0.393
+anchor_right = 1.0
+anchor_bottom = 0.525
+margin_left = 192.0
+margin_top = 72.216
+margin_right = -192.0
+margin_bottom = 55.8
+text = "Main menu"
+
+[node name="Localization" type="CheckButton" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -76.0
+margin_top = -40.0
