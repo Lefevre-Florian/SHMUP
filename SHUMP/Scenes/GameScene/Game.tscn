@@ -26,6 +26,8 @@ polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 position = Vector2( 128, 320 )
 speed = 5000.0
 
+[node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
+
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="UI" type="Control" parent="."]

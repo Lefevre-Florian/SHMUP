@@ -19,7 +19,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         public override void _Process(float pDelta)
         {
 			GlobalPosition += velocity * pDelta;
-			GD.Print(GlobalPosition);
 		}
 
 		protected virtual void OnAreaEnter(Area2D pBody) { }

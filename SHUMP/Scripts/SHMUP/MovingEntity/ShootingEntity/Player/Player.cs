@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Com.IsartDigital.SHMUP.Structure;
+using Com.IsartDigital.SHMUP.GameEntities;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
@@ -14,9 +15,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string MOVE_DOWN = "Down";
         private const string MOVE_LEFT = "Left";
         private const string MOVE_RIGHT = "Right";
+
+        private const string SHOT = "Shoot";
         #endregion
 
         private float forcedSpeed;
+
+        private const string WEAPON_PATH = "Weapon";
+        private Weapon canon;
 
         private Player() : base() { }
 
@@ -32,6 +38,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             base._Ready();
 
             forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
+
+            canon = GetNode<Weapon>(WEAPON_PATH);
 		}
 
         public override void _Input(InputEvent pEvent)
@@ -46,6 +54,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 velocity = Vector2.Right * Mathf.Abs(forcedSpeed - speed);
             else
                 velocity = new Vector2(forcedSpeed ,0);
+
+            if (Input.IsActionJustPressed(SHOT))
+                canon.Shoot();
+
         }
 
         public static Player GetInstance()

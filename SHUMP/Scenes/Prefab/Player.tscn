@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Player/Player.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Prefab/Weapon.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 24.2234
@@ -16,5 +17,7 @@ polygon = PoolVector2Array( 0, -64, 64, -64, 64, 0, -64, 0, -64, -64 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 rotation = 1.5638
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
+
+[node name="Weapon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 0 )
