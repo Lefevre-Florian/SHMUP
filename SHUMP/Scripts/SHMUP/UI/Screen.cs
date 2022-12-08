@@ -6,15 +6,21 @@ namespace Com.IsartDigital.SHMUP.UI {
 	public class Screen : Control
 	{
 
-		public void OpenPopup()
+		public void OpenScreen()
         {
 			Visible = true;
         }
 
-		public void ClosePopup()
+		public void CloseScreen()
         {
 			Visible = false;
         }
 
-	}
+        protected void SwitchPanel(Screen pOpeningPanel, Screen pClosingPanel)
+        {
+            pOpeningPanel.OpenScreen();
+            pClosingPanel.CloseScreen();
+        }
+
+    }
 }

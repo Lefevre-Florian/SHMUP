@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 0.662745 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+startPath = NodePath("TitleCard/StartButton")
+exitPath = NodePath("TitleCard/ExitButton")
+creditPath = NodePath("TitleCard/CreditButton")
+settingPath = NodePath("TitleCard/SettingsButton")
+
+[node name="TitleCard" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="TitleCard"]
+anchor_right = 1.0
+anchor_bottom = 0.107
+margin_bottom = -0.200005
+text = "Flee from Paris !"
+align = 1
+valign = 1
+
+[node name="StartButton" type="Button" parent="TitleCard"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+theme = ExtResource( 1 )
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="TitleCard"]
+anchor_left = 0.311
+anchor_top = 0.5
+anchor_right = 0.311
+anchor_bottom = 0.5
+margin_left = -38.464
+margin_top = -36.0
+margin_right = 89.536
+margin_bottom = 92.0
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 1 )
+text = "Parametres"
+
+[node name="CreditButton" type="Button" parent="TitleCard"]
+anchor_left = 0.686
+anchor_top = 0.5
+anchor_right = 0.686
+anchor_bottom = 0.5
+margin_left = -38.4641
+margin_top = -36.0
+margin_right = 89.5359
+margin_bottom = 92.0
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 1 )
+text = "Credit"
+
+[node name="ExitButton" type="Button" parent="TitleCard"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -88.0
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 136.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 1 )
+custom_styles/normal = SubResource( 1 )
+text = "Quitter"
