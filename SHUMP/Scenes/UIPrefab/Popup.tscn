@@ -24,8 +24,11 @@ font_data = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-MainMenuPath = NodePath("Panel/MainMenu")
-ExitPaths = [ NodePath("Panel/Resume"), NodePath("BackgroundButton"), NodePath("Panel/Exit") ]
+mainMenuPath = NodePath("Panel/Reload")
+languagePath = NodePath("Panel/Localization")
+resumePath = NodePath("Panel/Resume")
+reloadPath = NodePath("Panel/Reload")
+exitPaths = [ NodePath("Panel/Exit"), NodePath("BackgroundButton") ]
 
 [node name="BackgroundButton" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0.247059 )
@@ -63,11 +66,23 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -128.0
-margin_top = -68.0
+margin_top = -92.0
 margin_right = 128.0
-margin_bottom = -20.0
+margin_bottom = -44.0
 theme = ExtResource( 2 )
 text = "Resume"
+
+[node name="Reload" type="Button" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -4.0
+margin_right = 128.0
+margin_bottom = 44.0
+theme = ExtResource( 2 )
+text = "Restart"
 
 [node name="MainMenu" type="Button" parent="Panel"]
 anchor_left = 0.5
@@ -75,9 +90,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -128.0
-margin_top = 20.0
+margin_top = 84.0
 margin_right = 128.0
-margin_bottom = 68.0
+margin_bottom = 132.0
 theme = ExtResource( 2 )
 text = "Main menu"
 

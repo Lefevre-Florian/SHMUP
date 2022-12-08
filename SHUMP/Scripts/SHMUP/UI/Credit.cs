@@ -7,11 +7,13 @@ namespace Com.IsartDigital.SHMUP.UI {
 	public class Credit : Screen
 	{
 
-		[Export] private NodePath titleCardPath = default;
+		[Export] private NodePath closeButtonPath = default;
+
+        private const string PATH_TITLE_CARD = "../TitleCard";
 
         public override void _Ready()
         {
-            GetNode<Button>(titleCardPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array());
+            GetNode<Button>(closeButtonPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Screen>(PATH_TITLE_CARD), this));
         }
 
     }

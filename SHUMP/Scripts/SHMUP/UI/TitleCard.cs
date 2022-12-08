@@ -12,13 +12,13 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private NodePath settingPath = default;
 
 		private const string PATH_GAME_SCENE = "res://Scenes/GameScene/Game.tscn";
+		private const string PATH_CREDIT = "../Credit";
 
 		public override void _Ready()
 		{
 			GetNode<Button>(startPath).Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			GetNode<Button>(exitPath).Connect(EventButton.PRESSED, this, nameof(ExitGame));
-			GetNode<Button>(creditPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel));
-			GetNode<Button>(settingPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel));
+			GetNode<Button>(creditPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Control>(PATH_CREDIT), this));
 		}
 
 		private void ChangeScene()
