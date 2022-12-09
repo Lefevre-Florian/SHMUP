@@ -3,7 +3,7 @@ using System;
 
 namespace Com.IsartDigital.SHMUP.UI {
 
-	public class Screen : Control
+	public abstract class Screen : Control
 	{
 
 		public void OpenScreen()

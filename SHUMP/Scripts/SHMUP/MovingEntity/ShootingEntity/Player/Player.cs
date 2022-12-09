@@ -17,6 +17,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string MOVE_RIGHT = "Right";
 
         private const string SHOT = "Shoot";
+        private const string PAUSE = "Pause";
         #endregion
 
         private float forcedSpeed;
@@ -57,6 +58,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             if (Input.IsActionJustPressed(SHOT))
                 canon.Shoot();
+
+            if (Input.IsActionJustPressed(PAUSE))
+                UIManager.GetInstance().CallPopup();
 
         }
 

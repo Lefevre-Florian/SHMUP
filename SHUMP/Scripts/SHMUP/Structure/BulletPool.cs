@@ -1,13 +1,18 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
 
 namespace Com.IsartDigital.SHMUP.Structure {
 	
     public class BulletPool : Node
     {
-        static private BulletPool instance;
+        private static BulletPool instance;
+
+        [Export] private int nBullet = 200;
+        [Export] private List<PackedScene> bulletScene = new List<PackedScene>();
 		
-		static public BulletPool GetInstance () {
+		public static BulletPool GetInstance () {
 			if (instance == null) instance = new BulletPool();
 		    return instance;
 
@@ -23,6 +28,13 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
             
             instance = this;
+
+            foreach (PackedScene lEntry in bulletScene)
+            {
+                for (int i = 0; i < nBullet; i++)
+                    AddChild(lEntry.Instance<Bullet>());
+            }
+
         }
 
         protected override void Dispose(bool pDisposing)

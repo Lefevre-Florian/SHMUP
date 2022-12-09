@@ -14,13 +14,21 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			{Languages.FR, new Dictionary<string, string>()
 				{
 					{"Pause", "Pause"},
-					{"MainMenu" , "Menu principal"}
+					{"MainMenu" , "Menu principal"},
+					{"Resume" , "Reprendre"},
+					{"Exit" , "Quitter"},
+					{"Credit", "Credit"},
+					{"Setting", "Paramètres" }
 				} 
 			},
 			{Languages.ENG, new Dictionary<string, string>()
 				{
 					{"Pause", "Pause"},
-					{"MainMenu" , "Main Menu"}
+					{"MainMenu" , "Main Menu"},
+					{"Resume" , "Resume"},
+					{"Exit" , "Exit"},
+					{"Credit", "Credit"},
+					{"Setting", "Settings" }
 				} 
 			}
 		};

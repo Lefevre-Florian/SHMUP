@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 
 [node name="Root" type="Node2D"]
 
@@ -11,6 +12,11 @@
 script = ExtResource( 1 )
 speed = 5000.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="SoundManager" type="Node" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -32,14 +38,54 @@ speed = 5000.0
 
 [node name="EnemyContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
+[node name="BulletPool" type="Node" parent="ParallaxBackground/LayerGameplay"]
+
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="UI" type="Control" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 
+[node name="Panel" type="Panel" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 0.107
+margin_bottom = -0.200005
+
+[node name="Life" type="HBoxContainer" parent="UI/Panel"]
+margin_left = 64.0
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 56.0
+
+[node name="Score" type="Label" parent="UI/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 8.0
+margin_right = 64.0
+margin_bottom = 56.0
+text = "Score : 0"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -320.0
+margin_top = 8.0
+margin_right = -64.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="UI/Panel/HBoxContainer"]
+margin_right = 256.0
+margin_bottom = 14.0
+text = "Recharge"
+align = 1
+
+[node name="Smartbomb" type="HBoxContainer" parent="UI/Panel/HBoxContainer"]
+margin_top = 18.0
+margin_right = 256.0
+margin_bottom = 18.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
-
-[node name="BulletPool" type="Node" parent="."]

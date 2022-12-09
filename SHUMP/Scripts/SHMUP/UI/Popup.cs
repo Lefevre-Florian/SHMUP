@@ -14,6 +14,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private NodePath languagePath = default;
 		[Export] private NodePath resumePath = default;
 		[Export] private NodePath reloadPath = default;
+
 		[Export] private List<NodePath> exitPaths = new List<NodePath>();
 
 		private const string PATH_MAIN_MENU_SCENE = "res://Scenes/GameScene/MainMenu.tscn";
@@ -33,6 +34,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 			language = GetNode<CheckButton>(languagePath);
 			language.Connect(EventButton.PRESSED, this, nameof(ChangeLanguage));
+
 		}
 
 		private void ChangeScene()

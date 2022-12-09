@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
@@ -8,6 +9,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 		[Export] private float damage;
 
 		private Vector2 screenSize;
+
+		private Node pool;
 
 		public override void _Ready()
 		{
