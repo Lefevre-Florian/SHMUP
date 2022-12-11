@@ -5,7 +5,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
 
 	public class ShootingEntity : MovingEntity
 	{
-        [Export] private int healthpoint = 1;
+        [Export] protected int healthpoint = 1;
 
         public virtual void TakeDamage(int pDamage)
         {

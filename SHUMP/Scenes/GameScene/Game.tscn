@@ -41,7 +41,7 @@ healthpoint = 3
 
 [node name="EnemyContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="BulletPool" type="Node" parent="ParallaxBackground/LayerGameplay"]
+[node name="CollecitbleContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 

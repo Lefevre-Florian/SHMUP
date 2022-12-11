@@ -11,6 +11,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
 		private static Player instance;
 
+        [Export] private float revoceryTime = 1f;
+        [Export] private Color recoveryColor;
+
         #region Controls
         private const string MOVE_UP = "Up";
         private const string MOVE_DOWN = "Down";
@@ -31,7 +34,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private UIManager uiManager;
         private Hud hud;
 
-        private bool godMode = false;
+        private bool invincibility = false;
 
         private Player() : base() { }
 
@@ -75,7 +78,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 uiManager.CallPopup();
 
             if (Input.IsActionPressed(GOD_MODE))
-                godMode = !godMode;
+                invincibility = !invincibility;
 
 
         }
@@ -89,11 +92,22 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         public override void TakeDamage(int pDamage)
         {
-            if (godMode == false)
+            if (invincibility == false)
             {
                 base.TakeDamage(pDamage);
-                hud.UpdateLifeHUD(pDamage);
+                hud.UpdateLifeHUD(pDamage, true);
+
+                if (healthpoint == 0)
+                    uiManager.TriggerGameOver();
+
+                invincibility = true;
             }
+        }
+
+        public void RegainHealth(int pHealthPoint)
+        {
+            healthpoint += pHealthPoint;
+            hud.UpdateLifeHUD(pHealthPoint);
         }
 
         protected override void Dispose(bool pDisposing)
