@@ -16,7 +16,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		private bool canShoot = true;
 		private Timer timer;
 
-		private const string PATH_BULLET = "res://Scenes/Prefab/Bullet.tscn";
+		private const string PATH_BULLET = "res://Scenes/Prefab/Bullets/Bullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
 
 		private Node bulletContainer;

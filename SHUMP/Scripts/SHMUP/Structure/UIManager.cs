@@ -19,7 +19,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
                 QueueFree();
                 return;
             }
-            
             instance = this;
 
             pause = GD.Load<PackedScene>(PATH_PAUSE_POPUP).Instance<UI.Popup>();

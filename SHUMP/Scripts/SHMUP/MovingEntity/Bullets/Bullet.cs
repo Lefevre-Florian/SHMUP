@@ -6,18 +6,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
 	public class Bullet : MovingEntity
 	{
-		[Export] private float damage;
-
-		private Vector2 screenSize;
-
-		private Node pool;
-
-		public override void _Ready()
-		{
-			base._Ready();
-
-			screenSize = GetViewport().Size;
-		}
+		[Export] protected int damage;
 
         public override void _Process(float pDelta)
         {

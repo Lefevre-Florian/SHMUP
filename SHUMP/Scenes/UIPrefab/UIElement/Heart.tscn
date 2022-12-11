@@ -1,3 +1,6 @@
 [gd_scene format=2]
 
-[node name="Polygon2D" type="Polygon2D"]
+[node name="Heart" type="Polygon2D"]
+position = Vector2( 0, 32 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -48, -5, -58, -16, -64, -32, -64, -40, -56, -40, -40, -32, -24, 0, 0, 32, -24, 40, -40, 40, -56, 32, -64, 16, -64, 4, -58 )

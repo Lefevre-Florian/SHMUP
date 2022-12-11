@@ -10,9 +10,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 		[Export] protected float speed;
 
 		protected Vector2 velocity;
+		protected Vector2 screenSize;
 
 		public override void _Ready()
 		{
+			screenSize = GetViewport().Size;
+
 			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
 		}
 
