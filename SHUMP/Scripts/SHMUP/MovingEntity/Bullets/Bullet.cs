@@ -4,7 +4,7 @@ using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
-	public class Bullet : MovingEntity
+	public abstract class Bullet : MovingEntity
 	{
 		[Export] protected int damage;
 

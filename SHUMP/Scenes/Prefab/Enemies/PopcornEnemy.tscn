@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/MovingEntity/PopcornEnemy.cs" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.9942, 35.9913 )
+
+[node name="PopcornEnemy" type="Area2D"]
+script = ExtResource( 1 )
+speed = 150.0
+margin = 50.0
+
+[node name="Renderer" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -40, 0, 32, -24, 32, 24 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( -3.99807, -0.087707 )
+rotation = 1.59273
+shape = SubResource( 1 )

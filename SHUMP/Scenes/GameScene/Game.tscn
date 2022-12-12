@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/UIPrefab/UIElement/Heart.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefab/Enemies/Enemy2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/Prefab/Enemies/PopcornEnemy.tscn" type="PackedScene" id=7]
 
 [node name="Root" type="Node2D"]
 
@@ -39,9 +41,16 @@ healthpoint = 3
 
 [node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="EnemyContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
+[node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="CollecitbleContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
+[node name="PopcornEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 7 )]
+position = Vector2( 696, 320 )
+margin = 25.0
+
+[node name="HardEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
+position = Vector2( 888, 336 )
+
+[node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 

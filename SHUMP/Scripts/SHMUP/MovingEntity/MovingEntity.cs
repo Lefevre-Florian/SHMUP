@@ -4,7 +4,7 @@ using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities {
 
-	public class MovingEntity : Area2D
+	public abstract class MovingEntity : Area2D
 	{
 
 		[Export] protected float speed;

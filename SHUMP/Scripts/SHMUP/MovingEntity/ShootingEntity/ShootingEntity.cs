@@ -3,7 +3,7 @@ using System;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
 
-	public class ShootingEntity : MovingEntity
+	public abstract class ShootingEntity : MovingEntity
 	{
         [Export] protected int healthpoint = 1;
 

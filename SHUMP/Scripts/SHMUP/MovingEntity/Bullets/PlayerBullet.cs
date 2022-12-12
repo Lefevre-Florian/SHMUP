@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
+using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
@@ -16,8 +17,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
         protected override void OnAreaEnter(Area2D pBody)
         {
-            if(pBody is PopcornEnemy || pBody is BasicEnemy)
+            if(pBody is Enemy)
             {
+                ((ShootingEntity)pBody).TakeDamage(damage);
                 QueueFree();
             }
         }
