@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.UI;
@@ -11,7 +12,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
 		private static Player instance;
 
-        [Export] private float revoceryTime = 1f;
+        [Export] private float recoveryTime = 1f;
+        [Export] private int nRecoveryBlip = 2;
         [Export] private Color recoveryColor;
 
         #region Controls
@@ -29,12 +31,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private const string WEAPON_PATH = "Weapon";
         private const string HUD_PATH = "../../../UI";
+
+        private const string PROPERTY_MODULATE = "modulate";
         
-        private Weapon canon;
+        public Weapon canon;
         private UIManager uiManager;
         private Hud hud;
 
         private bool invincibility = false;
+
+        public delegate bool LifeState();
 
         private Player() : base() { }
 
@@ -56,7 +62,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             canon = GetNode<Weapon>(WEAPON_PATH);
 
             hud = GetNode<Hud>(HUD_PATH);
-		}
+
+            velocity = new Vector2(forcedSpeed, 0);
+        }
 
         public override void _Input(InputEvent pEvent)
         {
@@ -71,7 +79,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             else
                 velocity = new Vector2(forcedSpeed ,0);
 
-            if (Input.IsActionJustPressed(SHOT))
+            if (Input.IsActionPressed(SHOT))
                 canon.Shoot();
 
             if (Input.IsActionJustPressed(PAUSE))
@@ -101,7 +109,23 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                     uiManager.TriggerGameOver();
 
                 invincibility = true;
+
+                Color lSelfModulate = Modulate;
+                SceneTreeTween lTween = CreateTween();
+                lTween.Connect(EventTween.TWEEN_ALL_COMPLETED, this, nameof(ResetDamaging), new Godot.Collections.Array(lTween));
+                lTween.Chain();
+                for (int i = 0; i < nRecoveryBlip; i++)
+                {
+                    lTween.TweenProperty(this, PROPERTY_MODULATE, recoveryColor, recoveryTime/nRecoveryBlip);
+                    lTween.TweenProperty(this, PROPERTY_MODULATE, lSelfModulate, recoveryTime/nRecoveryBlip);
+                }
             }
+        }
+
+        private void ResetDamaging(SceneTreeTween pTween)
+        {
+            pTween.Disconnect(EventTween.TWEEN_ALL_COMPLETED, this, nameof(ResetDamaging));
+            invincibility = false;
         }
 
         public void RegainHealth(int pHealthPoint)

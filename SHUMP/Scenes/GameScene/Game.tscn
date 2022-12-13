@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/UIPrefab/UIElement/Heart.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Prefab/Enemies/Enemy2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefab/Collectibles/UpgradeKit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=6]
 
 [node name="Root" type="Node2D"]
@@ -37,15 +37,18 @@ polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 position = Vector2( 128, 320 )
 speed = 500.0
 healthpoint = 3
+recoveryTime = 1.25
+nRecoveryBlip = 4
+recoveryColor = Color( 1, 0, 0, 0.686275 )
 
 [node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="HardEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
-position = Vector2( 824, 328 )
-
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
+
+[node name="ToolBox" parent="ParallaxBackground/LayerGameplay/CollecitbleContainer" instance=ExtResource( 5 )]
+position = Vector2( 808, 320 )
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 

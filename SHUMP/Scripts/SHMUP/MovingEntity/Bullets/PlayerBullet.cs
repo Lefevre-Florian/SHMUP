@@ -12,7 +12,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 		{
 			base._Ready();
 
-			velocity = Vector2.Right * speed;
+			velocity = Vector2.Right.Rotated(Rotation) * speed;
 		}
 
         protected override void OnAreaEnter(Area2D pBody)

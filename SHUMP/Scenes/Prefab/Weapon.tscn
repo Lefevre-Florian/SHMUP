@@ -4,11 +4,38 @@
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
+shootFrequency = 0.75
+pathCanon = NodePath("Renderer/Position2D")
+pathUpgrade = NodePath("Renderer/Upgrades")
 
-[node name="Renderer" type="Polygon2D" parent="."]
+[node name="Renderer" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="Renderer"]
 position = Vector2( -8, -8 )
 scale = Vector2( 1, 0.68 )
 polygon = PoolVector2Array( 0, 0, 64, 0, 64, 24, 0, 24 )
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="Position2D" type="Position2D" parent="Renderer"]
 position = Vector2( 56, 0 )
+
+[node name="Upgrades" type="Node2D" parent="Renderer"]
+
+[node name="Canon" type="Polygon2D" parent="Renderer/Upgrades"]
+position = Vector2( 48, -3.57628e-07 )
+rotation = -0.436332
+scale = Vector2( 1, 0.5 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 0, -8, 16, -8, 15, -4, 16, 0 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/Upgrades/Canon"]
+position = Vector2( 15, -3.5 )
+
+[node name="Canon2" type="Polygon2D" parent="Renderer/Upgrades"]
+position = Vector2( 46, 4 )
+rotation = 0.436332
+scale = Vector2( 1, 0.5 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 0, -8, 16, -8, 15, -4, 16, 0 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/Upgrades/Canon2"]
+position = Vector2( 15, -3.5 )
