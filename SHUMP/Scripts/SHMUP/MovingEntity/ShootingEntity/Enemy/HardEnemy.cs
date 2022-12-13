@@ -1,5 +1,7 @@
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
 using Com.IsartDigital.SHMUP.Structure;
+using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
 
@@ -8,55 +10,100 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	public class HardEnemy : Enemy
 	{
         [Export] private int nBullet = 3;
-        [Export] private float bulletSpacing;
+        [Export] private float moveDelay = 1f;
+        [Export] private float openingAngle = 90f;
+        [Export] private int maxLoop = 2;
 
-        private const float MARGIN = 60f;
-        private float yPos;
+        private const string PATH_MINE_BULLET = "res://Scenes/Prefab/Bullets/EnemyMine.tscn";
+        private const string PATH_CANON_RENDERER = "Renderer/Weapon";
+        
+        private const float MARGIN = 50f;
 
-        private bool patternComplete = false;
+        private float internalTime;
+
+        private int phase = 0;
+
+        private bool isStatic = true;
+        private bool isCharging = false;
+
         private float forcedSpeed;
 
-        private Vector2 up;
-        private Vector2 down;
+        private Timer timer;
 
-		public override void _Ready()
+        private Vector2 initialPosition;
+        private PackedScene minePrefab;
+
+        private Polygon2D canonRenderer;
+
+        public override void _Ready()
 		{
 			base._Ready();
 
             forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
+            internalTime = GlobalPosition.DistanceTo(new Vector2(MARGIN, GlobalPosition.y)) / (speed+forcedSpeed);
 
-            up = new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-            down = new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
+            // Replace by SceneTreeTimer;
+            timer = new Timer();
+            timer.OneShot = true;
+            timer.WaitTime = moveDelay;
+            timer.Connect(EventTimer.TIMEOUT, this, nameof(ChangePattern));
+            AddChild(timer);
+            timer.Start();
 
-            velocity = up;
-            yPos = screenSize.y/2;
-		}
+            velocity = new Vector2(forcedSpeed, 0);
+            minePrefab = GD.Load<PackedScene>(PATH_MINE_BULLET);
 
-        public override void _Process(float pDelta)
-        {
-            base._Process(pDelta);
-            if (GlobalPosition.y <= MARGIN)
-                velocity = down;
-            if (GlobalPosition.y >= screenSize.y - MARGIN)
-            {
-                velocity = up;
-                patternComplete = true;
-            }
-
-            if (patternComplete && GlobalPosition.y == yPos)
-                velocity = Vector2.Left * speed;
+            canonRenderer = GetNode<Polygon2D>(PATH_CANON_RENDERER);
         }
 
         protected override void Shoot()
         {
             EnemyBullet lBullet;
-            Vector2 lPosition = canon.GlobalPosition;
+
             for (int i = 1; i < nBullet+1; i++)
             {
                 lBullet = bulletScene.Instance<EnemyBullet>();
-                lBullet.Position = new Vector2(lPosition.x + (bulletSpacing * i), lPosition.y);
+                lBullet.Position = canon.GlobalPosition;
+                
                 bulletContainer.AddChild(lBullet);
             }
+        }
+
+        private void ChangePattern()
+        {
+            if (isStatic && !isCharging)
+            {
+                velocity = Vector2.Left * speed;
+
+                phase++;
+
+                if(maxLoop != phase)
+                {
+                    isCharging = true;
+                    isStatic = false;
+
+                    timer.WaitTime = internalTime;
+                }
+
+            }else if (!isStatic && isCharging)
+            {
+                EnemyMine lMine = minePrefab.Instance<EnemyMine>();
+                lMine.Position = GlobalPosition;
+                bulletContainer.AddChild(lMine);
+
+                velocity = Vector2.Right * (speed + forcedSpeed*2);
+                isCharging = false;
+                isStatic = false;
+                timer.WaitTime = internalTime;
+            }
+            else
+            {
+                velocity = new Vector2(forcedSpeed, 0);
+                timer.WaitTime = moveDelay;
+
+                isStatic = true;
+            }
+            timer.Start();
         }
     }
 

@@ -7,11 +7,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 	public class EnemyBullet : Bullet
 	{
 
+
 		public override void _Ready()
 		{
 			base._Ready();
 
-			velocity = Vector2.Left * speed;
+			velocity = Vector2.Left.Rotated(GlobalRotation) * speed;
 		}
 
         protected override void OnAreaEnter(Area2D pBody)

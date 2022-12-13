@@ -9,8 +9,8 @@ extents = Vector2( 64, 32 )
 script = ExtResource( 1 )
 speed = 250.0
 healthpoint = 5
-shootDelay = 1.5
-bulletSpacing = 50.0
+shootDelay = 1.25
+moveDelay = 4.0
 
 [node name="Renderer" type="Node2D" parent="."]
 
