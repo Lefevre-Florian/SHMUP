@@ -8,13 +8,20 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 	{
 		[Export] protected int damage;
 
-        public override void _Process(float pDelta)
+        public override void _Ready()
         {
-            base._Process(pDelta);
-			if (GlobalPosition.x < 0 || GlobalPosition.x > screenSize.x
-			|| GlobalPosition.y < 0 || GlobalPosition.y > screenSize.y)
-				QueueFree();
-		}
+            base._Ready();
+
+            doAction = SetActionMove;
+        }
+
+        protected override void DoActionMove()
+        {
+            base.DoActionMove();
+            if (GlobalPosition.x < 0 || GlobalPosition.x > screenSize.x
+            || GlobalPosition.y < 0 || GlobalPosition.y > screenSize.y)
+                QueueFree();
+        }
 
     }
 

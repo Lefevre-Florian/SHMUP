@@ -42,12 +42,18 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			AddChild(timer);
 
-			timer.Start();
+			doAction = SetActionMoveAndShoot;
 		}
 
-        public override void _Process(float pDelta)
+        protected override void SetActionMoveAndShoot()
         {
-            base._Process(pDelta);
+            base.SetActionMoveAndShoot();
+			timer.Start();
+        }
+
+        protected override void DoActionMove()
+        {
+            base.DoActionMove();
 			if (GlobalPosition.x < 0)
 				QueueFree();
 		}

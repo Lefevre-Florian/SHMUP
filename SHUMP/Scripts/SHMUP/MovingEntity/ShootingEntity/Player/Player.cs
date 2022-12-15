@@ -64,6 +64,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             hud = GetNode<Hud>(HUD_PATH);
 
             velocity = new Vector2(forcedSpeed, 0);
+            doAction = SetActionMove;
         }
 
         public override void _Input(InputEvent pEvent)

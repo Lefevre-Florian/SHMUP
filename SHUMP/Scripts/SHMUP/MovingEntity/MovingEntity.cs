@@ -12,16 +12,40 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 		protected Vector2 velocity;
 		protected Vector2 screenSize;
 
+		protected Action doAction;
+		protected float delta;
+
 		public override void _Ready()
 		{
 			screenSize = GetViewport().Size;
 
 			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
+
+			doAction = SetActionVoid;
 		}
 
         public override void _Process(float pDelta)
         {
-			GlobalPosition += velocity * pDelta;
+
+			if (doAction != null) doAction();
+			delta = pDelta;
+		}
+
+		protected virtual void DoActionVoid() { }
+
+		protected virtual void SetActionVoid() 
+		{
+			doAction = DoActionVoid;
+		}
+
+		protected virtual void DoActionMove() 
+		{
+			GlobalPosition += velocity * delta;
+		}
+
+		protected virtual void SetActionMove() 
+		{
+			doAction = DoActionMove;
 		}
 
 		protected virtual void OnAreaEnter(Area2D pBody) { }

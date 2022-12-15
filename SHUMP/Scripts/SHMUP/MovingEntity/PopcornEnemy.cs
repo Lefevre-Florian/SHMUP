@@ -18,16 +18,20 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
             yMax = GlobalPosition.y + margin;
             yMin = GlobalPosition.y - margin;
+
+            doAction = SetActionMove;
         }
 
-        public override void _Process(float pDelta)
+        protected override void DoActionMove()
         {
-            base._Process(pDelta);
+            base.DoActionMove();
             if (GlobalPosition.y <= yMin)
                 velocity = new Vector2(-speed, speed);
             if (GlobalPosition.y >= yMax)
                 velocity = new Vector2(-speed, -speed);
         }
+
+
 
     }
 

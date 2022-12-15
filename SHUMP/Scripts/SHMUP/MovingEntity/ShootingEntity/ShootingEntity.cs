@@ -7,6 +7,24 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
 	{
         [Export] protected int healthpoint = 1;
 
+        protected virtual void SetActionMoveAndShoot()
+        {
+            doAction = DoActionMoveAndShoot; 
+        }
+
+        protected virtual void DoActionMoveAndShoot()
+        {
+            DoActionMove();
+            DoActionShoot();
+        }
+
+        protected virtual void SetActionShoot() 
+        {
+            doAction = DoActionShoot;
+        }
+
+        protected virtual void DoActionShoot() { }
+
         public virtual void TakeDamage(int pDamage)
         {
             healthpoint -= pDamage;
