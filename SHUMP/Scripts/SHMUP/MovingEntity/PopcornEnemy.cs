@@ -8,6 +8,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         [Export] private float margin;
 
+        private const string TRIGGER_TAG = "Trigger";
+
         private float yMax;
         private float yMin;
 
@@ -18,8 +20,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
             yMax = GlobalPosition.y + margin;
             yMin = GlobalPosition.y - margin;
-
-            doAction = SetActionMove;
         }
 
         protected override void DoActionMove()
@@ -29,6 +29,15 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 velocity = new Vector2(-speed, speed);
             if (GlobalPosition.y >= yMax)
                 velocity = new Vector2(-speed, -speed);
+
+            if (GlobalPosition.x < 0)
+                QueueFree();
+        }
+
+        protected override void OnAreaEnter(Area2D pBody)
+        {
+            if (pBody.IsInGroup(TRIGGER_TAG))
+                SetActionMove();
         }
 
 

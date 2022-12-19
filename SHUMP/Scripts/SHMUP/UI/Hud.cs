@@ -32,11 +32,12 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         }
 
-        public void UpdateLifeHUD(int pDamage, bool pDelete = true)
+        public void UpdateLifeHUD(int pDamage, bool pVisible = true)
         {
             int lLength = heartsLength - pDamage;
+            GD.Print(lLength);
             for (int i = heartsLength; i >= lLength; i--)
-                hearts[i].Visible = pDelete;
+                hearts[i].Visible = pVisible;
         }
 
         public void UpdateSmartBombHUD()

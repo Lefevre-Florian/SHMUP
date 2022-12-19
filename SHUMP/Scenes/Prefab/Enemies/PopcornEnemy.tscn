@@ -7,7 +7,7 @@ extents = Vector2( 23.9942, 35.9913 )
 
 [node name="PopcornEnemy" type="Area2D"]
 script = ExtResource( 1 )
-speed = 150.0
+speed = 50.0
 margin = 50.0
 
 [node name="Renderer" type="Polygon2D" parent="."]

@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.UI;
@@ -24,10 +23,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private const string SHOT = "Shoot";
         private const string PAUSE = "Pause";
+        private const string SPECIAL = "Special";
         private const string GOD_MODE = "God_mode";
         #endregion
 
         private float forcedSpeed;
+
+        private const string SPECIALFEATURE_PATH = "res://Scenes/Prefab/SpecialFeature/SpecialFeature.tscn";
 
         private const string WEAPON_PATH = "Weapon";
         private const string HUD_PATH = "../../../UI";
@@ -38,7 +40,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private UIManager uiManager;
         private Hud hud;
 
+        private PackedScene specialFeatureScene;
+
         private bool invincibility = false;
+        public bool specialFeature = false;
 
         public delegate bool LifeState();
 
@@ -63,22 +68,27 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             hud = GetNode<Hud>(HUD_PATH);
 
+            specialFeatureScene = GD.Load<PackedScene>(SPECIALFEATURE_PATH);
+
             velocity = new Vector2(forcedSpeed, 0);
             doAction = SetActionMove;
         }
 
         public override void _Input(InputEvent pEvent)
         {
-            if (Input.IsActionPressed(MOVE_UP) && GlobalPosition.y > 0)
-                velocity = new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-            else if (Input.IsActionPressed(MOVE_DOWN) && GlobalPosition.y < screenSize.y)
-                velocity = new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
-            else if (Input.IsActionPressed(MOVE_LEFT) && GlobalPosition.x > 0)
-                velocity = new Vector2(-1 *(forcedSpeed + speed), 0);
-            else if (Input.IsActionPressed(MOVE_RIGHT) && GlobalPosition.x < screenSize.x)
-                velocity = new Vector2( 1 * (forcedSpeed + speed), 0);
-            else
-                velocity = new Vector2(forcedSpeed ,0);
+            velocity = new Vector2(forcedSpeed, 0);
+
+            if (!specialFeature)
+            {
+                if (Input.IsActionPressed(MOVE_UP) && GlobalPosition.y > 0)
+                    velocity = new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
+                else if (Input.IsActionPressed(MOVE_DOWN) && GlobalPosition.y < screenSize.y)
+                    velocity = new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
+                else if (Input.IsActionPressed(MOVE_LEFT) && GlobalPosition.x > 0)
+                    velocity = new Vector2(-1 * (forcedSpeed + speed), 0);
+                else if (Input.IsActionPressed(MOVE_RIGHT) && GlobalPosition.x < screenSize.x)
+                    velocity = new Vector2(1 * (forcedSpeed + speed), 0);
+            }
 
             if (Input.IsActionPressed(SHOT))
                 canon.Shoot();
@@ -89,7 +99,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             if (Input.IsActionPressed(GOD_MODE))
                 invincibility = !invincibility;
 
-
+            if (Input.IsActionJustPressed(SPECIAL))
+                SpecialFeature();
         }
 
         public static Player GetInstance()
@@ -113,19 +124,19 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
                 Color lSelfModulate = Modulate;
                 SceneTreeTween lTween = CreateTween();
-                lTween.Connect(EventTween.TWEEN_ALL_COMPLETED, this, nameof(ResetDamaging), new Godot.Collections.Array(lTween));
+              
                 lTween.Chain();
                 for (int i = 0; i < nRecoveryBlip; i++)
                 {
                     lTween.TweenProperty(this, PROPERTY_MODULATE, recoveryColor, recoveryTime/nRecoveryBlip);
                     lTween.TweenProperty(this, PROPERTY_MODULATE, lSelfModulate, recoveryTime/nRecoveryBlip);
                 }
+                lTween.TweenCallback(this, nameof(ResetDamaging), new Godot.Collections.Array(lTween));
             }
         }
 
         private void ResetDamaging(SceneTreeTween pTween)
         {
-            pTween.Disconnect(EventTween.TWEEN_ALL_COMPLETED, this, nameof(ResetDamaging));
             invincibility = false;
         }
 
@@ -133,6 +144,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         {
             healthpoint += pHealthPoint;
             hud.UpdateLifeHUD(pHealthPoint);
+        }
+
+        private void SpecialFeature()
+        {
+            SpecialFeature lSP = specialFeatureScene.Instance<SpecialFeature>();
+            GetParent().AddChild(lSP);
+            lSP.Init(this);
+            specialFeature = true;
         }
 
         protected override void Dispose(bool pDisposing)

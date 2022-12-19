@@ -22,6 +22,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
                 ((ShootingEntity)pBody).TakeDamage(damage);
                 QueueFree();
             }
+
+            if(pBody is PopcornEnemy)
+            {
+                pBody.QueueFree();
+                QueueFree();
+            }
         }
 
     }

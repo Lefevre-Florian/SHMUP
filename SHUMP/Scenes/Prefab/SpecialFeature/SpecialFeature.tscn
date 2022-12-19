@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/GameEntities/SpecialFeature.cs" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.3125, 5 )
+
+[node name="Pencil" type="Area2D"]
+scale = Vector2( 0.547009, 0.722222 )
+script = ExtResource( 1 )
+speed = 500.0
+
+[node name="Renderer" type="Polygon2D" parent="."]
+scale = Vector2( 0.445652, 0.59375 )
+polygon = PoolVector2Array( 0, -22.1538, 0, 0, 29.25, 0, 172.29, -65.2955, 146.25, -88.6154 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

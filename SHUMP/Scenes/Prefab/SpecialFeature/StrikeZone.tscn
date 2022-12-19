@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/GameEntities/SPStrikeZone.cs" type="Script" id=1]
+
+[node name="StrikeZone" type="Area2D"]
+script = ExtResource( 1 )
+linePath = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 100.0
+default_color = Color( 0.85098, 1, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
