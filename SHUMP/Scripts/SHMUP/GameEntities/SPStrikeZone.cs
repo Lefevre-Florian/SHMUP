@@ -14,6 +14,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		private Line2D line;
 
+		private SceneTreeTimer timer;
+
 		private int damage;
 		private Vector2 internalVelocity;
 
@@ -24,7 +26,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			internalVelocity = new Vector2(pForcedSpeed, 0);
 
-			GetTree().CreateTimer(pDuration).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
+			timer = GetTree().CreateTimer(pDuration);
+			timer.Connect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
         }
 
         public override void _Process(float pDelta)
@@ -39,6 +42,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		public void EndDrawing()
         {
+
+			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
+
 			if (line.Points.Length <= 0)
             {
 				Destroy();

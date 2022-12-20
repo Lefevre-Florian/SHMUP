@@ -8,6 +8,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	public abstract class Enemy : ShootingEntity
 	{
 		[Export] private float shootDelay = 1f;
+		[Export] private int bodyDamage = 1;
 
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
@@ -60,6 +61,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected virtual void Shoot() { }
 
-	}
+        protected override void OnAreaEnter(Area2D pBody)
+        {
+			if (pBody is Player.Player)
+				((Player.Player)pBody).TakeDamage(bodyDamage);
+        }
+
+    }
 
 }

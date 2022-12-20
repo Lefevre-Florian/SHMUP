@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/MediumEnemy.cs" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 40 )
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.0
+
 [node name="Enemy1" type="Area2D"]
 script = ExtResource( 1 )
 speed = 250.0
 healthpoint = 2
+dronePath = NodePath("Drone")
+droneRadius = 100.0
+droneSpeed = 2.0
 
 [node name="Renderer" type="Node2D" parent="."]
 scale = Vector2( 0.6, 0.6 )
@@ -27,3 +33,14 @@ position = Vector2( -128, 0 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Drone" type="Area2D" parent="."]
+position = Vector2( 0, -64 )
+
+[node name="Renderer" type="Polygon2D" parent="Drone"]
+scale = Vector2( 0.75, 0.72 )
+polygon = PoolVector2Array( -8, -24, 0, -24, 8, -24, 16, -16, 16, 8, 8, 16, 0, 16, -8, 16, -16, 8, -16, -16 )
+
+[node name="Collider" type="CollisionShape2D" parent="Drone"]
+position = Vector2( 0, -3 )
+shape = SubResource( 2 )

@@ -37,7 +37,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string PROPERTY_MODULATE = "modulate";
         
         public Weapon canon;
+
         private UIManager uiManager;
+        private BackgroundManager backgroundManager;
+
         private Hud hud;
 
         private PackedScene specialFeatureScene;
@@ -60,7 +63,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             base._Ready();
 
-            forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
+            backgroundManager = BackgroundManager.GetInstance();
+            forcedSpeed = backgroundManager.forcedSpeed;
 
             uiManager = UIManager.GetInstance();
 
@@ -88,6 +92,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                     velocity = new Vector2(-1 * (forcedSpeed + speed), 0);
                 else if (Input.IsActionPressed(MOVE_RIGHT) && GlobalPosition.x < screenSize.x)
                     velocity = new Vector2(1 * (forcedSpeed + speed), 0);
+
+                if (Input.IsActionJustPressed(SPECIAL))
+                    SpecialFeature();
+
             }
 
             if (Input.IsActionPressed(SHOT))
@@ -99,8 +107,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             if (Input.IsActionPressed(GOD_MODE))
                 invincibility = !invincibility;
 
-            if (Input.IsActionJustPressed(SPECIAL))
-                SpecialFeature();
         }
 
         public static Player GetInstance()
@@ -148,6 +154,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private void SpecialFeature()
         {
+            backgroundManager.SlowMotion();
             SpecialFeature lSP = specialFeatureScene.Instance<SpecialFeature>();
             GetParent().AddChild(lSP);
             lSP.Init(this);
