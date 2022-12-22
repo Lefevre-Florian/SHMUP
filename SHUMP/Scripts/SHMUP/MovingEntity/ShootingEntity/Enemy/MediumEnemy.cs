@@ -15,7 +15,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		private float droneAngle = 0f;
 
-		private Area2D drone;
+		private Drone drone;
 
 		private bool isImmune = true;
 
@@ -23,10 +23,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		{
 			base._Ready();
 
-			drone = GetNode<Area2D>(dronePath);
-			drone.Connect(EventArea2D.AREA_ENTERED, this, nameof(OnDroneCollisionEnter));
-			drone.GlobalPosition = GlobalPosition + new Vector2(Mathf.Cos(0), Mathf.Sin(0)) * droneRadius;
+			drone = GetNode<Drone>(dronePath);
+			drone.Init(droneRadius, droneSpeed, true);
 
+
+			drone.Connect(nameof(Drone.Destroyed), this, nameof(DestroyedDrone));
 			velocity = Vector2.Left;
 		}
 
@@ -43,30 +44,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				base.TakeDamage(pDamage);
         }
 
-		private void OnDroneCollisionEnter(Area2D pBody)
+		private void DestroyedDrone()
         {
-			if(pBody is SPStrikeZone)
-				DroneDestroy();
-        }
-
-		private void DroneDestroy()
-        {
-			drone.Disconnect(EventArea2D.AREA_ENTERED, this, nameof(OnDroneCollisionEnter));
-
-			isImmune = false;
-			drone.QueueFree();
+			drone.Disconnect(nameof(Drone.Destroyed), this, nameof(DestroyedDrone));
 			drone = null;
+			isImmune = false;
         }
-
-        protected override void DoActionMove()
-        {
-            base.DoActionMove();
-			if(drone != null)
-            {
-				droneAngle += delta;
-				drone.GlobalPosition = GlobalPosition + new Vector2(Mathf.Cos(droneAngle * droneSpeed), Mathf.Sin(droneAngle * droneSpeed)) * droneRadius;
-			}	
-		}
 
     }
 

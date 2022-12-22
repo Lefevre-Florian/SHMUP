@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/MovingEntity/BattleDrone.cs" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0
+
+[node name="BattleDrone" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="Renderer" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="Renderer"]
+position = Vector2( -8, 0 )
+rotation = -1.5708
+polygon = PoolVector2Array( -8, -16, 8, -16, 0, -8, 16, 0, 16, 16, 8, 24, -8, 24, -16, 16, -16, 0, 0, -8 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/Body"]
+position = Vector2( 4.76837e-07, -16 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

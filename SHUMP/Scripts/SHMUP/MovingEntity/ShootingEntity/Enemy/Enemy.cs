@@ -10,6 +10,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private float shootDelay = 1f;
 		[Export] private int bodyDamage = 1;
 
+		[Export] private NodePath weaponPath;
+
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
 		private const string PATH_CANON = "Renderer/Weapon/Position2D";
@@ -25,31 +27,33 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		private Timer timer;
 
+		protected float forcedSpeed;
 
 		public override void _Ready()
 		{
 			base._Ready();
+			forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
 
 			target = Player.Player.GetInstance();
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
-			canon = GetNode<Position2D>(PATH_CANON);
+			canon = GetNode<Position2D>(weaponPath);
 
 			bulletScene = GD.Load<PackedScene>(PATH_BULLET_PREFAB);
 
-			// Replace by SceneTreeTimer
 			timer = new Timer();
 			timer.WaitTime = shootDelay;
 
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			AddChild(timer);
 
-			doAction = SetActionMoveAndShoot;
+			SetActionMoveAndShoot();
 		}
 
         protected override void SetActionMoveAndShoot()
         {
             base.SetActionMoveAndShoot();
-			timer.Start();
+			if(timer.TimeLeft <= 0)
+				timer.Start();
         }
 
         protected override void DoActionMove()

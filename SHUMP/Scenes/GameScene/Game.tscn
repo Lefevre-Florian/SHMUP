@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/UIPrefab/UIElement/Heart.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Prefab/Enemies/PopcornEnemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=6]
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Prefab/Enemies/Enemy1.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Prefab/Wall/Wall.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -67,24 +65,13 @@ recoveryColor = Color( 1, 0, 0, 0.686275 )
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="Enemy1" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 8 )]
-position = Vector2( 760, 320 )
-
-[node name="PopcornEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
-position = Vector2( 1256, 224 )
-
-[node name="PopcornEnemy2" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
-position = Vector2( 1320, 160 )
-
-[node name="PopcornEnemy3" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
-position = Vector2( 1384, 96 )
+[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
+position = Vector2( 784, 320 )
+droneRadius = 250.0
 
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="Wall" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 920, 320 )
 
 [node name="Trigger" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
@@ -158,6 +145,16 @@ align = 1
 margin_top = 18.0
 margin_right = 256.0
 margin_bottom = 18.0
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Panel"]
+visible = false
+margin_left = 192.0
+margin_top = 544.0
+margin_right = 832.0
+margin_bottom = 576.0
+max_value = 25.0
+step = 1.0
+value = 25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )

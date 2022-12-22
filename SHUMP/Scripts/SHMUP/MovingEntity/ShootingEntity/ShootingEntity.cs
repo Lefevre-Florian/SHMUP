@@ -15,15 +15,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
         protected virtual void DoActionMoveAndShoot()
         {
             DoActionMove();
-            DoActionShoot();
         }
-
-        protected virtual void SetActionShoot() 
-        {
-            doAction = DoActionShoot;
-        }
-
-        protected virtual void DoActionShoot() { }
 
         public virtual void TakeDamage(int pDamage)
         {

@@ -7,6 +7,16 @@ extents = Vector2( 80, 64 )
 
 [node name="Boss" type="Area2D"]
 script = ExtResource( 1 )
+speed = 250.0
+healthpoint = 25
+weaponPath = NodePath("Renderer/Weapon/Position2D")
+moveDelay = 6.0
+secondPhaseStart = 15
+thirdPhaseStart = 5
+secondPhaseGraphics = NodePath("Renderer/SecondPhase")
+secondPhaseWeapons = NodePath("Renderer/SecondPhase/WeaponPosition")
+droneRadius = 100.0
+droneSpeed = 2.0
 
 [node name="Renderer" type="Node2D" parent="."]
 
@@ -14,6 +24,38 @@ script = ExtResource( 1 )
 position = Vector2( 0, -4.26667 )
 scale = Vector2( 1, 1.06667 )
 polygon = PoolVector2Array( -80, 64, -32, 64, -32, 4, -24, -3.5, -8, -11, 8, -11, 24, -3.5, 32, 4, 32, 64, 80, 64, 80, -56, -80, -56 )
+
+[node name="Weapon" type="Polygon2D" parent="Renderer"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -64, -8, -112, -8, -112, 8, -64, 8 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/Weapon"]
+position = Vector2( -112, 0 )
+
+[node name="SecondPhase" type="Node2D" parent="Renderer"]
+visible = false
+
+[node name="Weapon2" type="Polygon2D" parent="Renderer/SecondPhase"]
+position = Vector2( 0, -24 )
+rotation = -1.5708
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -64, -8, -112, -8, -112, 8, -64, 8 )
+
+[node name="Weapon3" type="Polygon2D" parent="Renderer/SecondPhase"]
+position = Vector2( 0, 24 )
+rotation = 1.5708
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -64, -8, -112, -8, -112, 8, -64, 8 )
+
+[node name="WeaponPosition" type="Node2D" parent="Renderer/SecondPhase"]
+
+[node name="Position2D2" type="Position2D" parent="Renderer/SecondPhase/WeaponPosition"]
+position = Vector2( 0.000405439, 88 )
+rotation = -1.5708
+
+[node name="Position2D" type="Position2D" parent="Renderer/SecondPhase/WeaponPosition"]
+position = Vector2( 0.000405439, -88 )
+rotation = 1.5708
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
