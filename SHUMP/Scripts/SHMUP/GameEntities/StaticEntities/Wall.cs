@@ -69,7 +69,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
             doAction = DoActionCollide;
         }
 
-        private void DoActionCollide()
+        protected virtual void DoActionCollide()
         {
             body.GlobalPosition += Vector2.Left * size; 
         }
