@@ -4,7 +4,7 @@ using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
 
-	public class StaticEntity : Area2D
+	public abstract class StaticEntity : Area2D
 	{
 		
 		public override void _Ready()
