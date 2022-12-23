@@ -37,7 +37,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
         public void DropPoint(Vector2 pPosition)
         {
-			line.AddPoint(pPosition);
+			line.AddPoint(new Vector2(pPosition.x - GlobalPosition.x, pPosition.y));
         }
 
 		public void EndDrawing()

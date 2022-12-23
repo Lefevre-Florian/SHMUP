@@ -16,7 +16,7 @@ secondPhaseStart = 15
 thirdPhaseStart = 5
 secondPhaseGraphics = NodePath("Renderer/SecondPhase")
 secondPhaseWeapons = NodePath("Renderer/SecondPhase/WeaponPosition")
-droneRadius = 100.0
+droneRadius = 50.0
 droneSpeed = 2.0
 droneShootDelay = 5.0
 

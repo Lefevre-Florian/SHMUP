@@ -109,18 +109,15 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
             base.TakeDamage(pDamage);
 
-            GD.Print(healthpoint);
-
             if(healthpoint <= secondPhaseStart && healthpoint > thirdPhaseStart 
             && phase == TriggerFirstPhase)
             {
-                GD.Print("Second phase");
                 TriggerSecondPhase();
             }
 
             if(healthpoint <= thirdPhaseStart && phase == TriggerSecondPhase)
             {
-                GD.Print("Third phase");
+              
             }
 
         }
