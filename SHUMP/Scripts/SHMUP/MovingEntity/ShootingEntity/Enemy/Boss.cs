@@ -61,6 +61,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
             phase = TriggerFirstPhase;
 
+            ChargeProcess();
+
             weapons.Add(canon);
         }
 
@@ -76,6 +78,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             BattleDrone lDrone = droneScene.Instance<BattleDrone>();
             AddChild(lDrone);
             lDrone.Init(droneRadius, droneSpeed, droneShootDelay);
+        }
+
+        private void TriggerThridPhase()
+        {
+            phase = TriggerThridPhase;
         }
 
         protected override void DoActionMove()
@@ -104,13 +111,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
             GD.Print(healthpoint);
 
-            if(healthpoint <= secondPhaseStart && healthpoint > thirdPhaseStart)
+            if(healthpoint <= secondPhaseStart && healthpoint > thirdPhaseStart 
+            && phase == TriggerFirstPhase)
             {
                 GD.Print("Second phase");
                 TriggerSecondPhase();
             }
 
-            if(healthpoint <= thirdPhaseStart)
+            if(healthpoint <= thirdPhaseStart && phase == TriggerSecondPhase)
             {
                 GD.Print("Third phase");
             }

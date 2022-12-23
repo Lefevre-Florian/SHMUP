@@ -9,6 +9,7 @@ extents = Vector2( 80, 64 )
 script = ExtResource( 1 )
 speed = 250.0
 healthpoint = 25
+shootDelay = 2.25
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 moveDelay = 6.0
 secondPhaseStart = 15
@@ -17,6 +18,7 @@ secondPhaseGraphics = NodePath("Renderer/SecondPhase")
 secondPhaseWeapons = NodePath("Renderer/SecondPhase/WeaponPosition")
 droneRadius = 100.0
 droneSpeed = 2.0
+droneShootDelay = 5.0
 
 [node name="Renderer" type="Node2D" parent="."]
 

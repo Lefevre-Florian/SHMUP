@@ -24,7 +24,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             speed = pSpeed;
             radius = pRadius;
 
-            GlobalPosition = pParent.GlobalPosition + new Vector2(Mathf.Cos(0), Mathf.Sin(0)) * radius;
+            GlobalPosition = pParent.GlobalPosition + new Vector2(Mathf.Cos(90), Mathf.Sin(90)) * radius;
 
             if (pRotating)
                 SetActionMove();

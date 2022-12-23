@@ -71,7 +71,15 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
 
         protected virtual void DoActionCollide()
         {
-            body.GlobalPosition += Vector2.Left * size; 
+            if (body.GlobalPosition.x > GlobalPosition.x)
+                body.GlobalPosition += Vector2.Up * size;
+            else if (body.GlobalPosition.x < GlobalPosition.x)
+                body.GlobalPosition += Vector2.Down * size;
+
+            if (body.GlobalPosition.y > GlobalPosition.y)
+                body.GlobalPosition += Vector2.Right * size;
+            else if(body.GlobalPosition.y < GlobalPosition.y)
+                body.GlobalPosition += Vector2.Left * size; 
         }
 
         protected override void Dispose(bool pDisposing)

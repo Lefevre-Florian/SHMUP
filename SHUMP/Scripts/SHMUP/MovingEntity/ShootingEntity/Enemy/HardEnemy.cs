@@ -10,7 +10,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	public class HardEnemy : ChargingEnemy
 	{
         [Export] private int nBullet = 3;
-        [Export] private float openingAngle = 90f;
         [Export] private int maxLoop = 2;
 
         private const string PATH_MINE_BULLET = "res://Scenes/Prefab/Bullets/EnemyMine.tscn";
