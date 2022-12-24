@@ -15,6 +15,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
         private float delta;
         private float size = 5f;
 
+        private Vector2 direction;
+
         private Action doAction = null;
         private Area2D body = null;
         private Polygon2D renderer = null;
@@ -72,14 +74,16 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
         protected virtual void DoActionCollide()
         {
             if (body.GlobalPosition.x > GlobalPosition.x)
-                body.GlobalPosition += Vector2.Up * size;
-            else if (body.GlobalPosition.x < GlobalPosition.x)
-                body.GlobalPosition += Vector2.Down * size;
+                direction = Vector2.Right;
+            else if (body.GlobalPosition.x <= GlobalPosition.x)
+                direction = Vector2.Left;
 
-            if (body.GlobalPosition.y > GlobalPosition.y)
-                body.GlobalPosition += Vector2.Right * size;
-            else if(body.GlobalPosition.y < GlobalPosition.y)
-                body.GlobalPosition += Vector2.Left * size; 
+            if (body.GlobalPosition.y > GlobalPosition.y + size)
+                direction = Vector2.Down;
+            else if(body.GlobalPosition.y <= GlobalPosition.y - size)
+                direction = Vector2.Up;
+
+            body.GlobalPosition += direction * size;
         }
 
         protected override void Dispose(bool pDisposing)

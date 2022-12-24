@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/UIPrefab/UIElement/Heart.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=6]
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=7]
 
@@ -35,6 +34,7 @@ color = Color( 0.247059, 0.247059, 0.247059, 1 )
 polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 
 [node name="LayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.447059 )
 
 [node name="Cloud" parent="ParallaxBackground/LayerBackground" instance=ExtResource( 7 )]
 position = Vector2( 96, 104 )
@@ -65,10 +65,6 @@ recoveryColor = Color( 1, 0, 0, 0.686275 )
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 5 )]
-position = Vector2( 784, 320 )
-droneRadius = 250.0
-
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
@@ -76,7 +72,7 @@ droneRadius = 250.0
 [node name="Trigger" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="TriggerWall" type="Area2D" parent="ParallaxBackground/LayerGameplay/Trigger" groups=["Trigger"]]
-position = Vector2( 1120, 0 )
+position = Vector2( 1056, 0 )
 
 [node name="Collider" type="CollisionShape2D" parent="ParallaxBackground/LayerGameplay/Trigger/TriggerWall"]
 position = Vector2( 0, 300 )

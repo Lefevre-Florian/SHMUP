@@ -45,6 +45,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			chargeTimer.Start();
         }
 
+        protected override void Destroy()
+        {
+			if (chargeTimer != null)
+				chargeTimer.QueueFree();
+            base.Destroy();
+        }
+
     }
 
 }

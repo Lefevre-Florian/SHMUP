@@ -51,6 +51,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			isImmune = false;
         }
 
+        protected override void Destroy()
+        {
+			if (drone != null)
+				DestroyedDrone();
+            base.Destroy();
+        }
+
     }
 
 }

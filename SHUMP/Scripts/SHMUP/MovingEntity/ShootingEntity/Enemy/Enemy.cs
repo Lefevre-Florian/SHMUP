@@ -1,5 +1,6 @@
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
 using Godot;
 using System;
 
@@ -11,6 +12,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private int bodyDamage = 1;
 
 		[Export] private NodePath weaponPath;
+
+		[Export] private PackedScene drop = null;
 
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
@@ -60,7 +63,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
             base.DoActionMove();
 			if (GlobalPosition.x < 0)
-				QueueFree();
+				Destroy();
 		}
 
         protected virtual void Shoot() { }
@@ -69,6 +72,21 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
 			if (pBody is Player.Player)
 				((Player.Player)pBody).TakeDamage(bodyDamage);
+        }
+
+		protected override void Destroy()
+        {
+			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+			timer.QueueFree();
+
+			if(drop != null)
+            {
+				StaticEntity lCollectible = drop.Instance<StaticEntity>();
+				AddChild(lCollectible);
+				lCollectible.Position = GlobalPosition;
+            }
+
+			base.Destroy();
         }
 
     }

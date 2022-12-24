@@ -21,7 +21,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
         {
             healthpoint -= pDamage;
             if (healthpoint <= 0)
-                QueueFree();
+                Destroy();
+        }
+
+        protected virtual void Destroy()
+        {
+            QueueFree();
         }
 
     }
