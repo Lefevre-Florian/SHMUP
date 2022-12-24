@@ -10,7 +10,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 	public class SpecialFeature : MovingEntity
 	{
 
-        [Export] private float duration = 5f;
+        [Export] public float duration = 5f;
         [Export] private int damage = 1;
         [Export (PropertyHint.ExpRange, "0.1,1,0.05")] private float spacingTime = 0.25f;
 
@@ -30,6 +30,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         private SPStrikeZone strikeZone;
 
         private Player owner;
+
+        [Signal]
+        public delegate void Finished();
 
         public override void _Ready() { }
 
@@ -84,8 +87,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         private void Stop()
         {
             timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Draw));
+            EmitSignal(nameof(Finished));
             QueueFree();
-            owner.specialFeature = false;
         }
 
     }

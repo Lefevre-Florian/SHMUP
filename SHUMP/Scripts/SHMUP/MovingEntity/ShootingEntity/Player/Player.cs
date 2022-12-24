@@ -3,6 +3,7 @@ using System;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.UI;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
@@ -17,6 +18,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         [Export] public int maxSmartBomb = 5;
         [Export] public int maxHealthPoint = 3;
+
+        [Export] private float specialFeatureDelay;
+
+        [Export] private NodePath weaponPath = default;
 
         #region Controls
         private const string MOVE_UP = "Up";
@@ -36,9 +41,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string SPECIALFEATURE_PATH = "res://Scenes/Prefab/SpecialFeature/SpecialFeature.tscn";
         private const string SMARTBOMB_PATH = "res://Scenes/Prefab/Bullets/SmartBomb.tscn";
 
-        private const string WEAPON_PATH = "Weapon";
-        private const string HUD_PATH = "../../../UI";
-
         private const string PROPERTY_MODULATE = "modulate";
 
         private const int NB_SMARTBOMB = 2;
@@ -55,6 +57,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private bool invincibility = false;
         public bool specialFeature = false;
+
+        private SceneTreeTimer specialFeatureDelaytimer;
 
         [Signal]
         public delegate void LifeState(int pLifePoint);
@@ -80,7 +84,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             uiManager = UIManager.GetInstance();
 
-            canon = GetNode<Weapon>(WEAPON_PATH);
+            canon = GetNode<Weapon>(weaponPath);
 
             specialFeatureScene = GD.Load<PackedScene>(SPECIALFEATURE_PATH);
 
@@ -104,7 +108,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                     velocity = new Vector2(1 * (forcedSpeed + speed), 0);
 
                 if (Input.IsActionJustPressed(SPECIAL))
-                    SpecialFeature();
+                    EnableSpecialFeature();
 
             }
 
@@ -188,12 +192,28 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             EmitSignal(nameof(SmarbombState), false);
         }
 
-        private void SpecialFeature()
+        private void EnableSpecialFeature()
         {
             SpecialFeature lSP = specialFeatureScene.Instance<SpecialFeature>();
             GetParent().AddChild(lSP);
             lSP.Init(this);
+            lSP.Connect(nameof(SpecialFeature.Finished), this, nameof(DisableSpecialFeature), new Godot.Collections.Array(lSP));
             specialFeature = true;
+
+            specialFeatureDelaytimer = GetTree().CreateTimer(lSP.duration + specialFeatureDelay);
+            specialFeatureDelaytimer.Connect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
+        }
+
+        private void DisableSpecialFeature()
+        {
+            specialFeature = false;
+            specialFeatureDelaytimer.Disconnect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
+        }
+
+        private void DisableSpecialFeature(SpecialFeature pSpecialFeature)
+        {
+            pSpecialFeature.Disconnect(nameof(SpecialFeature.Finished), this, nameof(DisableSpecialFeature));
+            specialFeatureDelaytimer.TimeLeft = specialFeatureDelay;
         }
 
         public int GetHealthPoint()

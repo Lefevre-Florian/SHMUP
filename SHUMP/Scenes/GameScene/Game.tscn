@@ -62,6 +62,7 @@ healthpoint = 3
 recoveryTime = 1.25
 nRecoveryBlip = 4
 recoveryColor = Color( 1, 0, 0, 0.686275 )
+specialFeatureDelay = 1.5
 
 [node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
