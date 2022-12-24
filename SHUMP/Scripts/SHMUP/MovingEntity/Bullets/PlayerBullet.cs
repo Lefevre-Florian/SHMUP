@@ -20,13 +20,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
             if(pBody is Enemy)
             {
                 ((ShootingEntity)pBody).TakeDamage(damage);
-                QueueFree();
+                Clean();
             }
 
             if(pBody is PopcornEnemy)
             {
-                pBody.QueueFree();
-                QueueFree();
+                ((PopcornEnemy)pBody).Destroy();
+                Clean();
             }
         }
 

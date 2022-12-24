@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
-[ext_resource path="res://Scenes/UIPrefab/UIElement/Heart.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/UIPrefab/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=5]
+[ext_resource path="res://Scenes/Prefab/Enemies/Enemy2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -13,11 +14,12 @@ extents = Vector2( 10, 300 )
 [node name="Root" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
+script = ExtResource( 5 )
+cameraPath = NodePath("../Camera2D")
 
 [node name="BackgroundManager" type="Node" parent="."]
 script = ExtResource( 1 )
 speed = 5000.0
-slowMotionSpeed = 2500.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="UIManager" type="Node" parent="."]
@@ -65,6 +67,9 @@ recoveryColor = Color( 1, 0, 0, 0.686275 )
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
+[node name="HardEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 6 )]
+position = Vector2( 792, 352 )
+
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
@@ -80,77 +85,7 @@ shape = SubResource( 1 )
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="UI" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-script = ExtResource( 6 )
-lifeExtenstion = "Score"
-lifePath = NodePath("Panel/Life")
-scorePath = NodePath("Panel/Score")
-smartBombPath = NodePath("Panel/HBoxContainer/Smartbomb")
-
-[node name="Panel" type="Panel" parent="UI"]
-anchor_right = 1.0
-anchor_bottom = 0.107
-margin_bottom = -0.200005
-
-[node name="Life" type="HBoxContainer" parent="UI/Panel"]
-margin_left = 64.0
-margin_top = 8.0
-margin_right = 256.0
-margin_bottom = 56.0
-
-[node name="Heart" parent="UI/Panel/Life" instance=ExtResource( 4 )]
-position = Vector2( 32, 40 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Heart2" parent="UI/Panel/Life" instance=ExtResource( 4 )]
-position = Vector2( 96, 40 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Heart3" parent="UI/Panel/Life" instance=ExtResource( 4 )]
-position = Vector2( 160, 40 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Score" type="Label" parent="UI/Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -64.0
-margin_top = 8.0
-margin_right = 64.0
-margin_bottom = 56.0
-text = "Score : 0"
-align = 1
-valign = 1
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -320.0
-margin_top = 8.0
-margin_right = -64.0
-margin_bottom = 64.0
-
-[node name="Label" type="Label" parent="UI/Panel/HBoxContainer"]
-margin_right = 256.0
-margin_bottom = 14.0
-text = "Recharge"
-align = 1
-
-[node name="Smartbomb" type="HBoxContainer" parent="UI/Panel/HBoxContainer"]
-margin_top = 18.0
-margin_right = 256.0
-margin_bottom = 18.0
-
-[node name="ProgressBar" type="ProgressBar" parent="UI/Panel"]
-visible = false
-margin_left = 192.0
-margin_top = 544.0
-margin_right = 832.0
-margin_bottom = 576.0
-max_value = 25.0
-step = 1.0
-value = 25.0
+[node name="UI" parent="." instance=ExtResource( 4 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )

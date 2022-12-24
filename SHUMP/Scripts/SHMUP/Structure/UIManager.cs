@@ -50,7 +50,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
             GetTree().Paused = true;
 
             AddChild(gameOver);
-
         }
 
         protected override void Dispose(bool pDisposing)

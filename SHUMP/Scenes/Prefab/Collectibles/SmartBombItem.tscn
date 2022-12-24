@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/GameEntities/StaticEntities/Collectible/SmarbombKit.cs" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.0
+height = 128.0
+
+[node name="SmartBombItem" type="Area2D"]
+position = Vector2( -8, 0 )
+scale = Vector2( 0.45, 0.75 )
+script = ExtResource( 1 )
+
+[node name="Renderer" type="Polygon2D" parent="."]
+position = Vector2( -32, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -32, 0, -24, -12, -10, -20, 16, -24, 48, -24, 96, -24, 112, -8, 112, 8, 96, 24, 16, 24, -10, 20, -24, 12 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Renderer"]
+position = Vector2( 48, 0 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 64, -8, 96, -24, 96, -24, 72, 0, 96, 24, 64, 8 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+shape = SubResource( 1 )

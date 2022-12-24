@@ -3,19 +3,27 @@ using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
 using Godot;
 using System;
+using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.GameEntities;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 	public abstract class Enemy : ShootingEntity
 	{
+
+		public static List<Enemy> enemies = new List<Enemy>();
+
 		[Export] private float shootDelay = 1f;
 		[Export] private int bodyDamage = 1;
+		[Export] private uint score = 100;
 
 		[Export] private NodePath weaponPath;
 
 		[Export] private PackedScene drop = null;
 
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
+		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
+
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
 		private const string PATH_CANON = "Renderer/Weapon/Position2D";
 
@@ -55,6 +63,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         protected override void SetActionMoveAndShoot()
         {
             base.SetActionMoveAndShoot();
+			enemies.Add(this);
 			if(timer.TimeLeft <= 0)
 				timer.Start();
         }
@@ -74,8 +83,18 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				((Player.Player)pBody).TakeDamage(bodyDamage);
         }
 
-		protected override void Destroy()
+        protected override void Destroy()
         {
+			enemies.Remove(this);
+
+			if(healthpoint <= 0)
+            {
+				FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
+				GetParent().AddChild(lScore);
+				lScore.RectPosition = GlobalPosition;
+				lScore.SetScore(score);
+			}
+
 			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			timer.QueueFree();
 

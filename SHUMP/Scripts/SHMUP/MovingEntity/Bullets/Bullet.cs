@@ -1,18 +1,26 @@
 using Godot;
 using System;
-using Com.IsartDigital.Utils.Events;
+using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
 	public abstract class Bullet : MovingEntity
 	{
+        public static List<Bullet> bullets = new List<Bullet>();
+
 		[Export] protected int damage;
 
         public override void _Ready()
         {
             base._Ready();
 
-            doAction = SetActionMove;
+            SetActionMove();
+        }
+
+        protected override void SetActionMove()
+        {
+            bullets.Add(this);
+            base.SetActionMove();
         }
 
         protected override void DoActionMove()
@@ -20,7 +28,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
             base.DoActionMove();
             if (GlobalPosition.x < 0 || GlobalPosition.x > screenSize.x
             || GlobalPosition.y < 0 || GlobalPosition.y > screenSize.y)
-                QueueFree();
+                Clean();
+        }
+
+        public virtual void Clean()
+        {
+            bullets.Remove(this);
+            QueueFree();
         }
 
     }

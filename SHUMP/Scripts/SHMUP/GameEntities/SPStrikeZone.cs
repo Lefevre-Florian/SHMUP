@@ -3,6 +3,7 @@ using System;
 using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities;
+using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.GameEntities {
 
@@ -37,7 +38,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
         public void DropPoint(Vector2 pPosition)
         {
-			line.AddPoint(new Vector2(pPosition.x - GlobalPosition.x, pPosition.y));
+			line.AddPoint(new Vector2(pPosition.x - Position.x, pPosition.y));
         }
 
 		public void EndDrawing()

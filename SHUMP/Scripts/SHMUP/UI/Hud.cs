@@ -1,54 +1,94 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player;
 
 namespace Com.IsartDigital.SHMUP.UI {
 	
     public class Hud : Screen
     {
-        [Export] private string lifeExtenstion;
+        private static Hud instance;
 
-        [Export] private NodePath lifePath;
-        [Export] private NodePath scorePath;
-        [Export] private NodePath smartBombPath;
+        [Export] private NodePath lifePath = default;
+
+        [Export] private string scoreExtension;
+        [Export] private NodePath scorePath = default;
+
+        [Export] private NodePath smartBombPath = default;
 
         private Label score;
-        private HBoxContainer smartBomb;
+        private Label smartBomb;
 
-        private List<Polygon2D> hearts = new List<Polygon2D>();
+        private ProgressBar lifeBar;
 
         private uint nScore = 0;
-        private int heartsLength = 0;
+
+        private int nSmartBomb = 0;
+        private int maxSmartBomb = 0;
+
+        private Hud() : base() { }
 
         public override void _Ready()
         {
-            foreach (Polygon2D lHeart in GetNode<HBoxContainer>(lifePath).GetChildren())
-                hearts.Add(lHeart);
+            if(instance != null)
+            {
+                QueueFree();
+                return;
+            }
+            instance = this;
+
+            lifeBar = GetNode<ProgressBar>(lifePath);
 
             score = GetNode<Label>(scorePath);
-            smartBomb = GetNode<HBoxContainer>(smartBombPath);
+            smartBomb = GetNode<Label>(smartBombPath);
 
-            heartsLength = hearts.Count-1;
+            Player lPlayer = Player.GetInstance();
+
+            lifeBar.Value = lPlayer.GetHealthPoint();
+            lifeBar.MaxValue = lPlayer.maxHealthPoint;
+            lPlayer.Connect(nameof(Player.LifeState), this, nameof(UpdateLifeHUD));
+
+            maxSmartBomb = lPlayer.maxSmartBomb;
+            nSmartBomb = lPlayer.nSmartBomb;
+            smartBomb.Text = $"{++nSmartBomb}/{maxSmartBomb}";
+
+            lPlayer.Connect(nameof(Player.SmarbombState), this, nameof(UpdateSmartBombHUD));
 
         }
 
-        public void UpdateLifeHUD(int pDamage, bool pVisible = true)
+        public static Hud GetInstance()
         {
-            int lLength = heartsLength - pDamage;
-            GD.Print(lLength);
-            for (int i = heartsLength; i >= lLength; i--)
-                hearts[i].Visible = pVisible;
+            if (instance == null) instance = new Hud();
+            return instance;
         }
 
-        public void UpdateSmartBombHUD()
+        public void UpdateLifeHUD(int pHealthPoint)
         {
+            lifeBar.Value = pHealthPoint;
+        }
 
+        public void UpdateSmartBombHUD(bool pState)
+        {
+            if (pState)
+                smartBomb.Text = $"{--nSmartBomb}/{maxSmartBomb}";
+            else
+                smartBomb.Text = $"{++nSmartBomb}/{maxSmartBomb}";
         }
 
         public void UpdateScoreHUD(uint pScore)
         {
             nScore += pScore;
-            score.Text = $"{lifeExtenstion}:\n{nScore}";
+            score.Text = $"{scoreExtension}:\n{nScore}";
+        }
+
+        public Vector2 GetScorePosition()
+        {
+            return score.RectPosition;
+        }
+
+        protected override void Dispose(bool pDisposing)
+        {
+            if (pDisposing && instance != null) instance = null;
+            base.Dispose(pDisposing);
         }
 
     }

@@ -1,14 +1,20 @@
+using Com.IsartDigital.SHMUP.GameEntities;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 	public class PopcornEnemy : MovingEntity
 	{
 
+        public static List<PopcornEnemy> popcornEnemies = new List<PopcornEnemy>();
+
         [Export] private float margin;
+        [Export] private uint score = 100;
 
         private const string TRIGGER_TAG = "Trigger";
+        private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
 
         private float yMax;
         private float yMin;
@@ -22,6 +28,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             yMin = GlobalPosition.y - margin;
         }
 
+        protected override void SetActionMove()
+        {
+            popcornEnemies.Add(this);
+            base.SetActionMove();
+        }
+
         protected override void DoActionMove()
         {
             base.DoActionMove();
@@ -31,7 +43,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 velocity = new Vector2(-speed, -speed);
 
             if (GlobalPosition.x < 0)
-                QueueFree();
+                Destroy();
         }
 
         protected override void OnAreaEnter(Area2D pBody)
@@ -40,7 +52,17 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 SetActionMove();
         }
 
+        public void Destroy()
+        {
+            popcornEnemies.Remove(this);
 
+            FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
+            GetParent().AddChild(lScore);
+            lScore.RectPosition = GlobalPosition;
+            lScore.SetScore(score);
+
+            QueueFree();
+        }
 
     }
 

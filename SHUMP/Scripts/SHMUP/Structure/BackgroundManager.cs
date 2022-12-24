@@ -10,7 +10,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private static BackgroundManager instance;
 
 		[Export] private float speed = 1000f;
-        [Export] private float slowMotionSpeed = 500f;
         
         [Export] private List<float> ratio;
 
@@ -24,7 +23,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private int length; 
 
         public float forcedSpeed;
-        private float internalSpeed;
 
         private BackgroundManager() : base(){ }
 
@@ -50,14 +48,13 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
             length = layers.Count;
 
-            internalSpeed = speed;
-            forcedSpeed = internalSpeed * ratio[gameplayLayerIndex];
+            forcedSpeed = speed * ratio[gameplayLayerIndex];
         }
 
         public override void _Process(float pDelta)
         {
             for (index = 0; index< length; ++index)
-                layers[index].MotionOffset += new Vector2(-internalSpeed * ratio[index] * pDelta, 0);
+                layers[index].MotionOffset += new Vector2(-speed * ratio[index] * pDelta, 0);
         }
 
         public static BackgroundManager GetInstance()
@@ -67,14 +64,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
             return instance;
         }
 
-        public void SlowMotion(bool pState = true)
-        {
-            if (pState)
-                internalSpeed = slowMotionSpeed;
-            else
-                internalSpeed = speed;
-            forcedSpeed = internalSpeed * ratio[gameplayLayerIndex];
-        }
 
         protected override void Dispose(bool pDisposing)
         {

@@ -9,6 +9,7 @@ extents = Vector2( 7.3125, 5 )
 scale = Vector2( 0.547009, 0.722222 )
 script = ExtResource( 1 )
 speed = 500.0
+duration = 2.5
 
 [node name="Renderer" type="Polygon2D" parent="."]
 scale = Vector2( 0.445652, 0.59375 )
