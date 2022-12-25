@@ -6,12 +6,12 @@ namespace Com.IsartDigital.SHMUP.UI {
 	public abstract class Screen : Control
 	{
 
-		public void OpenScreen()
+		public virtual void OpenScreen()
         {
 			Visible = true;
         }
 
-		public void CloseScreen()
+		public virtual void CloseScreen()
         {
 			Visible = false;
         }

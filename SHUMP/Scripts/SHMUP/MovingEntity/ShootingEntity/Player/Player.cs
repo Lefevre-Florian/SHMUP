@@ -56,6 +56,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private bool canSmartBomb = true;
 
         private bool invincibility = false;
+        private bool godMode = false;
         public bool specialFeature = false;
 
         private SceneTreeTimer specialFeatureDelaytimer;
@@ -119,7 +120,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 uiManager.CallPopup();
 
             if (Input.IsActionJustPressed(GOD_MODE))
-                invincibility = !invincibility;
+                godMode = !godMode;
 
             if (Input.IsActionJustPressed(SMART_BOMB) && canSmartBomb)
                 CallSmartbomb();
@@ -135,7 +136,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         public override void TakeDamage(int pDamage)
         {
-            if (invincibility == false)
+            if (invincibility == false && godMode == false)
             {
                 base.TakeDamage(pDamage);
                 EmitSignal(nameof(LifeState), healthpoint);

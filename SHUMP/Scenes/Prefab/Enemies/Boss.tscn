@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/Boss.cs" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 80, 17 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 64 )
@@ -19,6 +22,10 @@ secondPhaseWeapons = NodePath("Renderer/SecondPhase/WeaponPosition")
 droneRadius = 50.0
 droneSpeed = 2.0
 droneShootDelay = 5.0
+thirdPhaseGraphics = NodePath("Renderer/ThirdPhase")
+thirdPhaseWeapons = NodePath("Renderer/ThirdPhase/Thrower/Renderer/Weapon/Position2D")
+helperSpeed = 250.0
+helperThrowingDelay = 5.0
 
 [node name="Renderer" type="Node2D" parent="."]
 
@@ -39,25 +46,44 @@ visible = false
 
 [node name="Weapon2" type="Polygon2D" parent="Renderer/SecondPhase"]
 position = Vector2( 0, -24 )
-rotation = -1.5708
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -64, -8, -112, -8, -112, 8, -64, 8 )
 
 [node name="Weapon3" type="Polygon2D" parent="Renderer/SecondPhase"]
 position = Vector2( 0, 24 )
-rotation = 1.5708
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -64, -8, -112, -8, -112, 8, -64, 8 )
 
 [node name="WeaponPosition" type="Node2D" parent="Renderer/SecondPhase"]
 
 [node name="Position2D2" type="Position2D" parent="Renderer/SecondPhase/WeaponPosition"]
-position = Vector2( 0.000405439, 88 )
+position = Vector2( -112, 24 )
 rotation = -1.5708
 
 [node name="Position2D" type="Position2D" parent="Renderer/SecondPhase/WeaponPosition"]
-position = Vector2( 0.000405439, -88 )
+position = Vector2( -112, -24 )
 rotation = 1.5708
+
+[node name="ThirdPhase" type="Node2D" parent="Renderer"]
+visible = false
+
+[node name="Thrower" type="Area2D" parent="Renderer/ThirdPhase"]
+position = Vector2( 0, 32 )
+
+[node name="Renderer" type="Polygon2D" parent="Renderer/ThirdPhase/Thrower"]
+color = Color( 0.498039, 0.498039, 0.498039, 1 )
+polygon = PoolVector2Array( -80, 0, 80, 0, 80, 32, -80, 32 )
+
+[node name="Weapon" type="Polygon2D" parent="Renderer/ThirdPhase/Thrower/Renderer"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 16, -8, 16 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/ThirdPhase/Thrower/Renderer/Weapon"]
+position = Vector2( 0, -8 )
+
+[node name="Collider" type="CollisionShape2D" parent="Renderer/ThirdPhase/Thrower"]
+position = Vector2( 0, 15 )
+shape = SubResource( 2 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

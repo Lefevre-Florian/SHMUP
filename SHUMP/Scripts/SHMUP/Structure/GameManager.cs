@@ -32,6 +32,11 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			return instance;
         }
 
+		public void GlobalPause()
+        {
+
+        }
+
         protected override void Dispose(bool pDisposing)
         {
 			if (pDisposing && instance != null) instance = null;

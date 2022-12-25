@@ -8,12 +8,15 @@ namespace Com.IsartDigital.SHMUP.Structure {
     {
         private static UIManager instance;
 
+        [Export] private NodePath popupContainerPath = default;
+
         private const string PATH_PAUSE_POPUP = "res://Scenes/UIPrefab/Popup/Pause.tscn";
         private const string PATH_GAMEOVER_POPUP = "res://Scenes/UIPrefab/Popup/GameOver.tscn";
         
         private Pause pause;
         private UI.Popup gameOver;
 
+        private Node popupContainer;
 
         private UIManager ():base() {}
 
@@ -25,8 +28,10 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
             instance = this;
 
+            popupContainer = GetNode<Node>(popupContainerPath);
+
             pause = GD.Load<PackedScene>(PATH_PAUSE_POPUP).Instance<Pause>();
-            AddChild(pause);
+            popupContainer.AddChild(pause);
 
             pause.CloseScreen();
         }
@@ -46,10 +51,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         public void TriggerGameOver()
         {
             gameOver = GD.Load<PackedScene>(PATH_GAMEOVER_POPUP).Instance<UI.Popup>();
-
-            GetTree().Paused = true;
-
-            AddChild(gameOver);
+            popupContainer.AddChild(gameOver);
         }
 
         protected override void Dispose(bool pDisposing)

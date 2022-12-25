@@ -20,7 +20,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 			language = GetNode<CheckButton>(localisationPath);
 
-			GetNode<Button>(resumePath).Connect(EventButton.PRESSED, this, nameof(Resume));
+			GetNode<Button>(resumePath).Connect(EventButton.PRESSED, this, nameof(CloseScreen));
 
 			language.Connect(EventButton.PRESSED, this, nameof(ChangeLanguage));
 
@@ -32,12 +32,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 				LocalizationManager.SaveLanguageChange(Languages.FR);
 			else
 				LocalizationManager.SaveLanguageChange(Languages.ENG);
-		}
-
-		private void Resume()
-		{
-			GetTree().Paused = false;
-			CloseScreen();
 		}
 
 	}
