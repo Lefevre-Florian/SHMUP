@@ -12,25 +12,24 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private float shootFrequency = 1f;
 
 		[Export] private NodePath pathCanon = default;
-		[Export] private NodePath pathUpgrade = default;
+		[Export] private NodePath pathFirstUpgrade = default;
+		[Export] private NodePath pathSecondUpgrade = default;
 
 		private const string PATH_BULLET = "res://Scenes/Prefab/Bullets/Bullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
 
-
 		private bool canShoot = true;
 		private Timer timer;
+
+		private int phase = 0;
 
 		private Position2D canon;
 		private Node bulletContainer;
 		private List<Position2D> canonPositions = new List<Position2D>();
 
-		private Action doAction;
 
 		public override void _Ready()
 		{
-			canon = GetNode<Position2D>(pathCanon);
-
 			timer = new Timer();
 			AddChild(timer);
 
@@ -39,13 +38,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
 
-			Node2D lUpgradeContainer = GetNode<Node2D>(pathUpgrade);
-            foreach (Polygon2D lItem in lUpgradeContainer.GetChildren())
-            {
-				canonPositions.Add(lItem.GetChild<Position2D>(0));
-            }
-
-			doAction = FirstPhaseShoot;
+			FirstPhaseShoot();
 		}
 
 		public void Shoot()
@@ -57,20 +50,12 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				timer.Start();
 				timer.OneShot = true;
 
-				doAction();
+				ShootProcess();
 			}
         }
 
-		private void FirstPhaseShoot()
+		private void ShootProcess()
         {
-			PlayerBullet lBullet = GD.Load<PackedScene>(PATH_BULLET).Instance<PlayerBullet>();
-			bulletContainer.AddChild(lBullet);
-			lBullet.Position = canon.GlobalPosition;
-		}
-
-		private void SecondPhaseShoot()
-        {
-			FirstPhaseShoot();
 			PlayerBullet lBullet;
 			foreach (Position2D lPosition in canonPositions)
 			{
@@ -81,11 +66,35 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			}
 		}
 
+		private void FirstPhaseShoot()
+        {
+			phase++;
+
+			Position2D lCanon = GetNode<Position2D>(pathCanon);
+			canonPositions.Add(lCanon);
+		}
+
+		private void SecondPhaseShoot()
+        {
+			phase++;
+
+			Node2D lUpgradeContainer = GetNode<Node2D>(pathFirstUpgrade);
+			lUpgradeContainer.Visible = true;
+			foreach (Polygon2D lItem in lUpgradeContainer.GetChildren())
+			{
+				canonPositions.Add(lItem.GetChild<Position2D>(0));
+			}
+		}
+
 		private void ThirdPhaseShoot()
         {
-			SecondPhaseShoot();
-			// Other actions
-        }
+			Node2D lUpgradeContainer = GetNode<Node2D>(pathSecondUpgrade);
+			lUpgradeContainer.Visible = true;
+			foreach (Polygon2D lItem in lUpgradeContainer.GetChildren())
+			{
+				canonPositions.Add(lItem.GetChild<Position2D>(0));
+			}
+		}
 
 		private void Reset()
         {
@@ -95,14 +104,12 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		public void UpgradeWeapon()
         {
-
-			if (doAction == FirstPhaseShoot)
-				doAction = SecondPhaseShoot;
-			else if (doAction == SecondPhaseShoot)
-				doAction = ThirdPhaseShoot;
+			if (phase == 1)
+				SecondPhaseShoot();
+			else if (phase == 2)
+				ThirdPhaseShoot();
 			else
 				return;
-
         }
 
 	}

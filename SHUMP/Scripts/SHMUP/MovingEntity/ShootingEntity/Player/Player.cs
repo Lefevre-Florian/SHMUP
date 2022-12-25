@@ -59,7 +59,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private bool godMode = false;
         public bool specialFeature = false;
 
-        private SceneTreeTimer specialFeatureDelaytimer;
+        private Timer specialFeatureDelaytimer = new Timer();
 
         [Signal]
         public delegate void LifeState(int pLifePoint);
@@ -89,6 +89,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             specialFeatureScene = GD.Load<PackedScene>(SPECIALFEATURE_PATH);
 
+            AddChild(specialFeatureDelaytimer);
+
             velocity = new Vector2(forcedSpeed, 0);
             doAction = SetActionMove;
         }
@@ -108,7 +110,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 else if (Input.IsActionPressed(MOVE_RIGHT) && GlobalPosition.x < screenSize.x)
                     velocity = new Vector2(1 * (forcedSpeed + speed), 0);
 
-                if (Input.IsActionJustPressed(SPECIAL))
+                if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
 
             }
@@ -201,20 +203,19 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             lSP.Connect(nameof(SpecialFeature.Finished), this, nameof(DisableSpecialFeature), new Godot.Collections.Array(lSP));
             specialFeature = true;
 
-            specialFeatureDelaytimer = GetTree().CreateTimer(lSP.duration + specialFeatureDelay);
-            specialFeatureDelaytimer.Connect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
-        }
-
-        private void DisableSpecialFeature()
-        {
-            specialFeature = false;
-            specialFeatureDelaytimer.Disconnect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
+            specialFeatureDelaytimer.Connect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature), new Godot.Collections.Array(lSP));
+            specialFeatureDelaytimer.WaitTime = lSP.duration + specialFeatureDelay;
+            specialFeatureDelaytimer.OneShot = true;
+            specialFeatureDelaytimer.Start();
         }
 
         private void DisableSpecialFeature(SpecialFeature pSpecialFeature)
         {
+            specialFeature = false;
             pSpecialFeature.Disconnect(nameof(SpecialFeature.Finished), this, nameof(DisableSpecialFeature));
-            specialFeatureDelaytimer.TimeLeft = specialFeatureDelay;
+            specialFeatureDelaytimer.Disconnect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
+            if (specialFeatureDelaytimer.TimeLeft > specialFeatureDelay)
+                specialFeatureDelaytimer.WaitTime = specialFeatureDelay;
         }
 
         public int GetHealthPoint()

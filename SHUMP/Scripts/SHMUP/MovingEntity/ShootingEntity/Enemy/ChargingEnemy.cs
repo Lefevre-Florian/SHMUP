@@ -17,14 +17,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		private bool isCharging = false;
 
-		public override void _Ready()
-		{
-			base._Ready();
-
+		protected virtual void InitChargeProcess()
+        {
 			internalTime = GlobalPosition.DistanceTo(new Vector2(ENDMARGIN, GlobalPosition.y)) / (speed + forcedSpeed);
 			chargeTimer.WaitTime = moveDelay;
 			chargeTimer.Connect(EventTimer.TIMEOUT, this, nameof(Charging));
 			AddChild(chargeTimer);
+
+			StartChargeProcess();
 		}
 
 		protected virtual void Charging()
@@ -37,10 +37,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		protected virtual void Returning()
         {
 			velocity = Vector2.Right * (speed + forcedSpeed * 2);
-			GetTree().CreateTimer(internalTime).Connect(EventTimer.TIMEOUT, this, nameof(ChargeProcess));
+			GetTree().CreateTimer(internalTime).Connect(EventTimer.TIMEOUT, this, nameof(StartChargeProcess));
 		}
 
-		protected virtual void ChargeProcess()
+		protected virtual void StartChargeProcess()
         {
 			chargeTimer.Start();
         }

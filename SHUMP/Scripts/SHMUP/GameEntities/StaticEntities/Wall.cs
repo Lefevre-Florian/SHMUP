@@ -47,7 +47,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
             }
 
             if (pBody is Bullet)
-                pBody.QueueFree();
+                ((Bullet)pBody).Clean();
         }
 
         private void OnAreaExited(Area2D pBody)

@@ -11,6 +11,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	{
         [Export] private int nBullet = 3;
         [Export] private int maxLoop = 2;
+        [Export] private float activationDelay = 0.5f;
 
         private const string PATH_MINE_BULLET = "res://Scenes/Prefab/Bullets/EnemyMine.tscn";
 
@@ -22,10 +23,20 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		{
 			base._Ready();
 
-            velocity = new Vector2(forcedSpeed, 0);
+            velocity = Vector2.Left * speed;
             minePrefab = GD.Load<PackedScene>(PATH_MINE_BULLET);
+        }
 
-            ChargeProcess();
+        protected override void SetActionMoveAndShoot()
+        {
+            GetTree().CreateTimer(activationDelay).Connect(EventTimer.TIMEOUT, this, nameof(InitChargeProcess));
+            base.SetActionMoveAndShoot();
+        }
+
+        protected override void InitChargeProcess()
+        {
+            velocity = new Vector2(forcedSpeed, 0);
+            base.InitChargeProcess();
         }
 
         protected override void Shoot()
@@ -52,11 +63,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             base.Returning();
         }
 
-        protected override void ChargeProcess()
+        protected override void StartChargeProcess()
         {
             if (phase <= maxLoop)
             {
-                base.ChargeProcess();
+                base.StartChargeProcess();
                 velocity = new Vector2(forcedSpeed, 0f);
             }
             else

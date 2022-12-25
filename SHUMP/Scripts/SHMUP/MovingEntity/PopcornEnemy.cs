@@ -1,4 +1,5 @@
 using Com.IsartDigital.SHMUP.GameEntities;
+using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         [Export] private float margin;
         [Export] private uint score = 100;
+        [Export] private PackedScene drop = null;
 
         private const string TRIGGER_TAG = "Trigger";
+
+        private const string PATH_COLLECTIBLE_CONTAINER = "../../CollecitbleContainer";
+
         private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
 
         private float yMax;
@@ -43,7 +48,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 velocity = new Vector2(-speed, -speed);
 
             if (GlobalPosition.x < 0)
-                Destroy();
+                InternalDestroy();
         }
 
         protected override void OnAreaEnter(Area2D pBody)
@@ -54,13 +59,24 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         public void Destroy()
         {
-            popcornEnemies.Remove(this);
-
             FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
             GetParent().AddChild(lScore);
             lScore.RectPosition = GlobalPosition;
             lScore.SetScore(score);
 
+            if (drop != null)
+            {
+                Area2D lCollectible = drop.Instance<Area2D>();
+                GetNode<Node2D>(PATH_COLLECTIBLE_CONTAINER).AddChild(lCollectible);
+                lCollectible.Position = GlobalPosition;
+            }
+
+            InternalDestroy();
+        }
+
+        private void InternalDestroy()
+        {
+            popcornEnemies.Remove(this);
             QueueFree();
         }
 

@@ -6,7 +6,8 @@
 script = ExtResource( 1 )
 shootFrequency = 0.75
 pathCanon = NodePath("Renderer/Position2D")
-pathUpgrade = NodePath("Renderer/Upgrades")
+pathFirstUpgrade = NodePath("Renderer/FirstStageUpgrade")
+pathSecondUpgrade = NodePath("Renderer/SecondStageUpgrade")
 
 [node name="Renderer" type="Node2D" parent="."]
 
@@ -18,32 +19,50 @@ polygon = PoolVector2Array( 0, 0, 64, 0, 64, 24, 0, 24 )
 [node name="Position2D" type="Position2D" parent="Renderer"]
 position = Vector2( 56, 0 )
 
-[node name="Upgrades" type="Node2D" parent="Renderer"]
+[node name="FirstStageUpgrade" type="Node2D" parent="Renderer"]
+visible = false
 
-[node name="Canon" type="Polygon2D" parent="Renderer/Upgrades"]
-position = Vector2( 48, -3.57628e-07 )
+[node name="Canon" type="Polygon2D" parent="Renderer/FirstStageUpgrade"]
+position = Vector2( 52, -5 )
 rotation = -0.436332
-scale = Vector2( 1, 0.5 )
+scale = Vector2( 0.5, 0.5 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 0, 0, 0, -8, 16, -8, 15, -4, 16, 0 )
 
-[node name="Position2D" type="Position2D" parent="Renderer/Upgrades/Canon"]
+[node name="Position2D" type="Position2D" parent="Renderer/FirstStageUpgrade/Canon"]
 position = Vector2( 15, -3.5 )
 
-[node name="Canon2" type="Polygon2D" parent="Renderer/Upgrades"]
-position = Vector2( 46, 4 )
+[node name="Canon2" type="Polygon2D" parent="Renderer/FirstStageUpgrade"]
+position = Vector2( 50.5, 8.5 )
 rotation = 0.436332
-scale = Vector2( 1, 0.5 )
+scale = Vector2( 0.5, 0.5 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 0, 0, 0, -8, 16, -8, 15, -4, 16, 0 )
 
-[node name="Position2D" type="Position2D" parent="Renderer/Upgrades/Canon2"]
+[node name="Position2D" type="Position2D" parent="Renderer/FirstStageUpgrade/Canon2"]
 position = Vector2( 15, -3.5 )
 
-[node name="AutoLauncher" type="Polygon2D" parent="Renderer"]
-position = Vector2( 40, -4 )
+[node name="SecondStageUpgrade" type="Node2D" parent="Renderer"]
+visible = false
+
+[node name="Canon" type="Polygon2D" parent="Renderer/SecondStageUpgrade"]
+position = Vector2( 52, -5 )
+rotation = 1.5708
 scale = Vector2( 0.5, 1 )
 color = Color( 0, 0, 0, 1 )
-polygon = PoolVector2Array( 0, -8, 8, -8, 8, 0, 0, 0 )
+polygon = PoolVector2Array( 0, 0, 0, -8, 8, -8, 8, 0 )
 
-[node name="Position2D" type="Position2D" parent="Renderer/AutoLauncher"]
+[node name="Position2D" type="Position2D" parent="Renderer/SecondStageUpgrade/Canon"]
+position = Vector2( 4, -8 )
+rotation = -1.5708
+
+[node name="Canon2" type="Polygon2D" parent="Renderer/SecondStageUpgrade"]
+position = Vector2( 52, 1 )
+rotation = 1.5708
+scale = Vector2( 0.5, 1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 0, -8, 8, -8, 8, 0 )
+
+[node name="Position2" type="Position2D" parent="Renderer/SecondStageUpgrade/Canon2"]
+position = Vector2( 4, -8 )
+rotation = -1.5708

@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
-[ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/UIPrefab/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 300 )
 
 [node name="Root" type="Node2D"]
 
@@ -22,7 +19,7 @@ popupContainerPath = NodePath("../PopupContainer")
 
 [node name="BackgroundManager" type="Node" parent="."]
 script = ExtResource( 1 )
-speed = 5000.0
+speed = 3000.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
@@ -53,33 +50,7 @@ position = Vector2( 720, 128 )
 [node name="Cloud5" parent="ParallaxBackground/LayerBackground" instance=ExtResource( 7 )]
 position = Vector2( 880, 104 )
 
-[node name="LayerGameplay" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Player" parent="ParallaxBackground/LayerGameplay" instance=ExtResource( 2 )]
-position = Vector2( 128, 320 )
-speed = 500.0
-healthpoint = 3
-recoveryTime = 1.25
-nRecoveryBlip = 4
-recoveryColor = Color( 1, 0, 0, 0.686275 )
-specialFeatureDelay = 1.5
-
-[node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="Trigger" type="Node" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="TriggerWall" type="Area2D" parent="ParallaxBackground/LayerGameplay/Trigger" groups=["Trigger"]]
-position = Vector2( 1056, 0 )
-
-[node name="Collider" type="CollisionShape2D" parent="ParallaxBackground/LayerGameplay/Trigger/TriggerWall"]
-position = Vector2( 0, 300 )
-shape = SubResource( 1 )
+[node name="LayerGameplay" parent="ParallaxBackground" instance=ExtResource( 2 )]
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 

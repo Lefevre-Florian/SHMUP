@@ -16,6 +16,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		public override void _Ready()
 		{
+			GetTree().Paused = false;
+
 			GetNode<Button>(startPath).Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			GetNode<Button>(exitPath).Connect(EventButton.PRESSED, this, nameof(ExitGame));
 			GetNode<Button>(creditPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Control>(PATH_CREDIT), this));

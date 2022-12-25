@@ -14,6 +14,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private List<NodePath> exitPaths = new List<NodePath>();
 
 		private const string PATH_MAIN_MENU_SCENE = "res://Scenes/GameScene/MainMenu.tscn";
+        private const string PATH_RELOAD_SCENE = "res://Scenes/GameScene/Game.tscn";
 
 		public override void _Ready()
 		{
@@ -47,7 +48,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         private void Reload()
         {
-			GetTree().ReloadCurrentScene();
+            GetTree().ChangeScene(PATH_RELOAD_SCENE);
         }
 
 	}

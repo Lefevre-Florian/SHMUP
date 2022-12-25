@@ -22,16 +22,20 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		public override void _Ready()
 		{
 			base._Ready();
+			velocity = Vector2.Left;
+		}
 
+        protected override void SetActionMoveAndShoot()
+        {
 			drone = GetNode<Drone>(dronePath);
 			drone.Init(droneRadius, droneSpeed, true);
 
 
 			drone.Connect(nameof(Drone.Destroyed), this, nameof(DestroyedDrone));
-			velocity = Vector2.Left;
+			base.SetActionMoveAndShoot();
 		}
 
-		protected override void Shoot()
+        protected override void Shoot()
         {
 			EnemyBullet lBullet = bulletScene.Instance<EnemyBullet>();
             lBullet.Position = canon.GlobalPosition;

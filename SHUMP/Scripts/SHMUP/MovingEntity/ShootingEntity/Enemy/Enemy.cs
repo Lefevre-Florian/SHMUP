@@ -25,9 +25,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
 
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
-		private const string PATH_CANON = "Renderer/Weapon/Position2D";
-
-		private Player.Player target;
+		private const string TRIGGER_TAG = "Trigger";
 
 		protected Node bulletContainer;
 		protected Position2D canon;
@@ -45,7 +43,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			base._Ready();
 			forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
 
-			target = Player.Player.GetInstance();
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
 			canon = GetNode<Position2D>(weaponPath);
 
@@ -56,8 +53,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			AddChild(timer);
-
-			SetActionMoveAndShoot();
 		}
 
         protected override void SetActionMoveAndShoot()
@@ -79,6 +74,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void OnAreaEnter(Area2D pBody)
         {
+			if (pBody.IsInGroup(TRIGGER_TAG))
+				SetActionMoveAndShoot();
+
 			if (pBody is Player.Player)
 				((Player.Player)pBody).TakeDamage(bodyDamage);
         }
@@ -98,7 +96,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			timer.QueueFree();
 
-			if(drop != null)
+			if(drop != null && healthpoint <= 0)
             {
 				StaticEntity lCollectible = drop.Instance<StaticEntity>();
 				AddChild(lCollectible);

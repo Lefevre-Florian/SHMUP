@@ -81,7 +81,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
             phase = TriggerFirstPhase;
 
-            ChargeProcess();
+            InitChargeProcess();
 
             weapons.Add(canon);
         }
@@ -170,11 +170,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         }
 
-        protected override void ChargeProcess()
+        protected override void StartChargeProcess()
         {
             if(phase == TriggerFirstPhase)
             {
-                base.ChargeProcess();
+                base.StartChargeProcess();
             }
             
             velocity = up;
