@@ -44,6 +44,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string PROPERTY_MODULATE = "modulate";
 
         private const int NB_SMARTBOMB = 2;
+
+        private const float MARGINX = 50f;
+        private const float MARGINY = 50f;
         
         public Weapon canon;
 
@@ -101,13 +104,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             if (!specialFeature)
             {
-                if (Input.IsActionPressed(MOVE_UP) && GlobalPosition.y > 0)
+                if (Input.IsActionPressed(MOVE_UP))
                     velocity = new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-                else if (Input.IsActionPressed(MOVE_DOWN) && GlobalPosition.y < screenSize.y)
+                else if (Input.IsActionPressed(MOVE_DOWN))
                     velocity = new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
-                else if (Input.IsActionPressed(MOVE_LEFT) && GlobalPosition.x > 0)
+                else if (Input.IsActionPressed(MOVE_LEFT))
                     velocity = new Vector2(-1 * (forcedSpeed + speed), 0);
-                else if (Input.IsActionPressed(MOVE_RIGHT) && GlobalPosition.x < screenSize.x)
+                else if (Input.IsActionPressed(MOVE_RIGHT))
                     velocity = new Vector2(1 * (forcedSpeed + speed), 0);
 
                 if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
@@ -134,6 +137,19 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 			if (instance == null)
 				instance = new Player();
 			return instance;
+        }
+
+        protected override void DoActionMove()
+        {
+            if (GlobalPosition.x < MARGINX)
+                GlobalPosition += new Vector2(forcedSpeed/8, 0);
+            else if (GlobalPosition.x > screenSize.x - MARGINX)
+                GlobalPosition += new Vector2(-forcedSpeed/8, 0);
+            else if (GlobalPosition.y < MARGINY)
+                GlobalPosition += new Vector2(0,forcedSpeed/8);
+            else if (GlobalPosition.y > screenSize.y - MARGINY)
+                GlobalPosition += new Vector2(0,-forcedSpeed/8);
+            base.DoActionMove();
         }
 
         public override void TakeDamage(int pDamage)

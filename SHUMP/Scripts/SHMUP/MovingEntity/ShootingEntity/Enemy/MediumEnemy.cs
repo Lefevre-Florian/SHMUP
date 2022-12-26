@@ -22,7 +22,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		public override void _Ready()
 		{
 			base._Ready();
-			velocity = Vector2.Left;
+			velocity = Vector2.Left * speed;
 		}
 
         protected override void SetActionMoveAndShoot()
@@ -48,7 +48,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				base.TakeDamage(pDamage);
         }
 
-		private void DestroyedDrone()
+        private void DestroyedDrone()
         {
 			drone.Disconnect(nameof(Drone.Destroyed), this, nameof(DestroyedDrone));
 			drone = null;

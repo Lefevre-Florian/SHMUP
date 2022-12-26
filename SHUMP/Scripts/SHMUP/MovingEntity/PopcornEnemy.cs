@@ -61,7 +61,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         {
             FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
             GetParent().AddChild(lScore);
-            lScore.RectPosition = GlobalPosition;
+            lScore.RectPosition = Position;
             lScore.SetScore(score);
 
             if (drop != null)

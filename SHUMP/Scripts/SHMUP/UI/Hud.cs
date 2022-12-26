@@ -21,6 +21,7 @@ namespace Com.IsartDigital.SHMUP.UI {
         private ProgressBar lifeBar;
 
         private uint nScore = 0;
+        private Vector2 scoreLabelPosition;
 
         private int nSmartBomb = 0;
         private int maxSmartBomb = 0;
@@ -39,6 +40,8 @@ namespace Com.IsartDigital.SHMUP.UI {
             lifeBar = GetNode<ProgressBar>(lifePath);
 
             score = GetNode<Label>(scorePath);
+            scoreLabelPosition = score.RectGlobalPosition;
+
             smartBomb = GetNode<Label>(smartBombPath);
 
             Player lPlayer = Player.GetInstance();
@@ -82,7 +85,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         public Vector2 GetScorePosition()
         {
-            return score.RectPosition;
+            return scoreLabelPosition;
         }
 
         protected override void Dispose(bool pDisposing)

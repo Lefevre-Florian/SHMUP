@@ -89,7 +89,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             {
 				FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
 				GetParent().AddChild(lScore);
-				lScore.RectPosition = GlobalPosition;
+				lScore.RectPosition = Position;
 				lScore.SetScore(score);
 			}
 
