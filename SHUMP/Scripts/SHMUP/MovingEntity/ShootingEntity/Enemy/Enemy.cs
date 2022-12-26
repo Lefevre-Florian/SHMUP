@@ -93,7 +93,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				lScore.SetScore(score);
 			}
 
-			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+			if(timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
+				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			timer.QueueFree();
 
 			if(drop != null && healthpoint <= 0)

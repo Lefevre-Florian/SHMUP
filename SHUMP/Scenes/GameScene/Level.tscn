@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Prefab/Enemies/Enemy2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefab/Enemies/Enemy1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefab/Enemies/PopcornEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Prefab/Wall/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefab/Collectibles/SmartBombItem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Prefab/Collectibles/UpgradeKit.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Prefab/Wall/BreakableWall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Prefab/Wall/BatteryWall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefab/Collectibles/MedicKit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -28,6 +32,7 @@ specialFeatureDelay = 1.5
 
 [node name="PopcornEnemy" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 1376, 320 )
+drop = ExtResource( 6 )
 
 [node name="PopcornEnemy2" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 1696, 232 )
@@ -49,12 +54,18 @@ position = Vector2( 1840, 536 )
 
 [node name="Enemy1" parent="EnemyContainer" instance=ExtResource( 3 )]
 position = Vector2( 3416, 320 )
+drop = ExtResource( 7 )
 
 [node name="Enemy2" parent="EnemyContainer" instance=ExtResource( 3 )]
 position = Vector2( 4896, 256 )
 
 [node name="Enemy3" parent="EnemyContainer" instance=ExtResource( 3 )]
 position = Vector2( 4896, 384 )
+drop = ExtResource( 6 )
+
+[node name="Enemy4" parent="EnemyContainer" instance=ExtResource( 3 )]
+position = Vector2( 8472, 320 )
+drop = ExtResource( 6 )
 
 [node name="PopcornEnemy8" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 3736, 232 )
@@ -67,6 +78,7 @@ position = Vector2( 3736, 408 )
 
 [node name="PopcornEnemy11" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 3808, 472 )
+drop = ExtResource( 10 )
 
 [node name="PopcornEnemy12" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 3992, 360 )
@@ -80,6 +92,28 @@ position = Vector2( 6080, 352 )
 [node name="PopcornEnemy14" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 6248, 232 )
 
+[node name="PopcornEnemy18" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7080, 288 )
+
+[node name="PopcornEnemy19" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7144, 224 )
+
+[node name="PopcornEnemy20" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7080, 416 )
+
+[node name="PopcornEnemy21" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7144, 480 )
+
+[node name="PopcornEnemy22" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7264, 352 )
+
+[node name="PopcornEnemy23" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 7392, 352 )
+drop = ExtResource( 10 )
+
+[node name="PopcornEnemy24" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 6944, 352 )
+
 [node name="PopcornEnemy15" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 6248, 408 )
 
@@ -88,8 +122,16 @@ position = Vector2( 6376, 448 )
 
 [node name="PopcornEnemy17" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 6368, 192 )
+drop = ExtResource( 7 )
+
+[node name="Boss" parent="EnemyContainer" instance=ExtResource( 11 )]
+position = Vector2( 9728, 320 )
+waitingDelay = 2.5
 
 [node name="CollecitbleContainer" type="Node2D" parent="."]
+
+[node name="MedicKit" parent="CollecitbleContainer" instance=ExtResource( 10 )]
+position = Vector2( 8856, 328 )
 
 [node name="WallContainer" type="Node2D" parent="."]
 
@@ -114,6 +156,30 @@ position = Vector2( 5088, 288 )
 [node name="BatteryWall7" parent="WallContainer" instance=ExtResource( 9 )]
 position = Vector2( 5088, 352 )
 
+[node name="BatteryWall9" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 7904, 224 )
+
+[node name="BatteryWall10" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 7904, 288 )
+
+[node name="BatteryWall11" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 7904, 352 )
+
+[node name="BatteryWall12" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 7904, 416 )
+
+[node name="BatteryWall13" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 8608, 224 )
+
+[node name="BatteryWall14" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 8608, 288 )
+
+[node name="BatteryWall15" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 8608, 352 )
+
+[node name="BatteryWall16" parent="WallContainer" instance=ExtResource( 9 )]
+position = Vector2( 8608, 416 )
+
 [node name="BatteryWall8" parent="WallContainer" instance=ExtResource( 9 )]
 position = Vector2( 5088, 416 )
 
@@ -137,6 +203,15 @@ position = Vector2( 2208, 352 )
 
 [node name="BreakableWall6" parent="WallContainer" instance=ExtResource( 8 )]
 position = Vector2( 2208, 416 )
+
+[node name="BreakableWall8" parent="WallContainer" instance=ExtResource( 8 )]
+position = Vector2( 7584, 160 )
+
+[node name="BreakableWall9" parent="WallContainer" instance=ExtResource( 8 )]
+position = Vector2( 7584, 480 )
+
+[node name="BreakableWall10" parent="WallContainer" instance=ExtResource( 8 )]
+position = Vector2( 7648, 320 )
 
 [node name="Wall" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 2208, 544 )
@@ -359,6 +434,96 @@ position = Vector2( 6624, 544 )
 
 [node name="Wall92" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 6688, 544 )
+
+[node name="Wall93" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7584, 96 )
+
+[node name="Wall94" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7584, 544 )
+
+[node name="Wall95" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7904, 544 )
+
+[node name="Wall119" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7904, 480 )
+
+[node name="Wall120" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7904, 160 )
+
+[node name="Wall121" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8608, 160 )
+
+[node name="Wall122" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8608, 480 )
+
+[node name="Wall96" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7904, 96 )
+
+[node name="Wall97" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7968, 96 )
+
+[node name="Wall98" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8032, 96 )
+
+[node name="Wall99" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8096, 96 )
+
+[node name="Wall100" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8160, 96 )
+
+[node name="Wall101" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8224, 96 )
+
+[node name="Wall102" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8288, 96 )
+
+[node name="Wall103" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8352, 96 )
+
+[node name="Wall104" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8416, 96 )
+
+[node name="Wall105" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8480, 96 )
+
+[node name="Wall106" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8544, 96 )
+
+[node name="Wall107" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8608, 96 )
+
+[node name="Wall108" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7968, 544 )
+
+[node name="Wall109" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8032, 544 )
+
+[node name="Wall110" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8096, 544 )
+
+[node name="Wall111" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8160, 544 )
+
+[node name="Wall112" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8224, 544 )
+
+[node name="Wall113" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8288, 544 )
+
+[node name="Wall114" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8352, 544 )
+
+[node name="Wall115" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8416, 544 )
+
+[node name="Wall116" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8480, 544 )
+
+[node name="Wall117" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8544, 544 )
+
+[node name="Wall118" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 8608, 544 )
 
 [node name="Wall59" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 5664, 544 )

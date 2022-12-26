@@ -13,6 +13,7 @@ shootDelay = 3.25
 score = 5000
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 moveDelay = 6.0
+chargeSpeed = 150.0
 secondPhaseStart = 15
 thirdPhaseStart = 5
 secondPhaseGraphics = NodePath("Renderer/SecondPhase")
@@ -21,7 +22,7 @@ droneRadius = 50.0
 droneSpeed = 2.0
 droneShootDelay = 5.0
 droneRespawnDelay = 3.8
-helperSpeed = 180.0
+helperSpeed = 200.0
 helperThrowingDelay = 0.15
 helperThrowingRespawn = 6.0
 

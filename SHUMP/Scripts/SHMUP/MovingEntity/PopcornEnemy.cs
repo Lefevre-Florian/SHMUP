@@ -68,7 +68,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             {
                 Area2D lCollectible = drop.Instance<Area2D>();
                 GetNode<Node2D>(PATH_COLLECTIBLE_CONTAINER).AddChild(lCollectible);
-                lCollectible.Position = GlobalPosition;
+                lCollectible.Position = Position;
             }
 
             InternalDestroy();

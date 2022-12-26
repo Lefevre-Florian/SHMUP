@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/UIPrefab/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -67,6 +68,10 @@ specialFeatureDelay = 1.5
 [node name="BulletContainer" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
+
+[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 7 )]
+position = Vector2( 1248, 320 )
+waitingDelay = 2.5
 
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 

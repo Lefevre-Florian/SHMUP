@@ -8,6 +8,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	{
 
 		[Export] private float moveDelay = 1f;
+		[Export] private float chargeSpeed;
 
 		private Timer chargeTimer = new Timer();
 
@@ -19,7 +20,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		protected virtual void InitChargeProcess()
         {
-			internalTime = GlobalPosition.DistanceTo(new Vector2(ENDMARGIN, GlobalPosition.y)) / (speed + forcedSpeed);
+			internalTime = GlobalPosition.DistanceTo(new Vector2(ENDMARGIN, GlobalPosition.y)) / (chargeSpeed + forcedSpeed);
 			chargeTimer.WaitTime = moveDelay;
 			chargeTimer.Connect(EventTimer.TIMEOUT, this, nameof(Charging));
 			AddChild(chargeTimer);
@@ -30,13 +31,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		protected virtual void Charging()
         {
 			chargeTimer.Stop();
-			velocity = Vector2.Left * speed;
+			velocity = Vector2.Left * chargeSpeed;
 			GetTree().CreateTimer(internalTime).Connect(EventTimer.TIMEOUT, this, nameof(Returning));
 		}
 
 		protected virtual void Returning()
         {
-			velocity = Vector2.Right * (speed + forcedSpeed * 2);
+			velocity = Vector2.Right * (chargeSpeed + forcedSpeed * 2);
 			GetTree().CreateTimer(internalTime).Connect(EventTimer.TIMEOUT, this, nameof(StartChargeProcess));
 		}
 

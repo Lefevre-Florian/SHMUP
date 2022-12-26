@@ -12,6 +12,7 @@ healthpoint = 5
 shootDelay = 1.5
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 moveDelay = 4.0
+chargeSpeed = 250.0
 maxLoop = 0
 activationDelay = 0.8
 

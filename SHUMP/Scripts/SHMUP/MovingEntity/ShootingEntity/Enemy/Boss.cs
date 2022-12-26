@@ -25,6 +25,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private int nhelperThrowingEntity = 3;
         [Export] private float helperThrowingRespawn;
 
+        [Export] private float waitingDelay = 0.25f;
+
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
 
@@ -61,13 +63,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
             up = new Vector2(forcedSpeed, Vector2.Up.y * (speed));
             down = new Vector2(forcedSpeed, Vector2.Down.y * (speed));
-            velocity = up;
+            
+            velocity = Vector2.Left * Mathf.Abs(speed - forcedSpeed);
 
             throwerScene = GD.Load<PackedScene>(THROWER_PATH);
             droneScene = GD.Load<PackedScene>(BATTLE_DRONE_PATH);
-
-            SetActionMoveAndShoot();
-            TriggerFirstPhase();
         }
 
         public static Boss GetInstance()
@@ -76,12 +76,21 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             return instance;
         }
 
+        protected override void SetActionMoveAndShoot()
+        {
+            if (phase != null)
+                return;
+
+            base.SetActionMoveAndShoot();
+            GetTree().CreateTimer(waitingDelay).Connect(EventTimer.TIMEOUT, this, nameof(TriggerFirstPhase));
+        }
+
         private void TriggerFirstPhase()
         {
             phase = TriggerFirstPhase;
+            velocity = up;
 
             InitChargeProcess();
-
             weapons.Add(canon);
         }
 

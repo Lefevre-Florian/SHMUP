@@ -45,7 +45,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 		protected virtual void SetActionMove() 
 		{
-			GD.Print("Move start ! : " + GetType());
 			doAction = DoActionMove;
 		}
 
