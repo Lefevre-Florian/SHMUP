@@ -10,6 +10,7 @@ extents = Vector2( 40, 40 )
 script = ExtResource( 1 )
 speed = 50.0
 healthpoint = 2
+shootDelay = 1.75
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 dronePath = NodePath("Drone")
 droneRadius = 100.0

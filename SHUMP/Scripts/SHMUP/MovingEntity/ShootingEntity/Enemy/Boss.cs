@@ -20,11 +20,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private float droneShootDelay = 1.5f;
         [Export] private float droneRespawnDelay = 2f;
 
-        [Export] private NodePath thirdPhaseGraphics = default;
-        [Export] private NodePath thirdPhaseWeapons = default;
         [Export] private float helperSpeed;
         [Export] private float helperThrowingDelay;
         [Export] private int nhelperThrowingEntity = 3;
+        [Export] private float helperThrowingRespawn;
 
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
@@ -34,12 +33,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         //Replace by boss size
         private const float XMARGIN = 80f;
 
-        private const string BOOMERANG_PATH = "res://Scenes/Prefab/Bullets/EnemyBoomerang.tscn";
-        private PackedScene boomerangScene;
+        private const string THROWER_PATH = "res://Scenes/Prefab/Enemies/Thrower.tscn";
+        private PackedScene throwerScene;
 
-        private Node2D thrower;
-        private Position2D throwerWeapon;
-        private Timer throwerTimer = new Timer();
+        private ThrowerHelperEnemy thrower = null;
 
         private Vector2 up;
         private Vector2 down;
@@ -66,8 +63,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             down = new Vector2(forcedSpeed, Vector2.Down.y * (speed));
             velocity = up;
 
+            throwerScene = GD.Load<PackedScene>(THROWER_PATH);
             droneScene = GD.Load<PackedScene>(BATTLE_DRONE_PATH);
 
+            SetActionMoveAndShoot();
             TriggerFirstPhase();
         }
 
@@ -104,16 +103,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         {
             phase = TriggerThridPhase;
 
-            thrower = GetNode<Node2D>(thirdPhaseGraphics);
-            throwerWeapon = GetNode<Position2D>(thirdPhaseWeapons);
-
-            thrower.Visible = true;
-
-            boomerangScene = GD.Load<PackedScene>(BOOMERANG_PATH);
-
-            AddChild(throwerTimer);
-            throwerTimer.WaitTime = helperThrowingDelay;
-            throwerTimer.Connect(EventTimer.TIMEOUT, this, nameof(ThrowerShoot));
+            AddThrower();
         }
 
         protected override void DoActionMove()
@@ -123,15 +113,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
                 velocity = down;
             if (GlobalPosition.y >= screenSize.y - YMARGIN)
                 velocity = up;
-
-            if(phase == TriggerThridPhase)
-            {
-                GD.Print(thrower.GlobalPosition);
-                if (thrower.GlobalPosition.x <= XMARGIN)
-                    thrower.GlobalPosition += Vector2.Right * helperSpeed * delta;
-                if (thrower.GlobalPosition.x >= screenSize.x - XMARGIN)
-                    thrower.GlobalPosition += Vector2.Left * helperSpeed * delta;
-            }
         }
 
         protected override void Shoot()
@@ -143,14 +124,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
                 lBullet.Position = new Vector2(lCanon.GlobalPosition.x, lCanon.GlobalPosition.y);
                 bulletContainer.AddChild(lBullet);
             }
-        }
-
-        private void ThrowerShoot()
-        {
-            EnemyBoomerang lBoomerang = boomerangScene.Instance<EnemyBoomerang>();
-
-            bulletContainer.AddChild(lBoomerang);
-            lBoomerang.Position = throwerWeapon.GlobalPosition;
         }
 
         public override void TakeDamage(int pDamage)
@@ -197,10 +170,35 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
                 GetTree().CreateTimer(droneRespawnDelay).Connect(EventTimer.TIMEOUT, this, nameof(AddDrone));
         }
 
+        private void AddThrower()
+        {
+            thrower = throwerScene.Instance<ThrowerHelperEnemy>();
+            GetParent().AddChild(thrower);
+            thrower.Init(helperSpeed, helperThrowingDelay, nhelperThrowingEntity);
+            thrower.GlobalPosition = new Vector2(screenSize.x / 2, screenSize.y - YMARGIN);
+
+            thrower.Connect(nameof(ThrowerHelperEnemy.Destroyed), this, nameof(ThrowerDestroyed));
+        }
+
+        private void ThrowerDestroyed()
+        {
+            thrower.Disconnect(nameof(ThrowerHelperEnemy.Destroyed), this, nameof(ThrowerDestroyed));
+            thrower = null;
+
+            GetTree().CreateTimer(helperThrowingRespawn).Connect(EventTimer.TIMEOUT, this, nameof(AddThrower));
+        }
+
         protected override void Dispose(bool pDisposing)
         {
             if (pDisposing && instance == this) instance = null;
             base.Dispose(pDisposing);
+        }
+
+        protected override void Destroy()
+        {
+            if (thrower != null)
+                thrower.QueueFree();
+            base.Destroy();
         }
     }
 }

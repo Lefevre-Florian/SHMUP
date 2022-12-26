@@ -98,7 +98,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 			if(drop != null && healthpoint <= 0)
             {
-				StaticEntity lCollectible = drop.Instance<StaticEntity>();
+				Area2D lCollectible = drop.Instance<Area2D>();
 				AddChild(lCollectible);
 				lCollectible.Position = GlobalPosition;
             }

@@ -1,5 +1,5 @@
 using Com.IsartDigital.SHMUP.GameEntities;
-using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
+using Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible;
 using Godot;
 using System;
 using System.Collections.Generic;

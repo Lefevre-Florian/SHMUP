@@ -22,7 +22,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		public override void _Ready()
 		{
 			base._Ready();
-			velocity = Vector2.Left * speed;
+			velocity = Vector2.Left * Mathf.Abs(speed - forcedSpeed);
 		}
 
         protected override void SetActionMoveAndShoot()

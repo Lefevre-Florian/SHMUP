@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/ThrowerHelperEnemy.cs" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 80, 17 )
+
+[node name="Thrower" type="Area2D"]
+position = Vector2( 0, 32 )
+script = ExtResource( 1 )
+shootDelay = 5.0
+weaponPath = NodePath("Renderer/Weapon/Position2D")
+
+[node name="Renderer" type="Polygon2D" parent="."]
+color = Color( 0.498039, 0.498039, 0.498039, 1 )
+polygon = PoolVector2Array( -80, 0, 80, 0, 80, 32, -80, 32 )
+
+[node name="Weapon" type="Polygon2D" parent="Renderer"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 16, -8, 16 )
+
+[node name="Position2D" type="Position2D" parent="Renderer/Weapon"]
+position = Vector2( 0, -8 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 15 )
+shape = SubResource( 2 )
