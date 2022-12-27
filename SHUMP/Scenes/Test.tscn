@@ -71,6 +71,9 @@ specialFeatureDelay = 1.5
 
 [node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 7 )]
 position = Vector2( 1248, 320 )
+healthpoint = 50
+secondPhaseStart = 35
+thirdPhaseStart = 15
 waitingDelay = 2.5
 
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]

@@ -19,7 +19,7 @@ extents = Vector2( 10, 300 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 320 )
-speed = 500.0
+speed = 300.0
 healthpoint = 3
 recoveryTime = 1.25
 nRecoveryBlip = 4
