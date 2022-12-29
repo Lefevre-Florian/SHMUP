@@ -20,14 +20,14 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		private int damage;
 		private Vector2 internalVelocity;
 
-		public void Init(float pDuration, int pDamage, float pForcedSpeed)
+		public void Init(float pDuration, int pDamage, float pForcedSpeed, float pSlowMotion)
         {
 			line = GetNode<Line2D>(linePath);
 			line.ZIndex = -1;
 
-			internalVelocity = new Vector2(pForcedSpeed, 0);
+			internalVelocity = new Vector2(pForcedSpeed * (pSlowMotion * 2), 0);
 
-			timer = GetTree().CreateTimer(pDuration);
+			timer = GetTree().CreateTimer(pDuration / (pSlowMotion * 2));
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
         }
 

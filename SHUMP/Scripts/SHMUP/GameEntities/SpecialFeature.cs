@@ -13,6 +13,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         [Export] public float duration = 5f;
         [Export] private int damage = 1;
         [Export (PropertyHint.ExpRange, "0.1,1,0.05")] private float spacingTime = 0.25f;
+        [Export (PropertyHint.Range, "0.1,1.0,0.1")] private float slowMotionRatio = 0.5f;
 
         #region Controls
         private const string MOVE_UP = "Up";
@@ -45,15 +46,19 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
             strikeZone = GD.Load<PackedScene>(STRIKE_ZONE_PATH).Instance<SPStrikeZone>();
             GetParent().AddChild(strikeZone);
-            strikeZone.Init(duration, damage, forcedSpeed);
+            strikeZone.Init(duration, damage, forcedSpeed, slowMotionRatio);
+
+            Engine.TimeScale *= slowMotionRatio;
 
             timer = new Timer();
-            timer.WaitTime = spacingTime;
+            timer.WaitTime = spacingTime / (slowMotionRatio * 2) ;
             timer.Autostart = true;
+
+            forcedSpeed /= (slowMotionRatio * 2);
 
             timer.Connect(EventTimer.TIMEOUT, this, nameof(Draw));
 
-            GetTree().CreateTimer(duration).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
+            GetTree().CreateTimer(duration / (slowMotionRatio * 2)).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
 
             AddChild(timer);
             SetActionMove();
@@ -81,11 +86,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         private void Draw()
         {
+            GD.Print(timer.TimeLeft);
             strikeZone.DropPoint(Position);
         }
 
         private void Stop()
         {
+            Engine.TimeScale = 1;
             timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Draw));
             EmitSignal(nameof(Finished));
             QueueFree();
