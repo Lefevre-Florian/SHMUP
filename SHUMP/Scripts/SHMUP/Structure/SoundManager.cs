@@ -37,27 +37,30 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         }
 
-        public AudioStreamPlayer2D GetAudioPlayer(AudioStreamOGGVorbis pStream)
+        public void GetAudioPlayer(AudioStreamOGGVorbis pStream, Node pTarget)
         {
             AudioStreamPlayer2D lAudio = soundPool.GetChildOrNull<AudioStreamPlayer2D>(0);
             if(lAudio == null)
                 lAudio = new AudioStreamPlayer2D();
             pStream.Loop = false;
             lAudio.Stream = pStream;
+            lAudio.Autoplay = true;
 
-            lAudio.Connect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio));
+            lAudio.Connect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
             soundPool.RemoveChild(lAudio);
-            
-            return lAudio;
+
+            pTarget.AddChild(lAudio);
+            pTarget.Connect("tree_exiting", this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
         }
 
-        private void CleanAudioPlayer(AudioStreamPlayer2D pAudio)
+        private void CleanAudioPlayer(AudioStreamPlayer2D pAudio, Node pTarget)
         {
+            pTarget.Disconnect("tree_exiting", this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stop();
             pAudio.Stream = null;
 
-            pAudio.GetParent().RemoveChild(pAudio);
+            pTarget.RemoveChild(pAudio);
             soundPool.AddChild(pAudio);
         }
 

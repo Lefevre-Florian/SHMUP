@@ -39,6 +39,9 @@ namespace Com.IsartDigital.SHMUP.Structure {
 		
 		private const string SECTION_NAME = "Settings";
 		private const string KEY_LANGUAGE_NAME = "Language";
+
+		[Signal]
+		public delegate void LanguageChanged();
 		
 		static LocalizationManager()
         {

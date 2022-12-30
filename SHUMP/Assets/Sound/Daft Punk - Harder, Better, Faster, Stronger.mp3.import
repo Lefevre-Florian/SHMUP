@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Daft Punk - Harder, Better, Faster, Stronger.mp3-ec992aa50e38241bd75a2b9de8bd0616.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Daft Punk - Harder, Better, Faster, Stronger.mp3"
+dest_files=[ "res://.import/Daft Punk - Harder, Better, Faster, Stronger.mp3-ec992aa50e38241bd75a2b9de8bd0616.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

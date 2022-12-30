@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/Bullets/PlayerBullet.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/Daft Punk - Harder, Better, Faster, Stronger.mp3" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
@@ -9,6 +10,7 @@ radius = 16.0
 script = ExtResource( 1 )
 speed = 500.0
 damage = 1
+audio = ExtResource( 2 )
 
 [node name="Renderer" type="Polygon2D" parent="."]
 position = Vector2( 0, 16 )
