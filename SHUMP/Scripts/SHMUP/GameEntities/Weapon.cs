@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
 
@@ -14,6 +15,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private NodePath pathCanon = default;
 		[Export] private NodePath pathFirstUpgrade = default;
 		[Export] private NodePath pathSecondUpgrade = default;
+
+		[Export] private AudioStreamOGGVorbis vfx = default;
 
 		private const string PATH_BULLET = "res://Scenes/Prefab/Bullets/Bullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";

@@ -64,6 +64,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private Timer specialFeatureDelaytimer = new Timer();
 
+        private Vector2 direction = new Vector2();
+
         [Signal]
         public delegate void LifeState(int pLifePoint);
 
@@ -100,23 +102,28 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         public override void _Input(InputEvent pEvent)
         {
-            velocity = new Vector2(forcedSpeed, 0);
+            direction = Vector2.Zero;
 
             if (!specialFeature)
             {
                 if (Input.IsActionPressed(MOVE_UP))
-                    velocity = new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-                else if (Input.IsActionPressed(MOVE_DOWN))
-                    velocity = new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
-                else if (Input.IsActionPressed(MOVE_LEFT))
-                    velocity = new Vector2(-1 * (forcedSpeed + speed), 0);
-                else if (Input.IsActionPressed(MOVE_RIGHT))
-                    velocity = new Vector2(1 * (forcedSpeed + speed), 0);
+                    direction += new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
+                if (Input.IsActionPressed(MOVE_DOWN))
+                    direction += new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
+                if (Input.IsActionPressed(MOVE_LEFT))
+                    direction += new Vector2(-1 * (forcedSpeed + speed), 0);
+                if (Input.IsActionPressed(MOVE_RIGHT))
+                    direction += new Vector2(1 * (forcedSpeed + speed), 0);
 
                 if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
 
             }
+
+            if (direction == Vector2.Zero)
+                direction = new Vector2(forcedSpeed, 0);
+
+            velocity = direction;
 
             if (Input.IsActionPressed(SHOT))
                 canon.Shoot();

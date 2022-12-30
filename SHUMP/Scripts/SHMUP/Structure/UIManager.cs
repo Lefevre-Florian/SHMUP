@@ -52,6 +52,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         {
             gameOver = GD.Load<PackedScene>(PATH_GAMEOVER_POPUP).Instance<UI.Popup>();
             popupContainer.AddChild(gameOver);
+            gameOver.OpenScreen();
         }
 
         protected override void Dispose(bool pDisposing)
