@@ -6,6 +6,7 @@
 [node name="Root" type="Node"]
 
 [node name="TitleCard" parent="." instance=ExtResource( 1 )]
+creditPanelPath = NodePath("../Credit")
 
 [node name="Credit" parent="." instance=ExtResource( 2 )]
 visible = false
