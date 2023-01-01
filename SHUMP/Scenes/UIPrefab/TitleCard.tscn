@@ -32,7 +32,7 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.107
 margin_bottom = -0.200005
-text = "Flee from Paris !"
+text = "KEY_TITLE"
 align = 1
 valign = 1
 
@@ -46,7 +46,7 @@ margin_top = -64.0
 margin_right = 64.0
 margin_bottom = 64.0
 theme = ExtResource( 1 )
-text = "Start"
+text = "KEY_PLAY"
 
 [node name="SettingsButton" type="Button" parent="TitleCard"]
 anchor_left = 0.311
@@ -59,7 +59,7 @@ margin_right = 89.536
 margin_bottom = 92.0
 rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
-text = "Parametres"
+text = "KEY_SETTING"
 
 [node name="CreditButton" type="Button" parent="TitleCard"]
 anchor_left = 0.686
@@ -72,7 +72,7 @@ margin_right = 89.5359
 margin_bottom = 92.0
 rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
-text = "Credit"
+text = "KEY_CREDIT"
 
 [node name="ExitButton" type="Button" parent="TitleCard"]
 anchor_left = 1.0
@@ -84,4 +84,4 @@ margin_bottom = 136.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 1 )
-text = "Quitter"
+text = "KEY_EXIT"

@@ -1,12 +1,327 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/UIPrefab/TitleCard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/UIPrefab/CreditMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=3]
+[ext_resource path="res://Scripts/SHMUP/UI/Settings.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/SHMUP/UI/Screen.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/SoundSetting.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/LanguageSetting.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
 
 [node name="Root" type="Node"]
 
 [node name="TitleCard" parent="." instance=ExtResource( 1 )]
 creditPanelPath = NodePath("../Credit")
+settingPanelPath = NodePath("../Setting")
 
 [node name="Credit" parent="." instance=ExtResource( 2 )]
 visible = false
+
+[node name="Setting" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+buttonExitPath = NodePath("Main/Exit")
+buttonReturnPath = NodePath("Main/Return")
+mainMenuPath = NodePath("../TitleCard")
+subMenuSoundPath = NodePath("Main/Sound")
+subBtnMenuSoundPath = NodePath("Main/BtnSound")
+subMenuInputPath = NodePath("Main/Input")
+subBtnMenuInputPath = NodePath("Main/BtnInput")
+
+[node name="Main" type="Panel" parent="Setting"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Settings" type="Label" parent="Setting/Main"]
+anchor_right = 1.0
+margin_bottom = 64.0
+text = "KEY_SETTING"
+align = 1
+valign = 1
+
+[node name="BtnInput" type="Button" parent="Setting/Main"]
+margin_top = 88.0
+margin_right = 128.0
+margin_bottom = 128.0
+text = "KEY_INPUT"
+
+[node name="BtnSound" type="Button" parent="Setting/Main"]
+margin_left = 128.0
+margin_top = 88.0
+margin_right = 256.0
+margin_bottom = 128.0
+text = "KEY_SETTING"
+
+[node name="Input" type="Control" parent="Setting/Main"]
+visible = false
+margin_top = 128.0
+margin_right = 1024.0
+margin_bottom = 512.0
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Setting/Main/Input"]
+margin_left = 320.0
+margin_top = 64.0
+margin_right = 384.0
+margin_bottom = 128.0
+theme = ExtResource( 3 )
+text = "Z"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Setting/Main/Input"]
+margin_left = 320.0
+margin_top = 128.0
+margin_right = 384.0
+margin_bottom = 192.0
+theme = ExtResource( 3 )
+text = "S"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Setting/Main/Input"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 384.0
+margin_bottom = 256.0
+theme = ExtResource( 3 )
+text = "D"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Setting/Main/Input"]
+margin_left = 320.0
+margin_top = 256.0
+margin_right = 384.0
+margin_bottom = 320.0
+theme = ExtResource( 3 )
+text = "Q"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Setting/Main/Input"]
+margin_left = 768.0
+margin_top = 64.0
+margin_right = 832.0
+margin_bottom = 128.0
+theme = ExtResource( 3 )
+text = "K"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Setting/Main/Input"]
+margin_left = 768.0
+margin_top = 128.0
+margin_right = 832.0
+margin_bottom = 192.0
+theme = ExtResource( 3 )
+text = "M"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Setting/Main/Input"]
+margin_left = 768.0
+margin_top = 192.0
+margin_right = 832.0
+margin_bottom = 256.0
+theme = ExtResource( 3 )
+text = "L"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Setting/Main/Input"]
+margin_left = 512.0
+margin_top = 192.0
+margin_right = 704.0
+margin_bottom = 256.0
+theme = ExtResource( 3 )
+text = "KEY_SMARTBOMB"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Setting/Main/Input"]
+margin_left = 512.0
+margin_top = 128.0
+margin_right = 704.0
+margin_bottom = 192.0
+theme = ExtResource( 3 )
+text = "KEY_SPECIALFEATURE"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Setting/Main/Input"]
+margin_left = 512.0
+margin_top = 64.0
+margin_right = 704.0
+margin_bottom = 128.0
+theme = ExtResource( 3 )
+text = "KEY_SHOOT"
+align = 1
+valign = 1
+
+[node name="Label11" type="Label" parent="Setting/Main/Input"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 128.0
+theme = ExtResource( 3 )
+text = "KEY_MOVEUP"
+align = 1
+valign = 1
+
+[node name="Label12" type="Label" parent="Setting/Main/Input"]
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 192.0
+theme = ExtResource( 3 )
+text = "KEY_MOVEDOWN"
+align = 1
+valign = 1
+
+[node name="Label13" type="Label" parent="Setting/Main/Input"]
+margin_left = 64.0
+margin_top = 192.0
+margin_right = 256.0
+margin_bottom = 256.0
+theme = ExtResource( 3 )
+text = "KEY_MOVERIGHT"
+align = 1
+valign = 1
+
+[node name="Label14" type="Label" parent="Setting/Main/Input"]
+margin_left = 64.0
+margin_top = 256.0
+margin_right = 256.0
+margin_bottom = 320.0
+theme = ExtResource( 3 )
+text = "KEY_MOVELEFT"
+align = 1
+valign = 1
+
+[node name="Sound" type="Control" parent="Setting/Main"]
+margin_top = 128.0
+margin_right = 1024.0
+margin_bottom = 448.0
+script = ExtResource( 5 )
+
+[node name="vfxLabel" type="Label" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -376.0
+margin_top = -20.0
+margin_right = -325.0
+margin_bottom = -6.0
+text = "KEY_VFX"
+
+[node name="vfxSlider" type="HSlider" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -20.0
+margin_right = 256.0
+margin_bottom = -4.0
+min_value = -80.0
+max_value = 24.0
+
+[node name="vfxSave" type="Button" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 312.0
+margin_top = -28.0
+margin_right = 391.0
+margin_bottom = 4.0
+text = "KEY_SAVE"
+script = ExtResource( 6 )
+sliderPath = NodePath("../vfxSlider")
+storingKey = "VFX"
+
+[node name="musicLabel" type="Label" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -384.0
+margin_top = -88.0
+margin_right = -314.0
+margin_bottom = -74.0
+text = "KEY_MUSIC"
+
+[node name="musicSlider" type="HSlider" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -88.0
+margin_right = 256.0
+margin_bottom = -72.0
+min_value = -80.0
+max_value = 24.0
+
+[node name="musicSave" type="Button" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 312.0
+margin_top = -96.0
+margin_right = 391.0
+margin_bottom = -64.0
+text = "KEY_SAVE"
+script = ExtResource( 6 )
+sliderPath = NodePath("../musicSlider")
+storingKey = "Music"
+
+[node name="Language" type="CheckButton" parent="Setting/Main/Sound"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -38.0
+margin_top = -40.0
+margin_right = 38.0
+script = ExtResource( 7 )
+
+[node name="Exit" type="Button" parent="Setting/Main"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 136.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/normal = SubResource( 1 )
+text = "KEY_EXIT"
+
+[node name="Return" type="Button" parent="Setting/Main"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -104.0
+margin_right = 96.0
+margin_bottom = -40.0
+theme = ExtResource( 3 )
+text = "KEY_RETURN"

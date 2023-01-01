@@ -31,7 +31,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 			if (language.Pressed)
 				LocalizationManager.SaveLanguageChange(Languages.FR);
 			else
-				LocalizationManager.SaveLanguageChange(Languages.ENG);
+				LocalizationManager.SaveLanguageChange(Languages.EN);
 		}
 
 	}

@@ -25,9 +25,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			line = GetNode<Line2D>(linePath);
 			line.ZIndex = -1;
 
-			internalVelocity = new Vector2(pForcedSpeed * (pSlowMotion * 2), 0);
+			internalVelocity = new Vector2(pForcedSpeed * (pSlowMotion * (1 / pSlowMotion)), 0);
 
-			timer = GetTree().CreateTimer(pDuration / (pSlowMotion * 2));
+			timer = GetTree().CreateTimer(pDuration / (pSlowMotion * (1 / pSlowMotion)));
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
         }
 

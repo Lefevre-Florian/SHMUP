@@ -1,0 +1,23 @@
+﻿keys;fr;en
+KEY_TITLE;Flee From Paris !;Flee From Paris !
+KEY_PLAY;Joueur;Play
+KEY_EXIT;Quitter;Exit
+KEY_SETTING;Paramètres;Settings
+KEY_CREDIT;Credit;Credit
+KEY_RETURN ;Retour;Return
+KEY_GAMEOVER;Fin du jeu;Game over
+KEY_RETRY;Rejouer;Retry
+KEY_BACK_MAINMENU;Retour au menu principal;Back to main menu
+KEY_SCORE;Votre score est;Your Score is
+KEY_RESUME;Reprendre;Resume
+KEY_MOVEUP;Haut;Up
+KEY_MOVEDOWN;Bas;Down
+KEY_MOVERIGHT;Droite;Right
+KEY_MOVELEFT;Gauche;Left
+KEY_SHOOT;Tirer;Shoot
+KEY_SPECIALFEATURE;Special Feature;Special Feature
+KEY_SMARTBOMB;Smart Bomb;Smart Bomb
+KEY_INPUT;Contrôle;Input
+KEY_VFX;Volume des effets spéciaux;Special effect volume
+KEY_MUSIC;Volume de la musique;Music volume
+KEY_SAVE;Enregistrer;Save

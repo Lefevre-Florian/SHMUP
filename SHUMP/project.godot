@@ -66,6 +66,10 @@ God_mode={
  ]
 }
 
+[locale]
+
+translations=PoolStringArray( "res://Ressources/Translation.fr.translation", "res://Ressources/Translation.en.translation" )
+
 [physics]
 
 common/enable_pause_aware_picking=true

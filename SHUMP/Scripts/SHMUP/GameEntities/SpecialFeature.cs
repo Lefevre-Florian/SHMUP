@@ -51,14 +51,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             Engine.TimeScale *= slowMotionRatio;
 
             timer = new Timer();
-            timer.WaitTime = spacingTime / (slowMotionRatio * 2) ;
+            timer.WaitTime = spacingTime / (slowMotionRatio * (1/slowMotionRatio)) ;
             timer.Autostart = true;
 
-            forcedSpeed /= (slowMotionRatio * 2);
+            forcedSpeed /= (slowMotionRatio * (1 / slowMotionRatio));
 
             timer.Connect(EventTimer.TIMEOUT, this, nameof(Draw));
 
-            GetTree().CreateTimer(duration / (slowMotionRatio * 2)).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
+            GD.Print(duration / (slowMotionRatio * (1 / slowMotionRatio)));
+
+            GetTree().CreateTimer(duration / (slowMotionRatio * (1 / slowMotionRatio))).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
 
             AddChild(timer);
             SetActionMove();

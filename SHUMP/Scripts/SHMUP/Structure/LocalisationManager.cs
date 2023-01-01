@@ -9,32 +9,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
 	{
 		private static Languages lang = Languages.FR;
 
-		private static Dictionary<Languages, Dictionary<string, string>> translator = new Dictionary<Languages, Dictionary<string, string>>()
-		{
-			{Languages.FR, new Dictionary<string, string>()
-				{
-					{"Pause", "Pause"},
-					{"MainMenu" , "Menu principal"},
-					{"Resume" , "Reprendre"},
-					{"Exit" , "Quitter"},
-					{"Credit", "Credit"},
-					{"Setting", "Paramètres" }
-				} 
-			},
-			{Languages.ENG, new Dictionary<string, string>()
-				{
-					{"Pause", "Pause"},
-					{"MainMenu" , "Main Menu"},
-					{"Resume" , "Resume"},
-					{"Exit" , "Exit"},
-					{"Credit", "Credit"},
-					{"Setting", "Settings" }
-				} 
-			}
-		};
-
-		public static List<string> translationKeys = new List<string>();
-
 		private const string FILE_PATH = "res://Ressources/Settings.cfg";
 		
 		private const string SECTION_NAME = "Settings";
@@ -45,19 +19,13 @@ namespace Com.IsartDigital.SHMUP.Structure {
 		
 		static LocalizationManager()
         {
-            foreach (string lKey in translator[lang].Keys)
-            {
-				translationKeys.Add(lKey);
-            }
-        }
-
-		public static string GetTranslation(string pKey)
-        {
-			return translator[lang][pKey];
+			LoadLanguageSetting();
+			TranslationServer.SetLocale(lang.ToString().ToLower());
         }
 
 		public static void SaveLanguageChange(Languages pLanguage)
         {
+			TranslationServer.SetLocale(pLanguage.ToString().ToLower());
 			lang = pLanguage;
 
 			ConfigFile lFile = new ConfigFile();
@@ -72,6 +40,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			if (lError != Error.Ok)
 				SaveLanguageChange(lang);
 			lang = (Languages)lFile.GetValue(SECTION_NAME, KEY_LANGUAGE_NAME);
+			GD.Print(lang);
         }
 
 	}
