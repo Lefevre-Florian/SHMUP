@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
@@ -13,6 +14,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
         public override void _Ready()
         {
             base._Ready();
+
+            Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 
             SetActionMove();
         }
@@ -28,13 +31,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
             base.DoActionMove();
             if (GlobalPosition.x < 0 || GlobalPosition.x > screenSize.x
             || GlobalPosition.y < 0 || GlobalPosition.y > screenSize.y)
-                Clean();
+                QueueFree();
         }
 
-        public virtual void Clean()
+        protected override void Destructor()
         {
+            Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
             bullets.Remove(this);
-            QueueFree();
+            base.Destructor();
         }
 
     }

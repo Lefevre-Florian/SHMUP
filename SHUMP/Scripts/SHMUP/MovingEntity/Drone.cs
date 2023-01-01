@@ -35,7 +35,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         protected override void OnAreaEnter(Area2D pBody)
         {
             if (pBody is SPStrikeZone)
-                Destroy();
+                Destructor();
         }
 
         protected override void DoActionMove()
@@ -44,12 +44,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             GlobalPosition = pParent.GlobalPosition + new Vector2(Mathf.Cos(angle * speed), Mathf.Sin(angle * speed)) * radius;
         }
 
-        protected virtual void Destroy()
+        protected override void Destructor()
         {
-            Disconnect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
-
             EmitSignal(nameof(Destroyed));
-            QueueFree();
+            base.Destructor();
         }
 
     }

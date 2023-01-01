@@ -9,7 +9,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
 
         protected virtual void SetActionMoveAndShoot()
         {
-            GD.Print("Move start ! : " + GetType());
             doAction = DoActionMoveAndShoot; 
         }
 
@@ -27,7 +26,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
 
         protected virtual void Destroy()
         {
-            QueueFree();
+            Destructor();
         }
 
     }

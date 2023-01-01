@@ -50,6 +50,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 		protected virtual void OnAreaEnter(Area2D pBody) { }
 
+		protected virtual void Destructor()
+        {
+			Disconnect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
+			QueueFree();
+        }
+
     }
 
 }

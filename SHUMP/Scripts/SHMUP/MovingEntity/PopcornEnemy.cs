@@ -1,5 +1,6 @@
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible;
+using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         [Export] private float margin;
         [Export] private uint score = 100;
+        [Export] private int damage = 1;
         [Export] private PackedScene drop = null;
 
         private const string TRIGGER_TAG = "Trigger";
@@ -48,13 +50,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 velocity = new Vector2(-speed, -speed);
 
             if (GlobalPosition.x < 0)
-                InternalDestroy();
+                Destructor();
         }
 
         protected override void OnAreaEnter(Area2D pBody)
         {
             if (pBody.IsInGroup(TRIGGER_TAG))
                 SetActionMove();
+
+            if (pBody is Player)
+                ((Player)pBody).TakeDamage(damage);
         }
 
         public void Destroy()
@@ -71,13 +76,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 lCollectible.Position = Position;
             }
 
-            InternalDestroy();
+            Destructor();
         }
 
-        private void InternalDestroy()
+        protected override void Destructor()
         {
             popcornEnemies.Remove(this);
-            QueueFree();
+            base.Destructor();
         }
 
     }

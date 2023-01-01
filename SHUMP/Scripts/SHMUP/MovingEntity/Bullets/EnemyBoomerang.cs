@@ -41,7 +41,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
             if(pBody is Player)
             {
                 ((Player)pBody).TakeDamage(damage);
-                Clean();
+                QueueFree();
             }
         }
 

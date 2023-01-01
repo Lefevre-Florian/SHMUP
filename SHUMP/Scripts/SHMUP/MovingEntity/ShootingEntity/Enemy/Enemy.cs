@@ -93,10 +93,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				lScore.SetScore(score);
 			}
 
-			if(timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
-				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
-			timer.QueueFree();
-
 			if(drop != null && healthpoint <= 0)
             {
 				Area2D lCollectible = drop.Instance<Area2D>();
@@ -105,6 +101,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             }
 
 			base.Destroy();
+        }
+
+        protected override void Destructor()
+        {
+			if (timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
+				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+			timer.QueueFree();
+			base.Destructor();
         }
 
     }

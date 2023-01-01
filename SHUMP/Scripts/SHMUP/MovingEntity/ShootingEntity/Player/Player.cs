@@ -246,6 +246,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             return healthpoint;
         }
 
+        protected override void Destructor()
+        {
+            specialFeatureDelaytimer.Stop();
+            if(specialFeatureDelaytimer.IsConnected(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature)))
+                specialFeatureDelaytimer.Disconnect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
+            base.Destructor();
+        }
+
         protected override void Dispose(bool pDisposing)
         {
 			if (pDisposing && instance != null)

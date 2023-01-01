@@ -40,10 +40,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             timer.WaitTime = shootDelay + lLaser.drawingDuration + lLaser.attackDuration;
         }
 
-        protected override void Destroy()
+        protected override void Destructor()
         {
             Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
-            base.Destroy();
+            base.Destructor();
         }
 
     }
