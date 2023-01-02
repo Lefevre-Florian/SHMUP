@@ -205,6 +205,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Destroy()
         {
+            UIManager.GetInstance().TriggerGameOver();
             if (thrower != null)
                 thrower.QueueFree();
             base.Destroy();

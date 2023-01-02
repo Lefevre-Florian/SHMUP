@@ -15,13 +15,13 @@ reloadPath = NodePath("Panel/Reload")
 exitPaths = [ NodePath("Panel/Exit"), NodePath("BackgroundButton") ]
 
 [node name="Label" parent="Panel" index="1"]
-text = "Game over"
+text = "KEY_GAMEOVER"
 
 [node name="Reload" parent="Panel" index="2"]
-text = "Try again"
+text = "KEY_RETRY"
 
 [node name="MainMenu" parent="Panel" index="3"]
-text = "Back to main menu"
+text = "KEY_BACK_MAINMENU"
 
 [node name="Score" type="Label" parent="Panel" index="4"]
 anchor_left = 0.5
@@ -33,7 +33,6 @@ margin_top = -116.0
 margin_right = 128.0
 margin_bottom = 12.0
 custom_fonts/font = SubResource( 1 )
-text = "Your score is : 
-0"
+text = "KEY_SCORE"
 align = 1
 valign = 1
