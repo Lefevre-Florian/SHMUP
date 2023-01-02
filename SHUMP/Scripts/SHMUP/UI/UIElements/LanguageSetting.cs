@@ -12,6 +12,11 @@ namespace Com.IsartDigital.SHMUP.UI {
 		public override void _Ready()
 		{
 			Connect(EventButton.PRESSED, this, nameof(ChangeLanguage));
+
+			if (LocalizationManager.GetCurrentLanguage() == Languages.FR)
+				Pressed = true;
+			else
+				Pressed = false;
 		}
 
 		private void ChangeLanguage()

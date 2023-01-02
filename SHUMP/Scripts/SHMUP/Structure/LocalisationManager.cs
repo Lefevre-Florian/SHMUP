@@ -16,12 +16,12 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		[Signal]
 		public delegate void LanguageChanged();
-		
-		static LocalizationManager()
+
+		public static void InitLocalizationManager()
         {
 			LoadLanguageSetting();
 			TranslationServer.SetLocale(lang.ToString().ToLower());
-        }
+		}
 
 		public static void SaveLanguageChange(Languages pLanguage)
         {
@@ -33,14 +33,18 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			lFile.Save(FILE_PATH);
         }
 
-		public static void LoadLanguageSetting()
+		private static void LoadLanguageSetting()
         {
 			ConfigFile lFile = new ConfigFile();
 			Error lError = lFile.Load(FILE_PATH);
 			if (lError != Error.Ok)
 				SaveLanguageChange(lang);
 			lang = (Languages)lFile.GetValue(SECTION_NAME, KEY_LANGUAGE_NAME);
-			GD.Print(lang);
+        }
+
+		public static Languages GetCurrentLanguage()
+        {
+			return lang;
         }
 
 	}

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.UI {
 
@@ -20,6 +21,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 		public override void _Ready()
 		{
 			GetTree().Paused = false;
+
+			LocalizationManager.InitLocalizationManager();
 
 			GetNode<Button>(startPath).Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			GetNode<Button>(exitPath).Connect(EventButton.PRESSED, this, nameof(ExitGame));

@@ -47,7 +47,6 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 			if(lError == Error.Ok)
             {
 				int lVolume = (int)lFile.GetValue(SECTION_NAME, storingKey, DEFAULT);
-				GD.Print(lVolume);
 				if (lVolume != DEFAULT)
 					slider.Value = (int)lFile.GetValue(SECTION_NAME, storingKey);
 			}

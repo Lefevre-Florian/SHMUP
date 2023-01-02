@@ -58,8 +58,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
             timer.Connect(EventTimer.TIMEOUT, this, nameof(Draw));
 
-            GD.Print(duration / (slowMotionRatio * (1 / slowMotionRatio)));
-
             GetTree().CreateTimer(duration / (slowMotionRatio * (1 / slowMotionRatio))).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
 
             AddChild(timer);

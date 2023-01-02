@@ -4,7 +4,7 @@ KEY_PLAY;Joueur;Play
 KEY_EXIT;Quitter;Exit
 KEY_SETTING;Paramètres;Settings
 KEY_CREDIT;Credit;Credit
-KEY_RETURN ;Retour;Return
+KEY_RETURN;Retour;Return
 KEY_GAMEOVER;Fin du jeu;Game over
 KEY_RETRY;Rejouer;Retry
 KEY_BACK_MAINMENU;Retour au menu principal;Back to main menu
