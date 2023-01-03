@@ -38,6 +38,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 			lSoundBtn.Connect(EventButton.PRESSED, this, nameof(SwitchPanel),
 							  new Godot.Collections.Array(GetNode<Screen>(subMenuSoundPath), GetNode<Screen>(subMenuInputPath)));
 
+
 		}
 
 		private void ExitGame()

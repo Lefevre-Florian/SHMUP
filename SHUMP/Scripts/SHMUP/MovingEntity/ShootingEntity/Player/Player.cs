@@ -199,10 +199,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private void CallSmartbomb()
         {
-            if (nSmartBomb <= 0)
+            if (nSmartBomb - 1 < 0)
                 return;
 
             nSmartBomb--;
+            GD.Print(nSmartBomb);
 
             SmartBomb lSmartBomb = GD.Load<PackedScene>(SMARTBOMB_PATH).Instance<SmartBomb>();
             AddChild(lSmartBomb);

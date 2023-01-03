@@ -86,7 +86,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         private void Draw()
         {
-            GD.Print(timer.TimeLeft);
             strikeZone.DropPoint(Position);
         }
 

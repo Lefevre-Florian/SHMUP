@@ -30,7 +30,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
 
-        private const float YMARGIN = 60f;
+        private const float YMARGIN = 80f;
 
         //Replace by boss size
         private const float XMARGIN = 80f;
@@ -47,6 +47,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         private Action phase;
 
+        private bool invincibiliy = false;
         private BattleDrone drone = null;
 
         private Boss ():base() {}
@@ -137,18 +138,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void TakeDamage(int pDamage)
         {
-            base.TakeDamage(pDamage);
+            if(!invincibiliy)
+               base.TakeDamage(pDamage);
 
             if(healthpoint <= secondPhaseStart && healthpoint > thirdPhaseStart 
             && phase == TriggerFirstPhase)
-            {
                 TriggerSecondPhase();
-            }
+
 
             if(healthpoint <= thirdPhaseStart && phase == TriggerSecondPhase)
-            {
                 TriggerThridPhase();
-            }
 
         }
 
@@ -168,12 +167,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             AddChild(drone);
             drone.Init(droneRadius, droneSpeed, droneShootDelay);
             drone.Connect(nameof(BattleDrone.Destroyed), this, nameof(DroneDestroyed));
+
+            invincibiliy = true;
         }
 
         private void DroneDestroyed()
         {
             drone.Disconnect(nameof(BattleDrone.Destroyed), this, nameof(DroneDestroyed));
             drone = null;
+
+            invincibiliy = false;
 
             if(phase == TriggerSecondPhase || phase == TriggerThridPhase)
                 GetTree().CreateTimer(droneRespawnDelay).Connect(EventTimer.TIMEOUT, this, nameof(AddDrone));

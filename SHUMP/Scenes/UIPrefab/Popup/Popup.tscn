@@ -63,7 +63,7 @@ margin_top = 76.0
 margin_right = 128.0
 margin_bottom = 124.0
 theme = ExtResource( 2 )
-text = "Restart"
+text = "KEY_RESTART"
 
 [node name="MainMenu" type="Button" parent="Panel"]
 anchor_left = 0.5
@@ -75,4 +75,4 @@ margin_top = 164.0
 margin_right = 128.0
 margin_bottom = 212.0
 theme = ExtResource( 2 )
-text = "Main menu"
+text = "KEY_BACK_MAINMENU"

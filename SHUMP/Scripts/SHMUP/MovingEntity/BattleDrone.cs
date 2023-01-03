@@ -16,6 +16,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         public override void _Ready()
         {
+            base._Ready();
             laserScene = GD.Load<PackedScene>(PATH_LASER_SCENE);
         }
 
@@ -42,7 +43,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         protected override void Destructor()
         {
-            Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+            if(IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
+                Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
             base.Destructor();
         }
 

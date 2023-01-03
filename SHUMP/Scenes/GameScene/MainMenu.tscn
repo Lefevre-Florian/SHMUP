@@ -14,3 +14,4 @@ settingPanelPath = NodePath("../Setting")
 visible = false
 
 [node name="Setting" parent="." instance=ExtResource( 3 )]
+visible = false

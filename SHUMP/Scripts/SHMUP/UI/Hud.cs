@@ -9,10 +9,7 @@ namespace Com.IsartDigital.SHMUP.UI {
         private static Hud instance;
 
         [Export] private NodePath lifePath = default;
-
-        [Export] private string scoreExtension;
         [Export] private NodePath scorePath = default;
-
         [Export] private NodePath smartBombPath = default;
 
         private Label score;
@@ -25,6 +22,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         private int nSmartBomb = 0;
         private int maxSmartBomb = 0;
+
+        private string scoreExtension;
 
         private Hud() : base() { }
 
@@ -40,6 +39,8 @@ namespace Com.IsartDigital.SHMUP.UI {
             lifeBar = GetNode<ProgressBar>(lifePath);
 
             score = GetNode<Label>(scorePath);
+            scoreExtension = score.Text;
+            score.Text = $"{scoreExtension}:\n{nScore}";
             scoreLabelPosition = score.RectGlobalPosition;
 
             smartBomb = GetNode<Label>(smartBombPath);
@@ -52,7 +53,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
             maxSmartBomb = lPlayer.maxSmartBomb;
             nSmartBomb = lPlayer.nSmartBomb;
-            smartBomb.Text = $"{++nSmartBomb}/{maxSmartBomb}";
+            smartBomb.Text = $"{nSmartBomb}/{maxSmartBomb}";
 
             lPlayer.Connect(nameof(Player.SmarbombState), this, nameof(UpdateSmartBombHUD));
 

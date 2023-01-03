@@ -8,7 +8,6 @@ margin_right = 1024.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 lifePath = NodePath("Panel/Lifebar")
-scoreExtension = "Score : "
 scorePath = NodePath("Panel/Score")
 smartBombPath = NodePath("Panel/HBoxContainer/Smartbomb")
 
@@ -32,7 +31,7 @@ margin_left = -64.0
 margin_top = 8.0
 margin_right = 64.0
 margin_bottom = 56.0
-text = "Score : 0"
+text = "Score"
 align = 1
 valign = 1
 
@@ -40,14 +39,14 @@ valign = 1
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -320.0
-margin_top = 8.0
+margin_top = 16.0
 margin_right = -64.0
-margin_bottom = 64.0
+margin_bottom = 48.0
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
 margin_right = 256.0
 margin_bottom = 14.0
-text = "Recharge"
+text = "KEY_SMARTBOMB_AMUNATION"
 align = 1
 
 [node name="Smartbomb" type="Label" parent="Panel/HBoxContainer"]
