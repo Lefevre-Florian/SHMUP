@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities;
-using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
 
@@ -12,14 +11,12 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		[Export] private int damage = 1;
 
-		private Camera2D camera = null;
+		private Camera camera = null;
 
 		public override void _Ready()
 		{
-			GameManager lGameManager = GameManager.GetInstance();
-
-			camera = lGameManager.camera;
-
+			camera = Camera.GetInstance();
+			camera.SetActionShake();
 			DestroyEntities();
 		}
 

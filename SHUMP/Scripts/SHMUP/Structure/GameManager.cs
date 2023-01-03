@@ -8,10 +8,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		private static GameManager instance;
 
-		[Export] private NodePath cameraPath = default;
-
-		public Camera2D camera = null;
-
 		private GameManager(): base() { }
 
 		public override void _Ready()
@@ -23,7 +19,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
 			instance = this;
 
-			camera = GetNode<Camera2D>(cameraPath);
 		}
 
 		public static GameManager GetInstance()

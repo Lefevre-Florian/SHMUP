@@ -10,11 +10,10 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private static SoundManager instance;
 
         [Export] private int nSoundEmitter = 60;
-        [Export] private NodePath soundPoolPath = default;
 
-        private Node soundPool = null;
-
+        private List<AudioStreamPlayer2D> audioPlayerPool = new List<AudioStreamPlayer2D>();
         private List<AudioStreamPlayer2D> activeAudioPlayer = new List<AudioStreamPlayer2D>();
+
         private SoundManager():base() {}
 
         public override void _Ready()
@@ -25,10 +24,10 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
             instance = this;
 
-            soundPool = GetNode<Node>(soundPoolPath);
+            Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 
             for (int i = 0; i < nSoundEmitter; i++)
-                soundPool.AddChild(new AudioStreamPlayer2D());
+                audioPlayerPool.Add(new AudioStreamPlayer2D());
         }
 
         public static SoundManager GetInstance()
@@ -40,7 +39,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         public void GetAudioPlayer(AudioStreamOGGVorbis pStream, Node pTarget)
         {
-            AudioStreamPlayer2D lAudio = soundPool.GetChildOrNull<AudioStreamPlayer2D>(0);
+            AudioStreamPlayer2D lAudio = audioPlayerPool[0];
             if(lAudio == null)
                 lAudio = new AudioStreamPlayer2D();
             pStream.Loop = false;
@@ -50,23 +49,24 @@ namespace Com.IsartDigital.SHMUP.Structure {
             activeAudioPlayer.Add(lAudio);
 
             lAudio.Connect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
-            soundPool.RemoveChild(lAudio);
+            audioPlayerPool.Remove(lAudio);
 
             pTarget.AddChild(lAudio);
-            pTarget.Connect("tree_exiting", this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
+            pTarget.Connect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
         }
 
         private void CleanAudioPlayer(AudioStreamPlayer2D pAudio, Node pTarget)
         {
             pAudio.Stop();
-            pTarget.Disconnect("tree_exiting", this, nameof(CleanAudioPlayer));
+            pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stream = null;
 
             activeAudioPlayer.Remove(pAudio);
 
             pTarget.RemoveChild(pAudio);
-            soundPool.AddChild(pAudio);
+
+            audioPlayerPool.Add(pAudio);
         }
 
         public void PauseAudioPlayers(bool pState)
@@ -85,6 +85,20 @@ namespace Com.IsartDigital.SHMUP.Structure {
             {
                 activeAudioPlayer[i].VolumeDb = pDBVolume;
             }
+        }
+
+        private void Destructor()
+        {
+            int lLength = activeAudioPlayer.Count - 1;
+            for (int i = lLength; i >= 0; i++)
+                activeAudioPlayer[i].QueueFree();
+
+            lLength = audioPlayerPool.Count - 1;
+            for (int i = lLength; i >= 0; i++)
+                audioPlayerPool[i].QueueFree();
+
+            Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
+            QueueFree();
         }
 
         protected override void Dispose(bool pDisposing)
