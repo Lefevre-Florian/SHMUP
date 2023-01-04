@@ -7,33 +7,33 @@ namespace Com.IsartDigital.SHMUP.Structure {
 	{
 		public static bool vibrationState = true;
 
-		private const string FILE_PATH = "res://Ressources/Settings.cfg";
-
 		private const string SECTION_NAME = "Settings";
 		private const string KEY_VIBRATION_STATE = "Vibration";
 
+		private const string DISCONNECTED_CONTROLLER_INPUT = "joy_connection_changed";
+
+		private const int USED_CONTROLLER = 0;
+
 		private static bool connected = false;
 
-		public static void InitVibrationManager()
+		public static void SaveVibrationState(bool pState)
         {
-			LoadVibrationState();
-			if (Input.GetConnectedJoypads().Count > 0)
-				connected = true;
-        }
-
-		public static void SaveVibrationState(float pState)
-        {
-			ConfigFile lFile = new ConfigFile();
-			lFile.SetValue(SECTION_NAME, KEY_VIBRATION_STATE, pState);
-			lFile.Save(FILE_PATH);
+			SaveManager.SaveData(SECTION_NAME, KEY_VIBRATION_STATE, pState);
 		}
 
-		public static void LoadVibrationState()
+		static VibrationManager()
         {
-			ConfigFile lFile = new ConfigFile();
-			Error lError = lFile.Load(FILE_PATH);
-			if (lError == Error.Ok)
-				vibrationState = (bool)lFile.GetValue(SECTION_NAME, KEY_VIBRATION_STATE);
+			object lRawData = SaveManager.LoadData(SECTION_NAME, KEY_VIBRATION_STATE);
+			if (lRawData != null)
+				vibrationState = (bool)lRawData;
+
+			if (Input.GetConnectedJoypads().Count > 0)
+				connected = true;
+		}
+
+		public static void LockVibration()
+        {
+			connected = false;
         }
 
 		public static void SetVibration(float pStrongMotorForce, float pWeakMotorForce, float pDuration = 0)
