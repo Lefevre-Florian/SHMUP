@@ -17,7 +17,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		{
 			camera = Camera.GetInstance();
 			camera.SetActionShake();
-			DestroyEntities();
+			//DestroyEntities();
 		}
 
 		private void DestroyEntities()
@@ -25,7 +25,10 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			int lLength = Enemy.enemies.Count;
 
 			for (int i = lLength - 1; i >= 0; i--)
+            {
+				GD.Print(Enemy.enemies[i]);
 				Enemy.enemies[i].TakeDamage(damage);
+			}
 
 			lLength = Bullet.bullets.Count;
 			for (int a = lLength - 1; a >= 0; a--)
@@ -33,7 +36,10 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			lLength = PopcornEnemy.popcornEnemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
+            {
+				GD.Print(PopcornEnemy.popcornEnemies[i]);
 				PopcornEnemy.popcornEnemies[i].Destroy();
+			}
 
 			QueueFree();
         }

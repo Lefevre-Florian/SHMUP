@@ -20,9 +20,6 @@ text = "KEY_GAMEOVER"
 [node name="Reload" parent="Panel" index="2"]
 text = "KEY_RETRY"
 
-[node name="MainMenu" parent="Panel" index="3"]
-text = "KEY_BACK_MAINMENU"
-
 [node name="Score" type="Label" parent="Panel" index="4"]
 anchor_left = 0.5
 anchor_top = 0.5

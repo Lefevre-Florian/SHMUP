@@ -48,6 +48,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             GetParent().AddChild(strikeZone);
             strikeZone.Init(duration, damage, forcedSpeed, slowMotionRatio);
 
+            GD.Print("Starting !");
+
             Engine.TimeScale *= slowMotionRatio;
 
             timer = new Timer();
@@ -61,10 +63,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             GetTree().CreateTimer(duration / (slowMotionRatio * (1 / slowMotionRatio))).Connect(EventTimer.TIMEOUT, this, nameof(Stop));
 
             AddChild(timer);
+            Draw();
             SetActionMove();
         }
 
-        public override void _Input(InputEvent pEvent)
+        public override void _UnhandledInput(InputEvent pEvent)
         {
             velocity = new Vector2(forcedSpeed, 0);
             if (Input.IsActionPressed(MOVE_UP))
@@ -76,8 +79,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             else if (Input.IsActionPressed(MOVE_RIGHT))
                 velocity = new Vector2(1 * (forcedSpeed + speed), 0);
 
-            if (Input.IsActionJustPressed(SPECIAL))
+            if (Input.IsActionJustPressed(SPECIAL) && timer.WaitTime > 0)
             {
+                GD.Print("Pressed");
                 strikeZone.EndDrawing();
                 Stop();
             }

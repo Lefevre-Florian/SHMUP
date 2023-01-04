@@ -25,7 +25,6 @@ ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource( 6 )
-soundPoolPath = NodePath("../ParallaxBackground/LayerGameplay/SoundPool")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

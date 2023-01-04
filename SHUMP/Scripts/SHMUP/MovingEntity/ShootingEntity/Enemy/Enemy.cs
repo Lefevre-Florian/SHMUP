@@ -25,9 +25,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
 
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
+		private const string PATH_COLLECTIBLE_CONTAINER = "../../CollecitbleContainer";
+
 		private const string TRIGGER_TAG = "Trigger";
 
 		protected Node bulletContainer;
+		private Node2D collectibleContainer;
+
 		protected Position2D canon;
 
 		protected PackedScene bulletScene;
@@ -44,6 +48,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			forcedSpeed = BackgroundManager.GetInstance().forcedSpeed;
 
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
+			collectibleContainer = GetNode<Node2D>(PATH_COLLECTIBLE_CONTAINER);
+
 			canon = GetNode<Position2D>(weaponPath);
 
 			bulletScene = GD.Load<PackedScene>(PATH_BULLET_PREFAB);
@@ -96,7 +102,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			if(drop != null && healthpoint <= 0)
             {
 				Area2D lCollectible = drop.Instance<Area2D>();
-				AddChild(lCollectible);
+				collectibleContainer.AddChild(lCollectible);
 				lCollectible.Position = GlobalPosition;
             }
 

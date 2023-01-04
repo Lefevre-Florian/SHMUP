@@ -44,7 +44,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		public static Languages GetCurrentLanguage()
         {
-			return lang;
+			return lang; 
         }
 
 	}

@@ -19,6 +19,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
 			instance = this;
 
+
+			VibrationManager.InitVibrationManager();
 		}
 
 		public static GameManager GetInstance()

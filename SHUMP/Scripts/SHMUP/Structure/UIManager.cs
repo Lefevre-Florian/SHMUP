@@ -31,9 +31,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
             popupContainer = GetNode<Node>(popupContainerPath);
 
             pause = GD.Load<PackedScene>(PATH_PAUSE_POPUP).Instance<Pause>();
-            popupContainer.AddChild(pause);
-
-            pause.CloseScreen();
         }
 
         public static UIManager GetInstance()
@@ -45,6 +42,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         public void CallPopup()
         {
+            popupContainer.AddChild(pause);
             pause.OpenScreen();
         }
 

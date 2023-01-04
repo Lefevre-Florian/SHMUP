@@ -93,10 +93,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
             for (int i = lLength; i >= 0; i++)
                 activeAudioPlayer[i].QueueFree();
 
-            lLength = audioPlayerPool.Count - 1;
-            for (int i = lLength; i >= 0; i++)
-                audioPlayerPool[i].QueueFree();
-
             Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
             QueueFree();
         }

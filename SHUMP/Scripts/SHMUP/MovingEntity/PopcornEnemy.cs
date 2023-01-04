@@ -50,7 +50,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 velocity = new Vector2(-speed, -speed);
 
             if (GlobalPosition.x < 0)
-                Destructor();
+                QueueFree();
         }
 
         protected override void OnAreaEnter(Area2D pBody)
@@ -76,7 +76,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
                 lCollectible.Position = Position;
             }
 
-            Destructor();
+            QueueFree();
         }
 
         protected override void Destructor()

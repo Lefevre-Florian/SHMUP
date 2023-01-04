@@ -32,6 +32,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 			Button lSoundBtn = GetNode<Button>(subBtnMenuSoundPath);
 			Button lInputBtn = GetNode<Button>(subBtnMenuInputPath);
 
+			lInputBtn.GrabFocus();
+
 			lInputBtn.Connect(EventButton.PRESSED, this, nameof(SwitchPanel),
 							  new Godot.Collections.Array(GetNode<Screen>(subMenuInputPath), GetNode<Screen>(subMenuSoundPath)));
 

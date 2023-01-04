@@ -13,7 +13,9 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         public override void _Ready()
         {
-            GetNode<Button>(closeButtonPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Screen>(PATH_TITLE_CARD), this));
+            Button lButton = GetNode<Button>(closeButtonPath);
+
+            lButton.Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Screen>(PATH_TITLE_CARD), this));
         }
 
     }

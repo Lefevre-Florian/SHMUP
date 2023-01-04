@@ -16,6 +16,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private NodePath pathFirstUpgrade = default;
 		[Export] private NodePath pathSecondUpgrade = default;
 
+		[Export] private float weakVibrationForce;
+		[Export] private float strongVibrationForce;
+
 		[Export] private AudioStreamOGGVorbis vfx = default;
 
 		private const string PATH_BULLET = "res://Scenes/Prefab/Bullets/Bullet.tscn";
@@ -48,6 +51,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
         {
             if (canShoot)
             {
+				VibrationManager.SetVibration(weakVibrationForce, weakVibrationForce, 0.15f);
+
 				canShoot = false;
 
 				timer.Start();

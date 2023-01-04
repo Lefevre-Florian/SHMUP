@@ -35,7 +35,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         protected override void OnAreaEnter(Area2D pBody)
         {
             if (pBody is SPStrikeZone)
-                Destructor();
+                QueueFree();
         }
 
         protected override void DoActionMove()

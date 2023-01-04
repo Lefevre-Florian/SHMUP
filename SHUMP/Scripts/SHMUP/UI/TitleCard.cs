@@ -24,7 +24,10 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 			LocalizationManager.InitLocalizationManager();
 
-			GetNode<Button>(startPath).Connect(EventButton.PRESSED, this, nameof(ChangeScene));
+			Button lStartBtn = GetNode<Button>(startPath);
+			lStartBtn.GrabFocus();
+
+			lStartBtn.Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			GetNode<Button>(exitPath).Connect(EventButton.PRESSED, this, nameof(ExitGame));
 			GetNode<Button>(creditPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Control>(creditPanelPath), this));
 			GetNode<Button>(settingPath).Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Control>(settingPanelPath), this));

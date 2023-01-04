@@ -8,6 +8,7 @@ shootFrequency = 0.75
 pathCanon = NodePath("Renderer/Position2D")
 pathFirstUpgrade = NodePath("Renderer/FirstStageUpgrade")
 pathSecondUpgrade = NodePath("Renderer/SecondStageUpgrade")
+weakVibrationForce = 0.05
 
 [node name="Renderer" type="Node2D" parent="."]
 

@@ -100,7 +100,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             doAction = SetActionMove;
         }
 
-        public override void _Input(InputEvent pEvent)
+        public override void _UnhandledInput(InputEvent pEvent)
         {
             direction = Vector2.Zero;
 
@@ -115,18 +115,17 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 if (Input.IsActionPressed(MOVE_RIGHT))
                     direction += new Vector2(1 * (forcedSpeed + speed), 0);
 
-                if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
+                if (Input.IsActionPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
 
+                if (Input.IsActionPressed(SHOT))
+                    canon.Shoot();
             }
 
             if (direction == Vector2.Zero)
                 direction = new Vector2(forcedSpeed, 0);
 
             velocity = direction;
-
-            if (Input.IsActionPressed(SHOT))
-                canon.Shoot();
 
             if (Input.IsActionJustPressed(PAUSE))
                 uiManager.CallPopup();

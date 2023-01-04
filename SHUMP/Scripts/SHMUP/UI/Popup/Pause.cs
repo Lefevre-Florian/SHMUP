@@ -12,7 +12,10 @@ namespace Com.IsartDigital.SHMUP.UI {
 		public override void _Ready()
 		{
 			base._Ready();
-			GetNode<Button>(resumePath).Connect(EventButton.PRESSED, this, nameof(CloseScreen));
+
+			Button lButton = GetNode<Button>(resumePath);
+			lButton.GrabFocus();
+			lButton.Connect(EventButton.PRESSED, this, nameof(CloseScreen));
 		}
 
 	}
