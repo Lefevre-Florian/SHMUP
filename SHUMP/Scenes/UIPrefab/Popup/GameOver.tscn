@@ -12,15 +12,15 @@ font_data = ExtResource( 2 )
 script = ExtResource( 3 )
 mainMenuPath = NodePath("Panel/MainMenu")
 reloadPath = NodePath("Panel/Reload")
-exitPaths = [ NodePath("Panel/Exit"), NodePath("BackgroundButton") ]
+exitPaths = [ NodePath("BackgroundButton") ]
 
-[node name="Label" parent="Panel" index="1"]
+[node name="Label" parent="Panel" index="0"]
 text = "KEY_GAMEOVER"
 
-[node name="Reload" parent="Panel" index="2"]
+[node name="Reload" parent="Panel" index="1"]
 text = "KEY_RETRY"
 
-[node name="Score" type="Label" parent="Panel" index="4"]
+[node name="Score" type="Label" parent="Panel" index="3"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

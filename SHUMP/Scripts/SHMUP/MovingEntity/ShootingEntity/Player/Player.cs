@@ -115,7 +115,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 if (Input.IsActionPressed(MOVE_RIGHT))
                     direction += new Vector2(1 * (forcedSpeed + speed), 0);
 
-                if (Input.IsActionPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
+                if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
 
                 if (Input.IsActionPressed(SHOT))
