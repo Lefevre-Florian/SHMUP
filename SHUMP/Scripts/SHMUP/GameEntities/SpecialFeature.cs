@@ -79,7 +79,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             else if (Input.IsActionPressed(MOVE_RIGHT))
                 velocity = new Vector2(1 * (forcedSpeed + speed), 0);
 
-            if (Input.IsActionJustPressed(SPECIAL) && timer.WaitTime > 0)
+            if (Input.IsActionJustPressed(SPECIAL))
             {
                 GD.Print("Pressed");
                 strikeZone.EndDrawing();
@@ -96,7 +96,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         private void Stop()
         {
             Engine.TimeScale = 1;
-            timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Draw));
+            if (timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Draw)))
+                timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Draw));
             EmitSignal(nameof(Finished));
             QueueFree();
         }

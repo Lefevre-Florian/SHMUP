@@ -6,6 +6,8 @@
 
 [node name="Root" type="Node"]
 
+[node name="UIFlowManager" type="Node" parent="."]
+
 [node name="TitleCard" parent="." instance=ExtResource( 1 )]
 creditPanelPath = NodePath("../Credit")
 settingPanelPath = NodePath("../Setting")

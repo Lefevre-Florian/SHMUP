@@ -44,7 +44,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		public void EndDrawing()
         {
 
-			timer.Disconnect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
+			if(timer.IsConnected(EventTimer.TIMEOUT, this, nameof(EndDrawing)))
+				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(EndDrawing));
 
 			if (line.Points.Length <= 0)
             {
@@ -59,7 +60,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				lCollision.Polygon = lPolygon;
 				AddChild(lCollision);
             }
-			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEntered));
+			if(!IsConnected(EventArea2D.AREA_ENTERED, this, nameof(Destroy)))
+				Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEntered));
 			GetTree().CreateTimer(REMANING_TIME).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
         }
 

@@ -21,18 +21,18 @@ namespace Com.IsartDigital.SHMUP.GameEntities.SmartBombUtilities {
 
 		private float drawingDuration;
 
-		public void DrawLightning(Vector2 pTo, Vector2 pPoint, float pDuration)
+		public void DrawLightning(Vector2 pFromPoint, Vector2 pToPoint, float pDuration)
 		{
-			Vector2 lReference = pPoint;
+			Vector2 lReference = pToPoint;
 
-			points.Add(pPoint);
+			points.Add(pToPoint);
 
 			RandomNumberGenerator lRand = new RandomNumberGenerator();
 			lRand.Randomize();
 
 			int lNSegment = lRand.RandiRange(MIN_SEGMENT, maxSegment);
 
-			size = pTo.DistanceTo(pPoint);
+			size = pFromPoint.DistanceTo(pToPoint);
 
 			float lSegmentSize = size / lNSegment;
 

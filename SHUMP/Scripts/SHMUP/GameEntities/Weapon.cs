@@ -18,6 +18,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		[Export] private float weakVibrationForce;
 		[Export] private float strongVibrationForce;
+		[Export] private float vibrationDuration;
 
 		[Export] private AudioStreamOGGVorbis vfx = default;
 
@@ -51,7 +52,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
         {
             if (canShoot)
             {
-				VibrationManager.SetVibration(weakVibrationForce, weakVibrationForce, 0.15f);
+				VibrationManager.SetVibration(weakVibrationForce, strongVibrationForce, vibrationDuration);
 
 				canShoot = false;
 

@@ -16,19 +16,18 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		private static bool connected = false;
 
-		public static void SaveVibrationState(bool pState)
-        {
-			SaveManager.SaveData(SECTION_NAME, KEY_VIBRATION_STATE, pState);
-		}
-
 		static VibrationManager()
         {
 			object lRawData = SaveManager.LoadData(SECTION_NAME, KEY_VIBRATION_STATE);
 			if (lRawData != null)
 				vibrationState = (bool)lRawData;
 
+			GD.Print(Input.GetConnectedJoypads().Count);
+			GD.Print(Input.GetJoyName(USED_CONTROLLER));
+
 			if (Input.GetConnectedJoypads().Count > 0)
 				connected = true;
+
 		}
 
 		public static void LockVibration()
@@ -36,11 +35,17 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			connected = false;
         }
 
-		public static void SetVibration(float pStrongMotorForce, float pWeakMotorForce, float pDuration = 0)
+		public static void SaveVibrationState(bool pState)
+		{
+			SaveManager.SaveData(SECTION_NAME, KEY_VIBRATION_STATE, pState);
+		}
+
+		public static void SetVibration(float pWeakMotorForce, float pStrongMotorForce, float pDuration = 0)
         {
             if (connected)
             {
-				Input.StartJoyVibration(0, pWeakMotorForce, pStrongMotorForce, pDuration);
+				GD.Print("ok");
+				Input.StartJoyVibration(USED_CONTROLLER, pWeakMotorForce, pStrongMotorForce, pDuration);
             }
         } 
  
