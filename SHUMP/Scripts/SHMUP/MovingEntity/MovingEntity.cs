@@ -20,6 +20,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 			screenSize = GetViewport().Size;
 
 			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
+			Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 
 			doAction = SetActionVoid;
 		}
@@ -52,6 +53,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 		protected virtual void Destructor()
         {
+			Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
 			Disconnect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
 			QueueFree();
         }

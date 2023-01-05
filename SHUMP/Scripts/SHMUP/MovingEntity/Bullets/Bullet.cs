@@ -14,9 +14,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
         public override void _Ready()
         {
             base._Ready();
-
-            Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
-
             SetActionMove();
         }
 
@@ -36,7 +33,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
         protected override void Destructor()
         {
-            Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
             bullets.Remove(this);
             base.Destructor();
         }

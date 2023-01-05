@@ -43,8 +43,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         protected override void Destructor()
         {
-            if(IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
-                Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+            if(timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
+                timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
             base.Destructor();
         }
 
