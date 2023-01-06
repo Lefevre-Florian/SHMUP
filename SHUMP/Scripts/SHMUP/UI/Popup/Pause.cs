@@ -4,7 +4,7 @@ using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.UI {
 
-	public class Pause : Popup
+	public class Pause : GamePopup
 	{
 
 		[Export] private NodePath resumePath = default;

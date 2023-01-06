@@ -9,8 +9,6 @@
 
 [node name="Popup" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-mainMenuPath = NodePath("Panel/MainMenu")
-reloadPath = NodePath("Panel/Reload")
 exitPaths = [ NodePath("BackgroundButton") ]
 resumePath = NodePath("Panel/Resume")
 

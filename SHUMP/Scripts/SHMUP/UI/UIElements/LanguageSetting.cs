@@ -9,11 +9,14 @@ namespace Com.IsartDigital.SHMUP.UI {
 	public class LanguageSetting : CheckButton
 	{
 
+		private LocalisationManager localisationManager = null;
+
 		public override void _Ready()
 		{
+			localisationManager = LocalisationManager.GetInstance();
 			Connect(EventButton.PRESSED, this, nameof(ChangeLanguage));
 
-			if (LocalizationManager.GetCurrentLanguage() == Languages.FR)
+			if (localisationManager.GetCurrentLanguage() == Languages.FR)
 				Pressed = true;
 			else
 				Pressed = false;
@@ -22,9 +25,9 @@ namespace Com.IsartDigital.SHMUP.UI {
 		private void ChangeLanguage()
 		{
 			if (Pressed)
-				LocalizationManager.SaveLanguageChange(Languages.FR);
+				localisationManager.SaveLanguageChange(Languages.FR);
 			else
-				LocalizationManager.SaveLanguageChange(Languages.EN);
+				localisationManager.SaveLanguageChange(Languages.EN);
 		}
 
 	}

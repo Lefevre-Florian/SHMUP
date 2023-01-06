@@ -1,3 +1,5 @@
+using Com.IsartDigital.SHMUP.Structure;
+using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
 
@@ -5,8 +7,17 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 	public class Screen : Control
 	{
+        protected LocalisationManager localizationManager = null;
 
-		public virtual void OpenScreen()
+        public override void _Ready()
+        {
+            localizationManager = LocalisationManager.GetInstance();
+
+            Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
+            localizationManager.Connect(nameof(LocalisationManager.LanguageChanged), this, nameof(UpdateAllText));
+        }
+
+        public virtual void OpenScreen()
         {
 			Visible = true;
         }
@@ -20,6 +31,14 @@ namespace Com.IsartDigital.SHMUP.UI {
         {
             pOpeningPanel.OpenScreen();
             pClosingPanel.CloseScreen();
+        }
+
+        protected virtual void UpdateAllText() { }
+
+        protected virtual void Destructor()
+        {
+            localizationManager.Disconnect(nameof(LocalisationManager.LanguageChanged), this, nameof(UpdateAllText));
+            Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
         }
 
     }

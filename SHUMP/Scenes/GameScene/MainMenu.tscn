@@ -1,19 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/UIPrefab/TitleCard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/UIPrefab/CreditMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/UIPrefab/Setting.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/UIPrefab/Popup/Settings.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Node"]
 
-[node name="UIFlowManager" type="Node" parent="."]
+[node name="LocalisationManager" type="Node" parent="."]
+script = ExtResource( 3 )
 
 [node name="TitleCard" parent="." instance=ExtResource( 1 )]
 creditPanelPath = NodePath("../Credit")
-settingPanelPath = NodePath("../Setting")
+settingPopup = NodePath("../Settings")
+settingTitlePath = NodePath("../Settings/Main/SettingTitle")
 
 [node name="Credit" parent="." instance=ExtResource( 2 )]
 visible = false
 
-[node name="Setting" parent="." instance=ExtResource( 3 )]
+[node name="Settings" parent="." instance=ExtResource( 4 )]
 visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[editable path="Settings"]
