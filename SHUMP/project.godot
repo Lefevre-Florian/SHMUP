@@ -121,7 +121,7 @@ God_mode={
 
 [locale]
 
-translations=PoolStringArray( "res://Ressources/Translation.fr.translation", "res://Ressources/Translation.en.translation" )
+translations=PoolStringArray(  )
 
 [physics]
 

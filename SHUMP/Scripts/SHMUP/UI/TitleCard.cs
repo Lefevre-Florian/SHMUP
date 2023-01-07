@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using Com.IsartDigital.Utils.Events;
-using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.UI {
 
@@ -21,47 +20,56 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		private const string PATH_GAME_SCENE = "res://Scenes/GameScene/Game.tscn";
 
-		Button btnStart = null;
-		Button btnCredit = null;
-		Button btnExit = null;
-		Button btnSetting = null;
+		private Button btnStart = null;
+		private Button btnCredit = null;
+		private Button btnExit = null;
+		private Button btnSetting = null;
 
-		Label title = null;
-		Label settingTitle = null;
+		private Label title = null;
+		private Label settingTitle = null;
 
-		Popup settings = null;
+		private Popup settings = null;
 
 		public override void _Ready()
 		{
-			base._Ready();
-
 			GetTree().Paused = false;
 
 			title = GetNode<Label>(titlePath);
+			localTranslationKeys.Add(titlePath, title.Text);
+
 			settingTitle = GetNode<Label>(settingTitlePath);
+			localTranslationKeys.Add(settingTitlePath, settingTitle.Text);
 
 			btnStart = GetNode<Button>(startPath);
+			localTranslationKeys.Add(startPath, btnStart.Text);
 			btnStart.GrabFocus();
 			btnStart.Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			
 			btnExit = GetNode<Button>(exitPath);
+			localTranslationKeys.Add(exitPath, btnExit.Text);
 			btnExit.Connect(EventButton.PRESSED, this, nameof(ExitGame));
 
 			btnCredit = GetNode<Button>(creditPath);
+			localTranslationKeys.Add(creditPath, btnCredit.Text);
 			btnCredit.Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Control>(creditPanelPath), this));
 
+			settings = GetNode<Popup>(settingPopup);
+
 			btnSetting = GetNode<Button>(settingPath);
-			btnSetting.Connect(EventButton.PRESSED, this, nameof(settings.OpenScreen));
+			localTranslationKeys.Add(settingPath, btnSetting.Text);
+			btnSetting.Connect(EventButton.PRESSED, settings, nameof(settings.OpenScreen));
+
+			base._Ready();
 		}
 
         protected override void UpdateAllText()
         {
-			title.Text = localizationManager.GetTranslation(title.Text);
+			title.Text = localizationManager.GetTranslation(localTranslationKeys[titlePath]);
 
-			btnStart.Text = localizationManager.GetTranslation(btnStart.Text);
-			btnExit.Text = localizationManager.GetTranslation(btnExit.Text);
-			btnCredit.Text = localizationManager.GetTranslation(btnCredit.Text);
-			btnSetting.Text = localizationManager.GetTranslation(btnSetting.Text);
+			btnStart.Text = localizationManager.GetTranslation(localTranslationKeys[startPath]);
+			btnExit.Text = localizationManager.GetTranslation(localTranslationKeys[exitPath]);
+			btnCredit.Text = localizationManager.GetTranslation(localTranslationKeys[creditPath]);
+			btnSetting.Text = localizationManager.GetTranslation(localTranslationKeys[settingPath]);
         }
 
         private void ChangeScene()

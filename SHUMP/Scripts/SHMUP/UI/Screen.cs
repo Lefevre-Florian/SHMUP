@@ -2,12 +2,15 @@ using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.UI {
 
 	public class Screen : Control
 	{
         protected LocalisationManager localizationManager = null;
+
+        protected Dictionary<NodePath, string> localTranslationKeys = new Dictionary<NodePath, string>();
 
         public override void _Ready()
         {
