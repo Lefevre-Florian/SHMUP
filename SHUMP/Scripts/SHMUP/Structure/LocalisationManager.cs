@@ -16,7 +16,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 		private const string KEY_LANGUAGE_NAME = "Language";
 
 		[Signal]
-		public delegate void LanguageChanged(Languages pLanguage);
+		public delegate void LanguageChanged();
 
 		private LocalisationManager() : base() { }
 
@@ -46,7 +46,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         {
 			lang = pLanguage;
 
-			EmitSignal(nameof(LanguageChanged), lang);
+			EmitSignal(nameof(LanguageChanged));
 
 			SaveManager.SaveData(SECTION_NAME, KEY_LANGUAGE_NAME, pLanguage);
         }
@@ -58,7 +58,11 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		public string GetTranslation(string pkey)
         {
-			return Localisation.translations[lang][pkey];
+			string lLocal;
+			if (Localisation.translations[lang].TryGetValue(pkey, out lLocal))
+				return lLocal;
+			else
+				return null;
         }
 
         protected override void Dispose(bool pDisposing)

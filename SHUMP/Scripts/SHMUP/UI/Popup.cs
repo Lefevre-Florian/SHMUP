@@ -16,25 +16,14 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		public override void _Ready()
 		{
-            base._Ready();
-
             Button lButton;
             foreach (NodePath lPath in exitPaths)
             {
                 lButton = GetNode<Button>(lPath);
                 exitButtons.Add(lButton);
 				lButton.Connect(EventButton.PRESSED, this, nameof(CloseScreen));
-                
             }
 		}
-
-        protected override void UpdateAllText()
-        {
-            foreach (Button lButton in exitButtons)
-            {
-                lButton.Text = localizationManager.GetTranslation(lButton.Text);
-            }
-        }
 
         private void ChangeScene()
         {

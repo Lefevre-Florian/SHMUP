@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/SHMUP/UI/Credit.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -39,6 +40,7 @@ margin_right = 128.0
 margin_bottom = -32.0
 theme = ExtResource( 2 )
 text = "Retour"
+script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.5

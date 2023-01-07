@@ -8,14 +8,23 @@ namespace Com.IsartDigital.SHMUP.UI {
 	{
 
 		[Export] private NodePath closeButtonPath = default;
+        [Export] private NodePath titleCardPath = default;
 
-        private const string PATH_TITLE_CARD = "../TitleCard";
+        Button btnClose = null;
 
         public override void _Ready()
         {
-            Button lButton = GetNode<Button>(closeButtonPath);
+            base._Ready();
 
-            lButton.Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Screen>(PATH_TITLE_CARD), this));
+            btnClose = GetNode<Button>(closeButtonPath);
+
+            btnClose.Connect(EventButton.PRESSED, this, nameof(SwitchPanel), new Godot.Collections.Array(GetNode<Screen>(titleCardPath), this));
+        }
+
+        protected override void Destructor()
+        {
+            btnClose.Disconnect(EventButton.PRESSED, this, nameof(SwitchPanel));
+            base.Destructor();
         }
 
     }

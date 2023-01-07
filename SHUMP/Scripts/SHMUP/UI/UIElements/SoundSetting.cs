@@ -4,7 +4,7 @@ using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
-	public class SoundSetting : Button
+	public class SoundSetting : TranslableButton
 	{
 
 		[Export] private NodePath sliderPath = default;
