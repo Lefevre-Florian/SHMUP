@@ -21,6 +21,13 @@ namespace Com.IsartDigital.SHMUP.GameEntities.SmartBombUtilities {
 
 		private float drawingDuration;
 
+		/// <summary>
+		/// Draw the lightning on top of enemy head depending of the enemy position, 
+		/// the starting point and duration of the drawing process
+		/// </summary>
+		/// <param name="pFromPoint"></param>
+		/// <param name="pToPoint"></param>
+		/// <param name="pDuration"></param>
 		public void DrawLightning(Vector2 pFromPoint, Vector2 pToPoint, float pDuration)
 		{
 			Vector2 lReference = pToPoint;

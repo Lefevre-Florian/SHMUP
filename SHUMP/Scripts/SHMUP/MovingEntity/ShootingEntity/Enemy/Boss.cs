@@ -1,9 +1,9 @@
-using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
-using Com.IsartDigital.SHMUP.Structure;
-using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
 using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.SHMUP.Structure;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	
@@ -206,7 +206,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             base.Dispose(pDisposing);
         }
 
-        protected override void Destroy()
+        public override void Destroy()
         {
             UIManager.GetInstance().TriggerGameOver();
             if (thrower != null)

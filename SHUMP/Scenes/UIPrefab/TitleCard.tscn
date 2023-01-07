@@ -25,7 +25,6 @@ startPath = NodePath("TitleCard/StartButton")
 exitPath = NodePath("TitleCard/ExitButton")
 creditPath = NodePath("TitleCard/CreditButton")
 settingPath = NodePath("TitleCard/SettingsButton")
-titlePath = NodePath("TitleCard/Title")
 
 [node name="TitleCard" type="Panel" parent="."]
 anchor_right = 1.0

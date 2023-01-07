@@ -5,6 +5,16 @@
 [node name="Smartbomb" type="Node"]
 script = ExtResource( 1 )
 damage = 10
+delay = 0.25
+lightningDuration = 1.0
+lightningSize = 250.0
+squashStrechForce = 0.25
+animationDuration = 0.75
+animationTransition = 9
+animationEaseType = 1
+nBlipAnimationEnd = 5
+blipDuration = 0.1
+blipColor = Color( 0.992157, 1, 0, 1 )
 weakMotoroVibration = 0.05
 strongMotorVibration = 0.25
 vibrationDuration = 0.5

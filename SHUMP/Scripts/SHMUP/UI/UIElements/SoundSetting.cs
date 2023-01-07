@@ -23,6 +23,8 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 		public override void _Ready()
 		{
+			base._Ready();
+
 			Connect(EventButton.PRESSED, this, nameof(Save));
 
 			slider = GetNode<Slider>(sliderPath);

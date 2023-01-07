@@ -28,6 +28,8 @@ specialFeatureDelay = 1.5
 
 [node name="BulletContainer" type="Node" parent="."]
 
+[node name="ParticlesContainer" type="Node2D" parent="."]
+
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="PopcornEnemy" parent="EnemyContainer" instance=ExtResource( 4 )]

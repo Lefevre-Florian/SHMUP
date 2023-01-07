@@ -37,7 +37,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		private const string PATH_LIGHTNING_SCENE = "res://Scenes/Prefab/Juiciness/Particles/Lightning.tscn";
 
-		private const string PATH_PARTICLES_CONTAINER = "../../particlesContainer";
+		private const string PATH_PARTICLES_CONTAINER = "../../ParticlesContainer";
 
 		private Node2D particlesContainer = null;
 
@@ -59,56 +59,70 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			lLength = Enemy.enemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
-            {
-				GD.Print(Enemy.enemies[i]);
-				SetAnimation(pLightningScene, Enemy.enemies[i], GetTree().CreateTween());
-			}
+				SetAnimation(pLightningScene, Enemy.enemies[i]);
 
 			lLength = PopcornEnemy.popcornEnemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
-            {
-				GD.Print(PopcornEnemy.popcornEnemies[i]);
-				SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i], GetTree().CreateTween());
-			}
+				SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
 
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));
 			QueueFree();
         }
 
-		private void SetAnimation(PackedScene pLightningScene, MovingEntity pEntity, SceneTreeTween pTween)
+		/// <summary>
+		/// Start tweens animations and add lightning strike effect
+		/// </summary>
+		/// <param name="pLightningScene"></param>
+		/// <param name="pEntity"></param>
+		private void SetAnimation(PackedScene pLightningScene, MovingEntity pEntity)
         {
+			SceneTreeTween lTween = GetTree().CreateTween();
+
 			Vector2 lInitialScale = pEntity.Scale;
 			Color lInitialColor = pEntity.Modulate;
 
 			Lightning lLightning = pLightningScene.Instance<Lightning>();
 			particlesContainer.AddChild(lLightning);
 			lLightning.DrawLightning(new Vector2(pEntity.GlobalPosition.x, pEntity.GlobalPosition.y - lightningSize),
-									 pEntity.GlobalPosition,
-									 lightningDuration);
+									 pEntity.Position,
+									 animationDuration / 4);
 
-			pTween.Chain();
-			pTween.TweenProperty(pEntity, PROPERTY_SCALE, new Vector2(lInitialScale.x + squashStrechForce, lInitialScale.y - squashStrechForce), animationDuration/2)
+			lTween.Chain();
+			lTween.TweenProperty(pEntity, PROPERTY_SCALE, new Vector2(lInitialScale.x + squashStrechForce, lInitialScale.y - squashStrechForce), animationDuration/2)
 				  .SetTrans(animationTransition)
 				  .SetEase(animationEaseType)
 				  .SetDelay(lightningDuration);
-			pTween.TweenProperty(pEntity, PROPERTY_SCALE, lInitialScale, animationDuration/2)
+			lTween.TweenProperty(pEntity, PROPERTY_SCALE, lInitialScale, animationDuration/2)
 				  .SetTrans(animationTransition)
 				  .SetEase(animationEaseType);
 
-			pTween.SetLoops(nBlipAnimationEnd);
-			pTween.TweenProperty(pEntity, PROPERTY_MODULATE, blipColor, blipDuration / nBlipAnimationEnd);
-			pTween.TweenProperty(pEntity, PROPERTY_MODULATE, lInitialColor, blipDuration / nBlipAnimationEnd);
+            for (int i = 0; i < nBlipAnimationEnd; i++)
+            {
+				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, blipColor, blipDuration / nBlipAnimationEnd * i);
+				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, lInitialColor, blipDuration / nBlipAnimationEnd * i);
+			}
 
-			pTween.TweenCallback(this, nameof(DestroyEntity), new Godot.Collections.Array(pEntity));
-			pTween.Play();
+			lTween.TweenCallback(this, nameof(DestroyEntity), new Godot.Collections.Array(pEntity));
+			lTween.Play();
         }
 
+		/// <summary>
+		/// Destroy the entity individualy depending of is type
+		/// </summary>
+		/// <param name="pEntity"></param>
 		private void DestroyEntity(MovingEntity pEntity)
         {
-			if (pEntity is Boss)
-				((Boss)pEntity).TakeDamage(damage);
-			else
+			if (pEntity is Enemy)
+            {
+				if (pEntity is Boss)
+					((Boss)pEntity).TakeDamage(damage);
+				else
+					((Enemy)pEntity).Destroy();
+			}
+            else
+            {
 				pEntity.QueueFree();
+			}
         }
 
 		private void ScreenShake()

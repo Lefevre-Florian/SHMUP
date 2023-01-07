@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/SHMUP/UI/Popup/GamePopup.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -45,6 +46,7 @@ margin_right = 128.0
 margin_bottom = 124.0
 theme = ExtResource( 2 )
 text = "KEY_RESTART"
+script = ExtResource( 4 )
 
 [node name="MainMenu" type="Button" parent="Panel"]
 anchor_left = 0.5
@@ -57,3 +59,4 @@ margin_right = 128.0
 margin_bottom = 212.0
 theme = ExtResource( 2 )
 text = "KEY_BACK_MAINMENU"
+script = ExtResource( 4 )

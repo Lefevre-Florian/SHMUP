@@ -1,8 +1,6 @@
-using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
-using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.UI {
 

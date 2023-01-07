@@ -17,6 +17,9 @@ namespace Com.IsartDigital.SHMUP.Structure.Architecture {
 
 		public static void Init()
 		{
+			if (translations.Count > 0)
+				return;
+
 			File lFile = new File();
             if (lFile.FileExists(FILE_PATH))
             {

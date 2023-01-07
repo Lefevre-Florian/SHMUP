@@ -66,7 +66,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             lBoomerang.Position = canon.GlobalPosition;
         }
 
-        protected override void Destroy()
+        public override void Destroy()
         {
             EmitSignal(nameof(Destroyed));
             base.Destroy();

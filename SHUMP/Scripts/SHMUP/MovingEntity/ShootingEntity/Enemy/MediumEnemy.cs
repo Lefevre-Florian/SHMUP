@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
-using Com.IsartDigital.SHMUP.GameEntities;
-using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
@@ -55,7 +53,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			isImmune = false;
         }
 
-        protected override void Destroy()
+        public override void Destroy()
         {
 			if (drone != null)
 				DestroyedDrone();

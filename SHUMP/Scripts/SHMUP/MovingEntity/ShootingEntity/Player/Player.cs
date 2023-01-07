@@ -202,7 +202,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 return;
 
             nSmartBomb--;
-            GD.Print(nSmartBomb);
 
             SmartBomb lSmartBomb = GD.Load<PackedScene>(SMARTBOMB_PATH).Instance<SmartBomb>();
             AddChild(lSmartBomb);

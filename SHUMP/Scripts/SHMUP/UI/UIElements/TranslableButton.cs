@@ -26,7 +26,6 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 		private void Translate()
 		{
-			GD.Print(localisationManager.GetTranslation(translationKey));
 			Text = localisationManager.GetTranslation(translationKey);
 		}
 

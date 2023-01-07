@@ -24,10 +24,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities {
                 Destroy();
         }
 
-        protected virtual void Destroy()
-        {
-            Destructor();
-        }
+        public virtual void Destroy(){ }
 
     }
 
