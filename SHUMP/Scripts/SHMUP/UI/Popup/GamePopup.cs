@@ -10,7 +10,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private NodePath mainMenuPath = default;
 		[Export] private NodePath reloadPath = default;
 
-		private const string PATH_MAIN_MENU_SCENE = "res://Scenes/GameScene/MainMenu.tscn";
 		private const string PATH_RELOAD_SCENE = "res://Scenes/GameScene/Game.tscn";
 
 		public override void _Ready()
@@ -19,11 +18,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 			GetNode<Button>(mainMenuPath).Connect(EventButton.PRESSED, this, nameof(ChangeScene));
 			GetNode<Button>(reloadPath).Connect(EventButton.PRESSED, this, nameof(Reload));
-		}
-
-		private void ChangeScene()
-		{
-			GetTree().ChangeScene(PATH_MAIN_MENU_SCENE);
 		}
 
 		private void Reload()

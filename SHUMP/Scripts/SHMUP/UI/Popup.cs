@@ -25,7 +25,7 @@ namespace Com.IsartDigital.SHMUP.UI {
             }
 		}
 
-        private void ChangeScene()
+        protected void ChangeScene()
         {
 			GetTree().ChangeScene(PATH_MAIN_MENU_SCENE);
         }

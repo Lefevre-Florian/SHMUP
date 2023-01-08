@@ -53,13 +53,27 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				return;
 			}
 
-			CollisionPolygon2D lCollision;
-            foreach (Vector2[] lPolygon in Geometry.OffsetPolyline2d(line.Points, line.Width/2))
-            {
-				lCollision = new CollisionPolygon2D();
-				lCollision.Polygon = lPolygon;
-				AddChild(lCollision);
-            }
+			int lLength = line.Points.Length;
+
+			float lDistance;
+
+			CollisionShape2D lCollider;
+			RectangleShape2D lRectangleShape;
+			for (int i = 1; i <= lLength - 1; i++)
+			{
+				lCollider = new CollisionShape2D();
+				lRectangleShape = new RectangleShape2D();
+
+				lDistance = line.Points[i - 1].DistanceTo(line.Points[i]);
+
+				lCollider.Position = new Vector2((line.Points[i - 1].x + line.Points[i].x) / 2, (line.Points[i - 1].y + line.Points[i].y) / 2);
+				lCollider.Rotation = line.Points[i - 1].AngleToPoint(line.Points[i]);
+
+				lRectangleShape.Extents = new Vector2(lDistance / 2, line.Width / 2);
+				lCollider.Shape = lRectangleShape;
+
+				AddChild(lCollider);
+			}
 			if(!IsConnected(EventArea2D.AREA_ENTERED, this, nameof(Destroy)))
 				Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEntered));
 			GetTree().CreateTimer(REMANING_TIME).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));

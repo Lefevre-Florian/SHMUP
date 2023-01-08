@@ -29,7 +29,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             nEntity = pNEntity;
 
             velocity = Vector2.Right * (speed + forcedSpeed);
-            GD.Print(velocity);
 
             spacingTimer = new Timer();
             AddChild(spacingTimer);
@@ -44,7 +43,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             if (GlobalPosition.x < XMARGIN)
             {
                 velocity = Vector2.Right * (speed + forcedSpeed);
-                GD.Print(velocity);
             }
             if (GlobalPosition.x > screenSize.x - XMARGIN)
                 velocity = Vector2.Left * Mathf.Abs(speed - forcedSpeed);

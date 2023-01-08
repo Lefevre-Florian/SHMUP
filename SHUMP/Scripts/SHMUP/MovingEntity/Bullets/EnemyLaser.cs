@@ -58,12 +58,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 			delta = pDelta;
         }
 
-        public void DefineLaserBeam(float pDrawingDuration, float pAttackDuration)
-		{
-			drawingDuration = pDrawingDuration;
-			attackDuration = pAttackDuration;
-		}
-
 		private void DrawLaser()
 		{
 			if (++interval > nPoint)

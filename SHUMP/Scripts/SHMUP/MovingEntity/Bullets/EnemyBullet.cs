@@ -7,7 +7,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 	public class EnemyBullet : Bullet
 	{
 
-
 		public override void _Ready()
 		{
 			base._Ready();

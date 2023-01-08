@@ -2,4 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="Scripts\SHMUP\UI\UIElements\ClassDiagram1.cd" />
+  </ItemGroup>
 </Project>

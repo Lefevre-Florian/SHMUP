@@ -19,7 +19,7 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 		private const int DEFAULT = -1;
 
-		Slider slider = null;
+		private Slider slider = null;
 
 		public override void _Ready()
 		{

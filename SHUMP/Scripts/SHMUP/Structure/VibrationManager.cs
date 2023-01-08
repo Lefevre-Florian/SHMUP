@@ -22,8 +22,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			if (lRawData != null)
 				vibrationState = (bool)lRawData;
 
-			GD.Print(Input.GetConnectedJoypads().Count);
-			GD.Print(Input.GetJoyName(USED_CONTROLLER));
 
 			if (Input.GetConnectedJoypads().Count > 0)
 				connected = true;
@@ -44,7 +42,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
         {
             if (connected)
             {
-				GD.Print("ok");
 				Input.StartJoyVibration(USED_CONTROLLER, pWeakMotorForce, pStrongMotorForce, pDuration);
             }
         } 

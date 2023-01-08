@@ -66,7 +66,6 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
 
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));
-			QueueFree();
         }
 
 		/// <summary>
@@ -105,6 +104,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			lTween.TweenCallback(this, nameof(DestroyEntity), new Godot.Collections.Array(pEntity));
 			lTween.Play();
         }
+
 
 		/// <summary>
 		/// Destroy the entity individualy depending of is type

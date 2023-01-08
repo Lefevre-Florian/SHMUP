@@ -48,8 +48,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             GetParent().AddChild(strikeZone);
             strikeZone.Init(duration, damage, forcedSpeed, slowMotionRatio);
 
-            GD.Print("Starting !");
-
             Engine.TimeScale *= slowMotionRatio;
 
             timer = new Timer();
@@ -81,7 +79,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
             if (Input.IsActionJustPressed(SPECIAL))
             {
-                GD.Print("Pressed");
                 strikeZone.EndDrawing();
                 Stop();
             }
