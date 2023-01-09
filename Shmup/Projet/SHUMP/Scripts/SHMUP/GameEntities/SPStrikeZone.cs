@@ -53,6 +53,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				return;
 			}
 
+			GD.Print("Draw Collision !");
+
 			int lLength = line.Points.Length;
 
 			float lDistance;

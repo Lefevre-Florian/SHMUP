@@ -15,7 +15,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private NodePath settingPath = default;
 		[Export] private NodePath settingPopup = default;
 
-		private const string PATH_GAME_SCENE = "res://Scenes/GameScene/Game.tscn";
+		[Export] private PackedScene loadScene = default;
 
 		private Button btnStart = null;
 		private Button btnCredit = null;
@@ -47,7 +47,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         private void ChangeScene()
         {
-			GetTree().ChangeScene(PATH_GAME_SCENE);
+			GetTree().ChangeSceneTo(loadScene);
         }
 
 		private void ExitGame()

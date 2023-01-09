@@ -55,7 +55,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         {
 			Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
 			Disconnect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
-			QueueFree();
         }
 
     }

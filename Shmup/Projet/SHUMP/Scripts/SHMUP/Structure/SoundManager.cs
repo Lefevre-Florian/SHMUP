@@ -10,9 +10,12 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private static SoundManager instance;
 
         [Export] private int nSoundEmitter = 60;
+        [Export] private NodePath musicEmitterPath = default;
 
         private List<AudioStreamPlayer2D> audioPlayerPool = new List<AudioStreamPlayer2D>();
         private List<AudioStreamPlayer2D> activeAudioPlayer = new List<AudioStreamPlayer2D>();
+
+        AudioStreamPlayer2D musicEmitter = null;
 
         private SoundManager():base() {}
 
@@ -25,6 +28,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
             instance = this;
 
             Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
+
+            musicEmitter = GetNode<AudioStreamPlayer2D>(musicEmitterPath);
 
             for (int i = 0; i < nSoundEmitter; i++)
                 audioPlayerPool.Add(new AudioStreamPlayer2D());
@@ -76,15 +81,26 @@ namespace Com.IsartDigital.SHMUP.Structure {
             {
                 activeAudioPlayer[i].StreamPaused = pState;
             }
+            musicEmitter.StreamPaused = pState;
         }
 
-        public void ChangeAudioPlayersVolume(float pDBVolume)
+        public void ChangeAudioPlayersVFXVolume(float pDBVolume)
         {
             int lLength = activeAudioPlayer.Count - 1;
             for (int i = lLength; i >= 0; i--)
             {
                 activeAudioPlayer[i].VolumeDb = pDBVolume;
             }
+        }
+
+        public void ChangeAudioPlayerMusicVolume(float pDBVolume)
+        {
+            musicEmitter.VolumeDb = pDBVolume;
+        }
+
+        public void ChangeMainMusic(AudioStreamOGGVorbis pMusic)
+        {
+            musicEmitter.Stream = pMusic;
         }
 
         private void Destructor()

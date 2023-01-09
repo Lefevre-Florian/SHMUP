@@ -126,9 +126,9 @@ sliderPath = NodePath("../MusicVolume")
 storingKey = "Music"
 
 [node name="Localisation" type="CheckButton" parent="Main"]
-margin_left = 352.0
+margin_left = 384.0
 margin_top = 288.0
-margin_right = 464.0
+margin_right = 496.0
 margin_bottom = 328.0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )

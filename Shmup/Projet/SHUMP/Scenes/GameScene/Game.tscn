@@ -26,6 +26,8 @@ ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource( 6 )
+nSoundEmitter = 150
+musicEmitterPath = NodePath("../Music")
 
 [node name="LocallisationManager" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -79,3 +81,7 @@ margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
 color = Color( 0.243137, 0.243137, 0.243137, 0.541176 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 512, 320 )
+autoplay = true

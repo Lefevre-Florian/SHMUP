@@ -10,6 +10,7 @@ scale = Vector2( 0.547009, 0.722222 )
 script = ExtResource( 1 )
 speed = 800.0
 duration = 1.75
+spacingTime = 0.1
 
 [node name="Renderer" type="Polygon2D" parent="."]
 scale = Vector2( 0.445652, 0.59375 )

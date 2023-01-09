@@ -1,0 +1,326 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/SHMUP/UI/TimerScreen.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/GameScene/Game.tscn" type="PackedScene" id=4]
+
+[node name="Input" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+duration = 2.0
+btnPath = NodePath("Background/Skip")
+loadScene = ExtResource( 4 )
+
+[node name="Background" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="Background"]
+anchor_right = 1.0
+margin_bottom = 64.0
+theme = ExtResource( 1 )
+text = "KEY_INPUT"
+align = 1
+valign = 1
+script = ExtResource( 2 )
+
+[node name="KeyBindingLabel" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 64.0
+margin_top = -164.0
+margin_right = 320.0
+margin_bottom = -114.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel"]
+margin_left = 102.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_MOVEUP"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "Z"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel2" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 64.0
+margin_top = -100.0
+margin_right = 320.0
+margin_bottom = -50.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel2"]
+margin_left = 75.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_MOVEDOWN"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel2"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel2/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "S"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel3" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 64.0
+margin_top = -36.0
+margin_right = 320.0
+margin_bottom = 14.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel3"]
+margin_left = 76.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_MOVERIGHT"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel3"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel3/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "D"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel4" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 64.0
+margin_top = 28.0
+margin_right = 320.0
+margin_bottom = 78.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel4"]
+margin_left = 87.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_MOVELEFT"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel4"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel4/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "Q"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel5" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -76.0
+margin_right = -168.0
+margin_bottom = -26.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel5"]
+margin_left = 115.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_SHOOT"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel5"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel5/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "K"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel6" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -12.0
+margin_right = -168.0
+margin_bottom = 38.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel6"]
+margin_left = 34.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_SPECIALFEATURE"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel6"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel6/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "M"
+align = 1
+valign = 1
+
+[node name="KeyBindingLabel7" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -140.0
+margin_right = -168.0
+margin_bottom = -90.0
+alignment = 2
+
+[node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel7"]
+margin_left = 67.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 35.0
+theme = ExtResource( 1 )
+text = "KEY_SMARTBOMB"
+script = ExtResource( 2 )
+
+[node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel7"]
+margin_left = 206.0
+margin_right = 256.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Key" type="Label" parent="Background/KeyBindingLabel7/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+text = "L"
+align = 1
+valign = 1
+
+[node name="Skip" type="Button" parent="Background"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_top = -88.0
+margin_right = 128.0
+margin_bottom = -24.0
+theme = ExtResource( 1 )
+text = "KEY_SKIP"

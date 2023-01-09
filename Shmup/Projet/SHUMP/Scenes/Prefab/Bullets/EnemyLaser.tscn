@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 drawingDuration = 1.75
 attackDuration = 1.0
-precision = 4
+precision = 6
 nodePath = NodePath("Renderer")
 
 [node name="Renderer" type="Line2D" parent="."]

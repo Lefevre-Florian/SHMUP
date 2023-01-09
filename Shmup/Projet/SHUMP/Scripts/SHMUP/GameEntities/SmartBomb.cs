@@ -97,8 +97,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
             for (int i = 0; i < nBlipAnimationEnd; i++)
             {
-				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, blipColor, blipDuration / nBlipAnimationEnd * i);
-				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, lInitialColor, blipDuration / nBlipAnimationEnd * i);
+				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, blipColor, blipDuration / (nBlipAnimationEnd+1) * i);
+				lTween.TweenProperty(pEntity, PROPERTY_MODULATE, lInitialColor, blipDuration / (nBlipAnimationEnd+1) * i);
 			}
 
 			lTween.TweenCallback(this, nameof(DestroyEntity), new Godot.Collections.Array(pEntity));
@@ -112,6 +112,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void DestroyEntity(MovingEntity pEntity)
         {
+			if (pEntity == null)
+				return;
+
 			if (pEntity is Enemy)
             {
 				if (pEntity is Boss)
@@ -119,10 +122,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				else
 					((Enemy)pEntity).Destroy();
 			}
-            else
-            {
-				pEntity.QueueFree();
-			}
+            else pEntity.QueueFree();
+
         }
 
 		private void ScreenShake()
