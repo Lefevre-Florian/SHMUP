@@ -9,7 +9,7 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-duration = 2.0
+duration = 10.0
 btnPath = NodePath("Background/Skip")
 loadScene = ExtResource( 4 )
 

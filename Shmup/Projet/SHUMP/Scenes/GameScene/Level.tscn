@@ -37,22 +37,22 @@ position = Vector2( 1376, 320 )
 drop = ExtResource( 6 )
 
 [node name="PopcornEnemy2" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1696, 232 )
+position = Vector2( 1832, 232 )
 
 [node name="PopcornEnemy3" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1768, 168 )
+position = Vector2( 1904, 168 )
 
 [node name="PopcornEnemy7" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1848, 104 )
+position = Vector2( 1984, 104 )
 
 [node name="PopcornEnemy4" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1696, 408 )
+position = Vector2( 1832, 408 )
 
 [node name="PopcornEnemy5" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1768, 472 )
+position = Vector2( 1904, 472 )
 
 [node name="PopcornEnemy6" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1840, 536 )
+position = Vector2( 1976, 536 )
 
 [node name="Enemy1" parent="EnemyContainer" instance=ExtResource( 3 )]
 position = Vector2( 3416, 320 )
@@ -128,7 +128,7 @@ healthpoint = 50
 secondPhaseStart = 30
 thirdPhaseStart = 15
 helperThrowingRespawn = 4.0
-waitingDelay = 2.5
+waitingDelay = 0.8
 
 [node name="CollecitbleContainer" type="Node2D" parent="."]
 

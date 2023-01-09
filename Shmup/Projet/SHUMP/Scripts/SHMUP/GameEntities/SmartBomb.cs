@@ -66,6 +66,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
 
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));
+			GetTree().CreateTimer(lightningDuration + (blipDuration * nBlipAnimationEnd)).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
         }
 
 		/// <summary>
@@ -75,6 +76,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void SetAnimation(PackedScene pLightningScene, MovingEntity pEntity)
         {
+			if (pEntity == null)
+				return;
+
 			SceneTreeTween lTween = GetTree().CreateTween();
 
 			Vector2 lInitialScale = pEntity.Scale;
@@ -84,7 +88,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			particlesContainer.AddChild(lLightning);
 			lLightning.DrawLightning(new Vector2(pEntity.GlobalPosition.x, pEntity.GlobalPosition.y - lightningSize),
 									 pEntity.Position,
-									 animationDuration / 4);
+									 lightningDuration);
 
 			lTween.Chain();
 			lTween.TweenProperty(pEntity, PROPERTY_SCALE, new Vector2(lInitialScale.x + squashStrechForce, lInitialScale.y - squashStrechForce), animationDuration/2)
@@ -112,9 +116,6 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void DestroyEntity(MovingEntity pEntity)
         {
-			if (pEntity == null)
-				return;
-
 			if (pEntity is Enemy)
             {
 				if (pEntity is Boss)
@@ -123,8 +124,12 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 					((Enemy)pEntity).Destroy();
 			}
             else pEntity.QueueFree();
-
         }
+
+		private void Destroy()
+        {
+			GD.Print("Destroyed !");
+		}
 
 		private void ScreenShake()
         {

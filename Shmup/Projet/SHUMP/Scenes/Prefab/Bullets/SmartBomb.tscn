@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 damage = 10
 delay = 0.25
-lightningDuration = 1.0
+lightningDuration = 0.5
 lightningSize = 250.0
 squashStrechForce = 0.25
 animationDuration = 0.75

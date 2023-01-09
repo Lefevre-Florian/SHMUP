@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=9]
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=10]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=11]
 
 [node name="Root" type="Node2D"]
 
@@ -21,7 +23,7 @@ popupContainerPath = NodePath("../PopupContainer")
 
 [node name="BackgroundManager" type="Node" parent="."]
 script = ExtResource( 1 )
-speed = 3000.0
+speed = 6000.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
@@ -58,7 +60,85 @@ position = Vector2( 720, 128 )
 [node name="Cloud5" parent="ParallaxBackground/LayerBackground" instance=ExtResource( 7 )]
 position = Vector2( 880, 104 )
 
+[node name="Street" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 0, 576 )
+color = Color( 0.835294, 0.835294, 0.835294, 1 )
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+
 [node name="LayerGameplay" parent="ParallaxBackground" instance=ExtResource( 2 )]
+
+[node name="Tutorial" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 1304, 304 )
+z_index = -1
+
+[node name="Renderer" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorial"]
+
+[node name="Body" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorial/Renderer"]
+polygon = PoolVector2Array( 0, 0, 384, 0, 384, 192, 0, 192 )
+
+[node name="Leg" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorial/Renderer"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 16, 192, 48, 192, 48, 272, 16, 272 )
+
+[node name="Leg2" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorial/Renderer"]
+position = Vector2( 304, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 16, 192, 48, 192, 48, 272, 16, 272 )
+
+[node name="Border" type="Line2D" parent="ParallaxBackground/LayerGameplay/Tutorial/Renderer"]
+points = PoolVector2Array( 384, 0, 0, 0, 0, 192, 16, 192, 16, 272, 48, 272, 48, 192, 320, 192, 320, 272, 352, 272, 352, 192, 384, 192, 384, 0 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="InnerBorder" type="Line2D" parent="ParallaxBackground/LayerGameplay/Tutorial/Renderer"]
+points = PoolVector2Array( 0, 8, 376, 8, 376, 184, 8, 184, 8, 0 )
+width = 15.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorial"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 320.0
+margin_bottom = 56.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KEY_TUTO"
+align = 1
+valign = 1
+script = ExtResource( 11 )
+
+[node name="Label2" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorial"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 32.0
+margin_top = 112.0
+margin_right = 304.0
+margin_bottom = 136.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KEY_USE"
+align = 1
+valign = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorial"]
+position = Vector2( 256, 96 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[node name="Label3" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorial"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 256.0
+margin_top = 96.0
+margin_right = 320.0
+margin_bottom = 160.0
+theme = ExtResource( 10 )
+text = "L"
+align = 1
+valign = 1
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
