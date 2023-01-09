@@ -14,17 +14,17 @@
 
 [node name="Root" type="Node2D"]
 
+[node name="BackgroundManager" type="Node" parent="."]
+script = ExtResource( 1 )
+speed = 3750.0
+ratio = [ 0.0, 0.015, 0.025, 0.03 ]
+
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 5 )
 
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 3 )
 popupContainerPath = NodePath("../PopupContainer")
-
-[node name="BackgroundManager" type="Node" parent="."]
-script = ExtResource( 1 )
-speed = 6000.0
-ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource( 6 )

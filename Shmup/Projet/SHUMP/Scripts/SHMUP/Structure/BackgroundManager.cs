@@ -7,7 +7,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 	public class BackgroundManager : Node
 	{
 
-        private static BackgroundManager instance;
+        private static BackgroundManager instance = null;
 
 		[Export] private float speed = 1000f;
         
@@ -67,8 +67,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         protected override void Dispose(bool pDisposing)
         {
-            if (pDisposing && instance != null) 
-                instance = this;
+            if (pDisposing && instance != null) instance = null;
             base.Dispose(pDisposing);
         }
 

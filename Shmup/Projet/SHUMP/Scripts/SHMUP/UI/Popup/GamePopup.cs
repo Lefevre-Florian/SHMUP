@@ -22,7 +22,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		private void Reload()
 		{
-			GetTree().ChangeScene(PATH_RELOAD_SCENE);
+			CloseScreen();
+			GetTree().ReloadCurrentScene();
 		}
 
 	}

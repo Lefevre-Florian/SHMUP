@@ -22,7 +22,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
 			Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 
-			doAction = SetActionVoid;
+			SetActionVoid();
 		}
 
         public override void _Process(float pDelta)
@@ -34,7 +34,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 		protected virtual void DoActionVoid() { }
 
-		protected virtual void SetActionVoid() 
+		public virtual void SetActionVoid() 
 		{
 			doAction = DoActionVoid;
 		}
