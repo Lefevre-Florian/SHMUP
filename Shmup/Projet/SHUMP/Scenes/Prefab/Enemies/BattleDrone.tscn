@@ -7,6 +7,11 @@ radius = 24.0
 
 [node name="BattleDrone" type="Area2D"]
 script = ExtResource( 1 )
+rendererPath = NodePath("Renderer/Body")
+shootingSignalDelay = 0.5
+nBlipWarningSignal = 5
+shootingEase = 2
+warningSignalColor = Color( 1, 0.513726, 0, 1 )
 
 [node name="Renderer" type="Node2D" parent="."]
 

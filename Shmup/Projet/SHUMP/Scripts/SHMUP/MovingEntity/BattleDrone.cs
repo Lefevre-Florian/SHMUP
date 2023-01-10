@@ -7,12 +7,24 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 	public class BattleDrone : Drone
 	{
+        [Export] private NodePath rendererPath = default;
+        [Export] private float shootingSignalDelay = 0f;
+        [Export] private int nBlipWarningSignal;
+        [Export] private Tween.TransitionType shootingTransitionType = default;
+        [Export] private Tween.EaseType shootingEase = default;
+        [Export] private Color warningSignalColor = default;
+
         private const string PATH_LASER_SCENE = "res://Scenes/Prefab/Bullets/EnemyLaser.tscn";
+        private const string PROPERTY_COLOR = "color";
 
         private float shootDelay;
 
         private Timer timer = null;
+        private SceneTreeTween tween = null;
         private PackedScene laserScene = null;
+
+        private Color initialColor;
+        private Polygon2D renderer;
 
         public override void _Ready()
         {
@@ -24,6 +36,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         {
             base.Init(pRadius, pSpeed, pRotating);
 
+            renderer = GetNode<Polygon2D>(rendererPath);
+            initialColor = renderer.Color;
+
             shootDelay = pShootDelay;
 
             timer = new Timer();
@@ -31,7 +46,23 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             AddChild(timer);
             timer.Start();
 
-            timer.Connect(EventTimer.TIMEOUT, this, nameof(Shoot));
+            timer.Connect(EventTimer.TIMEOUT, this, nameof(TriggerSignal));
+        }
+
+        private void TriggerSignal()
+        {
+            tween = GetTree().CreateTween();
+            tween.Chain();
+            for (int i = 0; i < nBlipWarningSignal; i++)
+            {
+                tween.TweenProperty(renderer, PROPERTY_COLOR, warningSignalColor, shootingSignalDelay / (nBlipWarningSignal))
+                 .SetTrans(shootingTransitionType)
+                 .SetEase(shootingEase);
+                tween.TweenProperty(renderer, PROPERTY_COLOR, initialColor, shootingSignalDelay / (nBlipWarningSignal))
+                     .SetTrans(shootingTransitionType)
+                     .SetEase(shootingEase);
+            }
+            tween.TweenCallback(this, nameof(Shoot));
         }
 
         private void Shoot()

@@ -11,7 +11,6 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private float animationSpeed = 1f;
 		[Export] private Tween.TransitionType transitionType = default;
 		[Export] private Tween.EaseType easeType = default;
-
 		private const string PROPERTY_GLOBALPOSITION = "rect_position";
 
 		private Hud hud = null;

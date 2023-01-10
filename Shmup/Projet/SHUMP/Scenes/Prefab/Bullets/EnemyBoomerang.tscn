@@ -13,7 +13,7 @@ throwDistance = 350.0
 
 [node name="Renderer" type="Polygon2D" parent="."]
 position = Vector2( -8, -8 )
-color = Color( 0.215686, 0.172549, 0.172549, 1 )
+color = Color( 1, 0, 0.235294, 1 )
 polygon = PoolVector2Array( 0, 0, 0, 32, 8, 32, 8, 8, 32, 8, 32, 0 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Renderer"]

@@ -8,6 +8,7 @@ radius = 24.2234
 height = 63.9973
 
 [node name="Player" type="Area2D"]
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 1 )
 weaponPath = NodePath("Weapon")
 

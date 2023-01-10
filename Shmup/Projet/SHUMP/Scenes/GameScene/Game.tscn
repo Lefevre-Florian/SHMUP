@@ -29,6 +29,9 @@ font_data = ExtResource( 13 )
 
 [node name="Root" type="Node2D"]
 
+[node name="LocallisationManager" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="BackgroundManager" type="Node" parent="."]
 script = ExtResource( 1 )
 speed = 3750.0
@@ -45,9 +48,6 @@ popupContainerPath = NodePath("../PopupContainer")
 script = ExtResource( 6 )
 nSoundEmitter = 150
 musicEmitterPath = NodePath("../Music")
-
-[node name="LocallisationManager" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
