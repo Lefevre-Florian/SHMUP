@@ -23,5 +23,13 @@ polygon = PoolVector2Array( -8, -16, 8, -16, 0, -8, 16, 0, 16, 16, 8, 24, -8, 24
 [node name="Position2D" type="Position2D" parent="Renderer/Body"]
 position = Vector2( 4.76837e-07, -16 )
 
+[node name="Border" type="Line2D" parent="Renderer"]
+points = PoolVector2Array( -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 0, -24, 8, -24, -8, -16, 0, -8, -16 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

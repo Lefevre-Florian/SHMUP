@@ -36,6 +36,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
             instance = this;
 
             Vector2 lScreenSize = GetViewport().Size;
+            GD.Print(lScreenSize);
 
             foreach (ParallaxLayer lLayer in GetNode<ParallaxBackground>(PATH_BACKGROUND_PARALLAX).GetChildren())
             {

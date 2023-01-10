@@ -1,3 +1,6 @@
+using Com.IsartDigital.SHMUP.MovingEntities;
+using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Godot;
 using System;
 
@@ -18,6 +21,12 @@ namespace Com.IsartDigital.SHMUP.Structure {
 				return;
             }
 			instance = this;
+
+			// Clear list
+
+			PopcornEnemy.popcornEnemies.Clear();
+			Enemy.enemies.Clear();
+			Bullet.bullets.Clear();
 
 		}
 

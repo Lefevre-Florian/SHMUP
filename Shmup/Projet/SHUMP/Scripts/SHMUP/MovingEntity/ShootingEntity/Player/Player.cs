@@ -47,7 +47,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private const float MARGINX = 50f;
         private const float MARGINY = 50f;
-        
+
+        private const float REPULSION = 8;
+
         public Weapon canon;
 
         private UIManager uiManager;
@@ -148,13 +150,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         protected override void DoActionMove()
         {
             if (GlobalPosition.x < MARGINX)
-                GlobalPosition += new Vector2(forcedSpeed/16, 0);
+                GlobalPosition += new Vector2(forcedSpeed / REPULSION, 0);
             else if (GlobalPosition.x > screenSize.x - MARGINX)
-                GlobalPosition += new Vector2(-forcedSpeed/16, 0);
+                GlobalPosition += new Vector2(-forcedSpeed / REPULSION, 0);
             else if (GlobalPosition.y < MARGINY)
-                GlobalPosition += new Vector2(0,forcedSpeed/16);
+                GlobalPosition += new Vector2(0,forcedSpeed / REPULSION);
             else if (GlobalPosition.y > screenSize.y - MARGINY)
-                GlobalPosition += new Vector2(0,-forcedSpeed/16);
+                GlobalPosition += new Vector2(0,-forcedSpeed / REPULSION);
             base.DoActionMove();
         }
 

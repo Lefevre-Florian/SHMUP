@@ -8,14 +8,23 @@ extents = Vector2( 7.3125, 5 )
 [node name="Pencil" type="Area2D"]
 scale = Vector2( 0.547009, 0.722222 )
 script = ExtResource( 1 )
-speed = 800.0
-duration = 1.75
+speed = 1000.0
+duration = 1.25
 spacingTime = 0.1
 slowMotionRatio = 0.3
 
 [node name="Renderer" type="Polygon2D" parent="."]
 scale = Vector2( 0.445652, 0.59375 )
 polygon = PoolVector2Array( 0, -22.1538, 0, 0, 29.25, 0, 172.29, -65.2955, 146.25, -88.6154 )
+
+[node name="Contouring" type="Line2D" parent="."]
+scale = Vector2( 1, 1 )
+points = PoolVector2Array( 0, 0, 0, -12.4615, 65.8125, -52.6154, 76.7812, -38.7692, 12.7969, 0, 0, 0 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

@@ -60,15 +60,15 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			lLength = Enemy.enemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
             {
-				Enemy.enemies[i].SetActionVoid();
-				SetAnimation(pLightningScene, Enemy.enemies[i]);
+				if(Enemy.enemies[i] != null)
+					SetAnimation(pLightningScene, Enemy.enemies[i]);
             }		
 
 			lLength = PopcornEnemy.popcornEnemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
             {
-				PopcornEnemy.popcornEnemies[i].SetActionVoid();
-				SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
+				if (PopcornEnemy.popcornEnemies[i] != null)
+					SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
             }
 			
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));
@@ -82,6 +82,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void SetAnimation(PackedScene pLightningScene, MovingEntity pEntity)
         {
+			if (pEntity == null)
+				return;
+
 			SceneTreeTween lTween = GetTree().CreateTween();
 
 			Vector2 lInitialScale = pEntity.Scale;
@@ -119,6 +122,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void DestroyEntity(MovingEntity pEntity)
         {
+			if (pEntity == null)
+				return;
+
 			if (pEntity is Enemy)
             {
 				if (pEntity is Boss)
