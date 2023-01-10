@@ -78,7 +78,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
             else if (body.GlobalPosition.x <= GlobalPosition.x)
                 direction = Vector2.Left;
 
-            if (body.GlobalPosition.y > GlobalPosition.y + size)
+            else if (body.GlobalPosition.y > GlobalPosition.y + size)
                 direction = Vector2.Down;
             else if(body.GlobalPosition.y <= GlobalPosition.y - size)
                 direction = Vector2.Up;

@@ -27,3 +27,5 @@ KEY_CLOSE;Fermer;Close
 KEY_SKIP;Passer;Skip
 KEY_TUTO;Tutoriel;Tutorial
 KEY_USE;Utiliser;Use
+KEY_TUTO_DRONE;Devenez insensible aux balles utiliser votre drone;Don't get shot use a drone
+KEY_WARNING;Attention : Drone sensible à la foudre;Warning : Drone are sensible to lightning
