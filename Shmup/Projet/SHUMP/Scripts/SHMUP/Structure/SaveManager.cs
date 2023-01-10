@@ -21,7 +21,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			Error lError = lFile.Load(FILE_PATH);
 			if(lError == Error.Ok)
             {
-				if (lFile.HasSectionKey(pSectionName, pKeyName))
+				if (lFile.HasSectionKey(pSectionName, pKeyName)) 
 					return lFile.GetValue(pSectionName, pKeyName);
             }
 			return null;

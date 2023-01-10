@@ -19,7 +19,7 @@ extents = Vector2( 10, 300 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 320 )
-speed = 300.0
+speed = 500.0
 healthpoint = 3
 recoveryTime = 0.75
 nRecoveryBlip = 4
@@ -128,7 +128,7 @@ healthpoint = 50
 secondPhaseStart = 30
 thirdPhaseStart = 15
 helperThrowingRespawn = 4.0
-waitingDelay = 0.8
+waitingDelay = 2.25
 
 [node name="CollecitbleContainer" type="Node2D" parent="."]
 

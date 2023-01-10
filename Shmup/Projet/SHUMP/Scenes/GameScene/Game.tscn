@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
@@ -13,9 +13,18 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=11]
 [ext_resource path="res://Scenes/Prefab/Enemies/Enemy1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scenes/Prefab/Wall/BatteryWall.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 10
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
 font_data = ExtResource( 13 )
 
 [node name="Root" type="Node2D"]
@@ -78,7 +87,7 @@ z_index = -1
 
 [node name="TutorialSmartBomb" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorials"]
 modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( 1304, 304 )
+position = Vector2( 1200, 304 )
 
 [node name="Renderer" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialSmartBomb"]
 
@@ -221,6 +230,108 @@ theme = ExtResource( 10 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "KEY_WARNING"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 11 )
+
+[node name="TutorialWall" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorials"]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 2248, 304 )
+
+[node name="Renderer" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall"]
+
+[node name="Body" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/Renderer"]
+polygon = PoolVector2Array( 0, 0, 304, 0, 304, 96, 304, 192, 0, 192 )
+
+[node name="Leg" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/Renderer"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 16, 192, 48, 192, 48, 272, 16, 272 )
+
+[node name="Leg2" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/Renderer"]
+position = Vector2( 232, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 24, 192, 56, 192, 56, 232, 56, 272, 24, 272 )
+
+[node name="Border" type="Line2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/Renderer"]
+position = Vector2( -0.638463, 0 )
+scale = Vector2( 0.787179, 1 )
+points = PoolVector2Array( 387, 0, 0, 0, 0, 192, 21.1367, 192, 21.1367, 272, 61.7881, 272, 61.7881, 192, 326.023, 192, 326.023, 272, 366.674, 272, 366.674, 192, 384, 192, 384, 0 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="InnerBorder" type="Line2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/Renderer"]
+position = Vector2( -2.91872, 9.53674e-07 )
+scale = Vector2( 0.805419, 1 )
+points = PoolVector2Array( 13.5566, 8, 376, 8, 376, 184, 8, 184, 8, 0 )
+width = 15.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="TutorialRenderer" type="Node2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall"]
+
+[node name="Key" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/TutorialRenderer"]
+position = Vector2( 32.0003, 56 )
+scale = Vector2( 0.749997, 0.749999 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[node name="Text" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/TutorialRenderer/Key"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_right = 64.0
+margin_bottom = 64.0
+theme = ExtResource( 10 )
+text = "M"
+align = 1
+valign = 1
+
+[node name="BatteryWall" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall/TutorialRenderer" instance=ExtResource( 14 )]
+position = Vector2( 240, 80 )
+scale = Vector2( 0.4, 0.4 )
+script = null
+
+[node name="Label" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 296.0
+margin_bottom = 40.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KEY_TUTO_GENERATOR"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 11 )
+
+[node name="Label2" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 16.0
+margin_top = 112.0
+margin_right = 96.0
+margin_bottom = 178.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "KEY_LIGTHNING"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 11 )
+
+[node name="Label3" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialWall"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 200.0
+margin_top = 112.0
+margin_right = 280.0
+margin_bottom = 178.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "KEY_OVERCHARGEDWALL"
 align = 1
 valign = 1
 autowrap = true

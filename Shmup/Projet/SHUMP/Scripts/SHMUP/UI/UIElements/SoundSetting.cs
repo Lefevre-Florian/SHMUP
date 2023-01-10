@@ -1,14 +1,12 @@
 using Godot;
 using System;
 using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
-	public class SoundSetting : TranslableButton
+	public class SoundSetting : HSlider
 	{
-
-		[Export] private NodePath sliderPath = default;
-
 		[Export] private string storingKey = "";
 
 		private const string FILE_PATH = "res://Ressources/Settings.cfg";
@@ -17,42 +15,24 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 		private const int MIN_VALUE = -80;
 		private const int MAX_VALUE = 24;
 
-		private const int DEFAULT = -1;
-
-		private Slider slider = null;
-
 		public override void _Ready()
 		{
 			base._Ready();
 
-			Connect(EventButton.PRESSED, this, nameof(Save));
+			Connect(EventSlider.DRAG_ENDED, this, nameof(Save));
 
-			slider = GetNode<Slider>(sliderPath);
+			MinValue = MIN_VALUE;
+			MaxValue = MAX_VALUE;
 
-			slider.MinValue = MIN_VALUE;
-			slider.MaxValue = MAX_VALUE;
-
-			Loading();
+			object lVolume = SaveManager.LoadData(SECTION_NAME, storingKey);
+			if (lVolume != null)
+				Value = (float)lVolume;
 		}
 
-		private void Save()
+		private void Save(bool pChanged)
         {
-			ConfigFile lFile = new ConfigFile();
-			lFile.SetValue(SECTION_NAME, storingKey, slider.Value);
-			lFile.Save(FILE_PATH);
-        }
-
-		private void Loading()
-        {
-			ConfigFile lFile = new ConfigFile();
-			Error lError = lFile.Load(FILE_PATH);
-			if(lError == Error.Ok)
-            {
-				int lVolume = (int)lFile.GetValue(SECTION_NAME, storingKey, DEFAULT);
-				if (lVolume != DEFAULT)
-					slider.Value = (int)lFile.GetValue(SECTION_NAME, storingKey);
-			}
-			
+			if (pChanged)
+				SaveManager.SaveData(SECTION_NAME, storingKey, Value);
         }
 
 	}

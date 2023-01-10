@@ -62,25 +62,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
 margin_top = -88.0
-margin_right = 104.0
+margin_right = 192.0
 margin_bottom = -72.0
 rect_pivot_offset = Vector2( -40, 32 )
 min_value = -80.0
 max_value = 24.0
-
-[node name="VfxSave" type="Button" parent="Main"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 120.0
-margin_top = -96.0
-margin_right = 240.0
-margin_bottom = -64.0
-rect_pivot_offset = Vector2( -272, 40 )
-text = "KEY_SAVE"
 script = ExtResource( 5 )
-sliderPath = NodePath("../VfxVolume")
 storingKey = "VFX"
 
 [node name="MusicLabel" type="Label" parent="Main"]
@@ -105,24 +92,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
 margin_top = -24.0
-margin_right = 104.0
+margin_right = 192.0
 margin_bottom = -8.0
 rect_pivot_offset = Vector2( -40, 32 )
 min_value = -80.0
 max_value = 24.0
-
-[node name="MusicSave" type="Button" parent="Main"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 120.0
-margin_top = -32.0
-margin_right = 240.0
-rect_pivot_offset = Vector2( -272, 40 )
-text = "KEY_SAVE"
 script = ExtResource( 5 )
-sliderPath = NodePath("../MusicVolume")
 storingKey = "Music"
 
 [node name="Localisation" type="CheckButton" parent="Main"]

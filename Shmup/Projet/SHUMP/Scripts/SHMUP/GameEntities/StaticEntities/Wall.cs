@@ -73,9 +73,9 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
 
         protected virtual void DoActionCollide()
         {
-            if (body.GlobalPosition.x > GlobalPosition.x)
+            if (body.GlobalPosition.x > GlobalPosition.x - size)
                 direction = Vector2.Right;
-            else if (body.GlobalPosition.x <= GlobalPosition.x)
+            else if (body.GlobalPosition.x <= GlobalPosition.x + size)
                 direction = Vector2.Left;
 
             else if (body.GlobalPosition.y > GlobalPosition.y + size)
