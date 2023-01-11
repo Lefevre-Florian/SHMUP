@@ -2,7 +2,6 @@ using Godot;
 using System;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.SHMUP.GameEntities;
-using Com.IsartDigital.SHMUP.UI;
 using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
@@ -121,11 +120,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 isMovingDown = Input.IsActionPressed(MOVE_DOWN);
                 isMovingForward = Input.IsActionPressed(MOVE_RIGHT);
                 isMovingBackward = Input.IsActionPressed(MOVE_LEFT);
-
+                
+                isShooting = Input.IsActionPressed(SHOT);
+                
                 if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
-
-                isShooting = Input.IsActionPressed(SHOT);
             }
 
             if (Input.IsActionJustPressed(PAUSE))
