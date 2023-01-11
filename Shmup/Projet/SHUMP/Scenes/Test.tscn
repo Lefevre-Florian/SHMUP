@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=7]
-[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Prefab/Enemies/Enemy1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Prefab/Enemies/PopcornEnemy.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -24,7 +25,7 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 popupContainerPath = NodePath("../PopupContainer")
 
-[node name="BackgroundManager" type="Node" parent="."]
+[node name="BackgroundManager" type="Node2D" parent="."]
 script = ExtResource( 6 )
 speed = 3750.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
@@ -72,10 +73,20 @@ specialFeatureDelay = 1.5
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 8 )]
-position = Vector2( 1172, 294 )
-droneRadius = 100.0
-waitingDelay = 2.3
+[node name="PopcornEnemy" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 1178, 448 )
+
+[node name="PopcornEnemy2" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 1242, 512 )
+
+[node name="PopcornEnemy4" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 1186, 208 )
+
+[node name="PopcornEnemy5" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 1250, 144 )
+
+[node name="Enemy1" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 8 )]
+position = Vector2( 1152, 338 )
 
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
@@ -89,6 +100,8 @@ position = Vector2( 1056, 0 )
 [node name="Collider" type="CollisionShape2D" parent="ParallaxBackground/LayerGameplay/Trigger/TriggerWall"]
 position = Vector2( 0, 300 )
 shape = SubResource( 1 )
+
+[node name="ParticlesContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 

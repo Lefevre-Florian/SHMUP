@@ -23,9 +23,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private float helperSpeed;
         [Export] private float helperThrowingDelay;
         [Export] private int nhelperThrowingEntity = 3;
-        [Export] private float helperThrowingRespawn;
 
-        [Export] private float waitingDelay = 0.25f;
+        [Export] private float inScreenPosition;
 
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
@@ -47,8 +46,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         private Action phase;
 
-        private bool invincibiliy = false;
+        private bool invincibiliy = true;
         private BattleDrone drone = null;
+
+        private bool directionFlag = true;
 
         private Boss ():base() {}
 
@@ -82,12 +83,15 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             if (phase != null)
                 return;
 
+            float lDistance = GlobalPosition.DistanceTo(new Vector2(screenSize.x - inScreenPosition, GlobalPosition.y));
+
             base.SetActionMoveAndShoot();
-            GetTree().CreateTimer(waitingDelay).Connect(EventTimer.TIMEOUT, this, nameof(TriggerFirstPhase));
+            GetTree().CreateTimer(lDistance/speed).Connect(EventTimer.TIMEOUT, this, nameof(TriggerFirstPhase));
         }
 
         private void TriggerFirstPhase()
         {
+            invincibiliy = false;
             phase = TriggerFirstPhase;
             velocity = up;
 
@@ -157,8 +161,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             {
                 base.StartChargeProcess();
             }
-            
-            velocity = up;
+
+            if (directionFlag)
+                velocity = down;
+            else
+                velocity = up;
+            directionFlag = !directionFlag;
         }
 
         private void AddDrone()
@@ -188,16 +196,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             GetParent().AddChild(thrower);
             thrower.Init(helperSpeed, helperThrowingDelay, nhelperThrowingEntity);
             thrower.GlobalPosition = new Vector2(screenSize.x / 2, screenSize.y - YMARGIN);
-
-            thrower.Connect(nameof(ThrowerHelperEnemy.Destroyed), this, nameof(ThrowerDestroyed));
-        }
-
-        private void ThrowerDestroyed()
-        {
-            thrower.Disconnect(nameof(ThrowerHelperEnemy.Destroyed), this, nameof(ThrowerDestroyed));
-            thrower = null;
-
-            GetTree().CreateTimer(helperThrowingRespawn).Connect(EventTimer.TIMEOUT, this, nameof(AddThrower));
         }
 
         protected override void Dispose(bool pDisposing)

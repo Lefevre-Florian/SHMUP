@@ -49,6 +49,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			VibrationManager.SetVibration(weakMotoroVibration, strongMotorVibration, vibrationDuration);
 			DestroyEntities(lLightningScene);
+
+			GetTree().CreateTimer(lightningDuration + animationDuration + (blipDuration * nBlipAnimationEnd)).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
 		}
 
 		private void DestroyEntities(PackedScene pLightningScene)
@@ -72,7 +74,6 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
             }
 			
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));
-			GetTree().CreateTimer(lightningDuration + (blipDuration * nBlipAnimationEnd)).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
         }
 
 		/// <summary>
@@ -137,7 +138,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		private void Destroy()
         {
-			GD.Print("Destroyed !");
+			QueueFree();
 		}
 
 		private void ScreenShake()

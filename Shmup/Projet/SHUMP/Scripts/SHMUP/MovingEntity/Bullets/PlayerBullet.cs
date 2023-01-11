@@ -2,7 +2,6 @@ using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities;
-using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 

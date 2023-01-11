@@ -8,15 +8,15 @@ extents = Vector2( 64, 32 )
 [node name="HardEnemy" type="Area2D"]
 script = ExtResource( 1 )
 speed = 250.0
-healthpoint = 5
+healthpoint = 10
 shootDelay = 1.5
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 rendererPath = NodePath("Renderer/Body")
 tweenDamageDuration = 0.3
 tweenEaseType = 2
 damageColor = Color( 0.890196, 0.890196, 0.890196, 0.960784 )
-moveDelay = 4.0
-chargeSpeed = 250.0
+moveDelay = 2.5
+chargeSpeed = 300.0
 maxLoop = 0
 activationDelay = 0.8
 

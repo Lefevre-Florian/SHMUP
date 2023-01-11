@@ -17,7 +17,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
 		public override void _Ready()
 		{
-			screenSize = GetViewport().Size;
+			screenSize = GetViewportRect().Size;
 
 			Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEnter));
 			Connect(EventNode.TREE_EXITING, this, nameof(Destructor));

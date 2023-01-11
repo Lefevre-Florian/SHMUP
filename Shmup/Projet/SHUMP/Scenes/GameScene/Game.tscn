@@ -32,7 +32,7 @@ font_data = ExtResource( 13 )
 [node name="LocallisationManager" type="Node" parent="."]
 script = ExtResource( 9 )
 
-[node name="BackgroundManager" type="Node" parent="."]
+[node name="BackgroundManager" type="Node2D" parent="."]
 script = ExtResource( 1 )
 speed = 4000.0
 ratio = [ 0.0, 0.015, 0.025, 0.03 ]
@@ -203,6 +203,17 @@ script = null
 [node name="Drone" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy2" index="2"]
 visible = false
 script = null
+
+[node name="Line2D" type="Line2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer"]
+position = Vector2( -8, 0 )
+points = PoolVector2Array( 115, 44, 120, 58, 117, 65, 120, 72 )
+width = 2.0
+default_color = Color( 1, 0.960784, 0, 1 )
+
+[node name="Line2D2" type="Polygon2D" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer"]
+position = Vector2( 8, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 144, 120, 144, 104, 200, 104, 200, 96, 216, 112, 200, 128, 200, 120 )
 
 [node name="Label" type="Label" parent="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone"]
 anchor_left = 0.5

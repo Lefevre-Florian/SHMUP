@@ -34,21 +34,30 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string SPECIAL = "Special";
         private const string GOD_MODE = "God_mode";
         private const string SMART_BOMB = "Bomb";
+
+        private bool isShooting;
+
+        private bool isMovingUp;
+        private bool isMovingForward;
+        private bool isMovingBackward;
+        private bool isMovingDown;
         #endregion
 
-        private float forcedSpeed;
-
+        #region CONSTANT
         private const string SPECIALFEATURE_PATH = "res://Scenes/Prefab/SpecialFeature/SpecialFeature.tscn";
-        private const string SMARTBOMB_PATH = "res://Scenes/Prefab/Bullets/SmartBomb.tscn";
-
+        private const string SMARTBOMB_PATH = "res://Scenes/Prefab/Bullets/SmartBomb.tscn"; 
+        
         private const string PROPERTY_MODULATE = "modulate";
-
+        
         private const int NB_SMARTBOMB = 2;
 
         private const float MARGINX = 50f;
         private const float MARGINY = 50f;
-
+        private const float HUDSIZE = 100f;
+        
+        private float forcedSpeed;
         private const float REPULSION = 8;
+        #endregion
 
         public Weapon canon;
 
@@ -108,26 +117,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
             if (!specialFeature)
             {
-                if (Input.IsActionPressed(MOVE_UP))
-                    direction += new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-                if (Input.IsActionPressed(MOVE_DOWN))
-                    direction += new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
-                if (Input.IsActionPressed(MOVE_LEFT))
-                    direction += new Vector2(-1 * (forcedSpeed + speed), 0);
-                if (Input.IsActionPressed(MOVE_RIGHT))
-                    direction += new Vector2(1 * (forcedSpeed + speed), 0);
+                isMovingUp = Input.IsActionPressed(MOVE_UP);
+                isMovingDown = Input.IsActionPressed(MOVE_DOWN);
+                isMovingForward = Input.IsActionPressed(MOVE_RIGHT);
+                isMovingBackward = Input.IsActionPressed(MOVE_LEFT);
 
                 if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
                     EnableSpecialFeature();
 
-                if (Input.IsActionPressed(SHOT))
-                    canon.Shoot();
+                isShooting = Input.IsActionPressed(SHOT);
             }
-
-            if (direction == Vector2.Zero)
-                direction = new Vector2(forcedSpeed, 0);
-
-            velocity = direction;
 
             if (Input.IsActionJustPressed(PAUSE))
                 uiManager.CallPopup();
@@ -149,14 +148,23 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         protected override void DoActionMove()
         {
-            if (GlobalPosition.x < MARGINX)
-                GlobalPosition += new Vector2(forcedSpeed / REPULSION, 0);
-            else if (GlobalPosition.x > screenSize.x - MARGINX)
-                GlobalPosition += new Vector2(-forcedSpeed / REPULSION, 0);
-            else if (GlobalPosition.y < MARGINY)
-                GlobalPosition += new Vector2(0,forcedSpeed / REPULSION);
-            else if (GlobalPosition.y > screenSize.y - MARGINY)
-                GlobalPosition += new Vector2(0,-forcedSpeed / REPULSION);
+            if (isShooting)
+                canon.Shoot();
+
+            direction = Vector2.Zero;
+            if (isMovingUp && GlobalPosition.y > HUDSIZE)
+                direction += new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
+            if (isMovingDown && GlobalPosition.y < screenSize.y - MARGINY)
+                direction += new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
+            if (isMovingBackward && GlobalPosition.x > MARGINX)
+                direction += new Vector2(-1 * (forcedSpeed + speed), 0);
+            if (isMovingForward && GlobalPosition.x < screenSize.x - MARGINX)
+                direction += new Vector2(1 * (forcedSpeed + speed), 0);
+
+            if (direction == Vector2.Zero)
+                direction = new Vector2(forcedSpeed, 0);
+            velocity = direction;
+
             base.DoActionMove();
         }
 

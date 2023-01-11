@@ -1,0 +1,33 @@
+[gd_scene format=2]
+
+[node name="Torchlight" type="Polygon2D"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, 8, -16, 16, -16, 24, 16, 24, 16, 16, 8, 8, 8, -128, 24, -136, 24, -160, 0, -160, -24, -160, -24, -136, -8, -128 )
+
+[node name="CollisionPolygon2D" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -24, -160, 0, -160, 24, -160, 24, -176, 16, -184, 0, -192, -16, -184, -24, -176 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.890196, 0.733333, 0.0156863, 0.705882 )
+polygon = PoolVector2Array( -16, -168, -8, -176, 8, -176, 16, -168, 16, -144, 8, -136, -8, -136, -16, -144 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -13, -171, -8, -176, -8, -136, -13, -141 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2( 10, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -13, -176, -7, -176, -7, -136, -13, -136 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="."]
+position = Vector2( 21, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -13, -176, -8, -176, -8, -136, -13, -136 )
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0, 16 )
+points = PoolVector2Array( 0, -192, 0, -216 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )

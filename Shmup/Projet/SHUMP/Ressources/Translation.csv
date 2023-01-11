@@ -27,7 +27,7 @@ KEY_CLOSE;Fermer;Close
 KEY_SKIP;Passer;Skip
 KEY_TUTO;Tutoriel;Tutorial
 KEY_USE;Utiliser;Use
-KEY_TUTO_DRONE;Devenez insensible aux balles utiliser votre drone;Don't get shot use a drone
+KEY_TUTO_DRONE;Les drones vous protège des balles;The drone protect you to get shot
 KEY_WARNING;Attention : Drone sensible à la foudre;Warning : Drone are sensible to lightning
 KEY_OVERCHARGEDWALL;Les générateurs sont sensibles à la foudre;The generator are sensible to lightning
 KEY_LIGTHNING;Pour manipuler la foudre;To manipulate the power of the ligthning

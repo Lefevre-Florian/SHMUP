@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Com.IsartDigital.SHMUP.Structure {
 
-	public class BackgroundManager : Node
+	public class BackgroundManager : Node2D
 	{
 
         private static BackgroundManager instance = null;
@@ -35,8 +35,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
             instance = this;
 
-            Vector2 lScreenSize = GetViewport().Size;
-            GD.Print(lScreenSize);
+            Vector2 lScreenSize = GetViewportRect().Size;
 
             foreach (ParallaxLayer lLayer in GetNode<ParallaxBackground>(PATH_BACKGROUND_PARALLAX).GetChildren())
             {

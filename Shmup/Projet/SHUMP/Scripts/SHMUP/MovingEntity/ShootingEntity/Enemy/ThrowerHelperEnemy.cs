@@ -18,9 +18,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         private Timer spacingTimer;
 
-        [Signal]
-        public delegate void Destroyed();
-
         public void Init(float pSpeed, float pThrowingDelay, int pNEntity)
         {
             boomerangScene = GD.Load<PackedScene>(BOOMERANG_PATH);
@@ -37,6 +34,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
             SetActionMoveAndShoot();
         }
+
+        public override void TakeDamage(int pDamage){ }
 
         protected override void DoActionMove()
         {
@@ -64,10 +63,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             lBoomerang.Position = canon.GlobalPosition;
         }
 
-        public override void Destroy()
+        protected override void Destructor()
         {
-            EmitSignal(nameof(Destroyed));
-            base.Destroy();
+            Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+            base.Destructor();
         }
 
     }

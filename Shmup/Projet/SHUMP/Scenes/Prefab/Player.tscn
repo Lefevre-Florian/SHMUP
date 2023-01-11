@@ -3,9 +3,8 @@
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Weapon.tscn" type="PackedScene" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 24.2234
-height = 63.9973
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.9993, 53.2947 )
 
 [node name="Player" type="Area2D"]
 scale = Vector2( 0.75, 0.75 )
@@ -18,6 +17,7 @@ offset = Vector2( 0, 30 )
 polygon = PoolVector2Array( 0, -64, 64, -64, 64, 0, -64, 0, -64, -64 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 10.5407, -1.99912 )
 rotation = 1.5638
 shape = SubResource( 1 )
 

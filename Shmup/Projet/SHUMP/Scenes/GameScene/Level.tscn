@@ -19,7 +19,7 @@ extents = Vector2( 10, 300 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 320 )
-speed = 500.0
+speed = 475.0
 healthpoint = 3
 recoveryTime = 0.75
 nRecoveryBlip = 4
@@ -124,11 +124,12 @@ drop = ExtResource( 7 )
 
 [node name="Boss" parent="EnemyContainer" instance=ExtResource( 11 )]
 position = Vector2( 9728, 320 )
-healthpoint = 50
-secondPhaseStart = 30
-thirdPhaseStart = 15
-helperThrowingRespawn = 4.0
-waitingDelay = 2.25
+healthpoint = 80
+moveDelay = 5.0
+chargeSpeed = 275.0
+secondPhaseStart = 60
+thirdPhaseStart = 30
+droneRadius = 90.0
 
 [node name="CollecitbleContainer" type="Node2D" parent="."]
 
@@ -156,16 +157,16 @@ position = Vector2( 5024, 480 )
 position = Vector2( 5088, 416 )
 
 [node name="BatteryWall9" parent="WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 7904, 224 )
+position = Vector2( 7584, 224 )
 
 [node name="BatteryWall10" parent="WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 7904, 288 )
+position = Vector2( 7584, 288 )
 
 [node name="BatteryWall11" parent="WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 7904, 352 )
+position = Vector2( 7584, 352 )
 
 [node name="BatteryWall12" parent="WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 7904, 416 )
+position = Vector2( 7584, 416 )
 
 [node name="BatteryWall13" parent="WallContainer" instance=ExtResource( 9 )]
 position = Vector2( 8608, 224 )
@@ -195,13 +196,13 @@ position = Vector2( 2208, 352 )
 position = Vector2( 2208, 416 )
 
 [node name="BreakableWall8" parent="WallContainer" instance=ExtResource( 8 )]
-position = Vector2( 7584, 160 )
+position = Vector2( 7904, 320 )
 
 [node name="BreakableWall9" parent="WallContainer" instance=ExtResource( 8 )]
-position = Vector2( 7584, 480 )
+position = Vector2( 7904, 416 )
 
 [node name="BreakableWall10" parent="WallContainer" instance=ExtResource( 8 )]
-position = Vector2( 7648, 320 )
+position = Vector2( 7904, 224 )
 
 [node name="Wall" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 2208, 544 )
@@ -457,6 +458,12 @@ position = Vector2( 6688, 544 )
 
 [node name="Wall93" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 7584, 96 )
+
+[node name="Wall135" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7584, 160 )
+
+[node name="Wall137" parent="WallContainer" instance=ExtResource( 5 )]
+position = Vector2( 7584, 480 )
 
 [node name="Wall94" parent="WallContainer" instance=ExtResource( 5 )]
 position = Vector2( 7584, 544 )
