@@ -12,6 +12,15 @@ namespace Com.IsartDigital.SHMUP.UI {
         [Export] private NodePath scorePath = default;
         [Export] private NodePath smartBombPath = default;
 
+        [Export] private float scoreTweenDuration;
+        [Export] private float scoreTweenRotation;
+        [Export] private Vector2 scoreTweenScale;
+        [Export] private Tween.TransitionType scoreTweenTransition = default;
+        [Export] private Tween.EaseType scoreTweenEase = default;
+
+        private const string PROPERTY_LABEL_SCALE = "rect_scale";
+        private const string PROPERTY_LABEL_ROTATION = "rect_rotation";
+
         private Label score;
         private Label smartBomb;
 
@@ -19,6 +28,10 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         private uint nScore = 0;
         private Vector2 scoreLabelPosition;
+        
+        private Tween scoreTween = new Tween();
+        private Vector2 initialScoreScale;
+        private float initialScoreRotation;
 
         private int nSmartBomb = 0;
         private int maxSmartBomb = 0;
@@ -40,8 +53,13 @@ namespace Com.IsartDigital.SHMUP.UI {
 
             score = GetNode<Label>(scorePath);
             scoreExtension = score.Text;
+            score.RectPivotOffset = new Vector2(score.RectSize / 2);
             score.Text = $"{scoreExtension}:\n{nScore}";
+            score.AddChild(scoreTween);
             scoreLabelPosition = score.RectGlobalPosition;
+
+            initialScoreRotation = score.RectRotation;
+            initialScoreScale = score.RectScale;
 
             smartBomb = GetNode<Label>(smartBombPath);
 
@@ -80,13 +98,35 @@ namespace Com.IsartDigital.SHMUP.UI {
 
         public void UpdateScoreHUD(uint pScore)
         {
+            if (!scoreTween.IsActive())
+            {
+                GD.Print(scoreTween.IsActive());
+                scoreTween.InterpolateProperty(score, PROPERTY_LABEL_SCALE, initialScoreScale, scoreTweenScale, scoreTweenDuration , scoreTweenTransition, scoreTweenEase);
+                scoreTween.InterpolateProperty(score, PROPERTY_LABEL_ROTATION, initialScoreRotation, scoreTweenRotation, scoreTweenDuration, scoreTweenTransition, scoreTweenEase);
+                float lInternalDuration = scoreTween.GetRuntime();
+                scoreTween.InterpolateProperty(score, PROPERTY_LABEL_SCALE, scoreTweenScale, initialScoreScale, scoreTweenDuration,
+                                               scoreTweenTransition, 
+                                               scoreTweenEase, 
+                                               delay:lInternalDuration);
+                scoreTween.InterpolateProperty(score, PROPERTY_LABEL_ROTATION, scoreTweenRotation, initialScoreRotation, scoreTweenDuration, 
+                                               scoreTweenTransition, 
+                                               scoreTweenEase, 
+                                               delay:lInternalDuration);
+                scoreTween.Start();
+            }
+            
             nScore += pScore;
             score.Text = $"{scoreExtension}:\n{nScore}";
         }
 
         public Vector2 GetScorePosition()
         {
-            return scoreLabelPosition;
+            return new Vector2(GetViewportRect().Size.x / 2, scoreLabelPosition.y);
+        }
+
+        public uint GetScoreValue()
+        {
+            return nScore;
         }
 
         protected override void Dispose(bool pDisposing)

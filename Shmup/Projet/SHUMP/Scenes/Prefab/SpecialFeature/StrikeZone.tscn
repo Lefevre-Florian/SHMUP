@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/GameEntities/SPStrikeZone.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Lightning.tscn" type="PackedScene" id=2]
 
 [node name="StrikeZone" type="Area2D"]
 script = ExtResource( 1 )
 linePath = NodePath("Line2D")
+lightningScene = ExtResource( 2 )
+lightningDuration = 1.15
+lightningSize = 65.0
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 100.0

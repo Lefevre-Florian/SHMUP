@@ -29,7 +29,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         private const string MOVE_RIGHT = "Right";
 
         private const string SHOT = "Shoot";
-        private const string PAUSE = "Pause";
         private const string SPECIAL = "Special";
         private const string GOD_MODE = "God_mode";
         private const string SMART_BOMB = "Bomb";
@@ -122,13 +121,18 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 isMovingBackward = Input.IsActionPressed(MOVE_LEFT);
                 
                 isShooting = Input.IsActionPressed(SHOT);
-                
-                if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0)
-                    EnableSpecialFeature();
-            }
 
-            if (Input.IsActionJustPressed(PAUSE))
-                uiManager.CallPopup();
+                if (Input.IsActionJustPressed(SPECIAL) && specialFeatureDelaytimer.TimeLeft <= 0f)
+                {
+                    isMovingUp = false;
+                    isMovingForward = false;
+                    isMovingDown = false;
+                    isMovingBackward = false;
+
+                    EnableSpecialFeature();
+                }
+                    
+            }
 
             if (Input.IsActionJustPressed(GOD_MODE))
                 godMode = !godMode;

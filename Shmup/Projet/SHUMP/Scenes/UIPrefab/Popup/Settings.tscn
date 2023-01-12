@@ -51,6 +51,7 @@ margin_top = -96.0
 margin_right = -128.0
 margin_bottom = -56.0
 rect_pivot_offset = Vector2( 40, 31 )
+theme = ExtResource( 1 )
 text = "KEY_VFX"
 valign = 1
 autowrap = true
@@ -81,6 +82,7 @@ margin_top = -32.0
 margin_right = -128.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( 40, 31 )
+theme = ExtResource( 1 )
 text = "KEY_MUSIC"
 valign = 1
 autowrap = true
@@ -103,9 +105,9 @@ storingKey = "Music"
 
 [node name="Localisation" type="CheckButton" parent="Main"]
 margin_left = 384.0
-margin_top = 264.0
+margin_top = 272.0
 margin_right = 496.0
-margin_bottom = 304.0
+margin_bottom = 312.0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
 script = ExtResource( 4 )
@@ -132,9 +134,11 @@ margin_left = -248.0
 margin_top = 32.0
 margin_right = -112.0
 margin_bottom = 72.0
+theme = ExtResource( 1 )
 text = "KEY_VIBRATION"
 valign = 1
 autowrap = true
+script = ExtResource( 7 )
 
 [node name="VibrationSetting" type="CheckButton" parent="Main"]
 anchor_left = 0.5

@@ -41,6 +41,7 @@ ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 script = ExtResource( 5 )
 
 [node name="UIManager" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 3 )
 popupContainerPath = NodePath("../PopupContainer")
 
@@ -351,6 +352,7 @@ script = ExtResource( 11 )
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+scoreTweenRotation = 1.5
 
 [node name="PopupContainer" type="Node" parent="."]
 

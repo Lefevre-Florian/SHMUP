@@ -12,7 +12,9 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         private const string PATH_PAUSE_POPUP = "res://Scenes/UIPrefab/Popup/Pause.tscn";
         private const string PATH_GAMEOVER_POPUP = "res://Scenes/UIPrefab/Popup/GameOver.tscn";
-        
+
+        private const string PAUSE = "Pause";
+
         private Pause pause;
         private UI.Popup gameOver;
 
@@ -33,17 +35,30 @@ namespace Com.IsartDigital.SHMUP.Structure {
             pause = GD.Load<PackedScene>(PATH_PAUSE_POPUP).Instance<Pause>();
         }
 
+        public override void _Input(InputEvent pEvent)
+        {
+            if (Input.IsActionJustPressed(PAUSE))
+                CallPopup();
+        }
+
         public static UIManager GetInstance()
         {
             if (instance == null) instance = new UIManager();
             return instance;
-
         }
 
         public void CallPopup()
         {
-            popupContainer.AddChild(pause);
-            pause.OpenScreen();
+            if (!pause.IsInsideTree())
+            {
+                popupContainer.AddChild(pause);
+                pause.OpenScreen();
+            }
+            else
+            {
+                pause.CloseScreen();
+                popupContainer.RemoveChild(pause);
+            }
         }
 
         public void TriggerGameOver()

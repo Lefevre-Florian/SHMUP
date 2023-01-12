@@ -3,17 +3,21 @@ using System;
 using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities;
-using Com.IsartDigital.SHMUP.Structure;
+using Com.IsartDigital.SHMUP.GameEntities.SmartBombUtilities;
 
 namespace Com.IsartDigital.SHMUP.GameEntities {
 
 	public class SPStrikeZone : Area2D
 	{
 		[Export] private NodePath linePath = default;
+		[Export] private PackedScene lightningScene = default;
+		[Export] private float lightningDuration;
+		[Export] private float lightningSize;
 
 		private const float REMANING_TIME = .5f;
 
 		private Line2D line;
+		private Lightning lightning;
 
 		private SceneTreeTimer timer;
 
@@ -73,6 +77,11 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				lCollider.Shape = lRectangleShape;
 
 				AddChild(lCollider);
+				lightning = lightningScene.Instance<Lightning>();
+				AddChild(lightning);
+				lightning.DrawLightning(new Vector2(line.Points[i].x, line.Points[i].y - lightningSize),
+										line.Points[i],
+										lightningDuration);
 			}
 			if(!IsConnected(EventArea2D.AREA_ENTERED, this, nameof(Destroy)))
 				Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEntered));

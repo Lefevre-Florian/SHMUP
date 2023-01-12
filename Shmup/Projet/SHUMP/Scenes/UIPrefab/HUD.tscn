@@ -11,6 +11,10 @@ script = ExtResource( 1 )
 lifePath = NodePath("Panel/Lifebar")
 scorePath = NodePath("Panel/Score")
 smartBombPath = NodePath("Panel/HBoxContainer/Smartbomb")
+scoreTweenDuration = 0.5
+scoreTweenRotation = 6.0
+scoreTweenScale = Vector2( 1.5, 1.5 )
+scoreTweenEase = 2
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -32,6 +36,7 @@ margin_left = -64.0
 margin_top = 8.0
 margin_right = 64.0
 margin_bottom = 56.0
+rect_pivot_offset = Vector2( 64, 24 )
 text = "Score"
 align = 1
 valign = 1
