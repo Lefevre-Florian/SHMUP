@@ -65,7 +65,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Destructor()
         {
-            Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
+            spacingTimer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
             base.Destructor();
         }
 

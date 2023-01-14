@@ -100,7 +100,6 @@ namespace Com.IsartDigital.SHMUP.UI {
         {
             if (!scoreTween.IsActive())
             {
-                GD.Print(scoreTween.IsActive());
                 scoreTween.InterpolateProperty(score, PROPERTY_LABEL_SCALE, initialScoreScale, scoreTweenScale, scoreTweenDuration , scoreTweenTransition, scoreTweenEase);
                 scoreTween.InterpolateProperty(score, PROPERTY_LABEL_ROTATION, initialScoreRotation, scoreTweenRotation, scoreTweenDuration, scoreTweenTransition, scoreTweenEase);
                 float lInternalDuration = scoreTween.GetRuntime();

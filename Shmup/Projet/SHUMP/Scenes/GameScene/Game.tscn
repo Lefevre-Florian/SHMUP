@@ -352,7 +352,7 @@ script = ExtResource( 11 )
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
-scoreTweenRotation = 1.5
+scoreTweenRotation = 0.8
 
 [node name="PopupContainer" type="Node" parent="."]
 

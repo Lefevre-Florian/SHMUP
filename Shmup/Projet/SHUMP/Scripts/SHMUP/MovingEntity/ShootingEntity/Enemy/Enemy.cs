@@ -121,8 +121,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
-			enemies.Remove(this);
-
 			FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
 			GetParent().AddChild(lScore);
 			lScore.RectPosition = Position;
@@ -140,6 +138,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Destructor()
         {
+			enemies.Remove(this);
 			if (timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
 				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			timer.QueueFree();

@@ -83,7 +83,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void SetAnimation(PackedScene pLightningScene, MovingEntity pEntity)
         {
-			if (pEntity == null)
+			if (!pEntity.IsInsideTree())
 				return;
 
 			SceneTreeTween lTween = GetTree().CreateTween();
@@ -123,7 +123,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		/// <param name="pEntity"></param>
 		private void DestroyEntity(MovingEntity pEntity)
         {
-			if (pEntity == null)
+			if (!pEntity.IsInsideTree())
 				return;
 
 			if (pEntity is Enemy)
