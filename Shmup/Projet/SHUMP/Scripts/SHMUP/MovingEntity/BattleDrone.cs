@@ -1,4 +1,5 @@
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
@@ -14,6 +15,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         [Export] private Tween.EaseType shootingEase = default;
         [Export] private Color warningSignalColor = default;
 
+        [Export] private AudioStreamOGGVorbis soundLaser = null;
+
         private const string PATH_LASER_SCENE = "res://Scenes/Prefab/Bullets/EnemyLaser.tscn";
         private const string PROPERTY_COLOR = "color";
 
@@ -26,10 +29,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         private Color initialColor;
         private Polygon2D renderer;
 
+        private SoundManager soundManager = null;
+
         public override void _Ready()
         {
             base._Ready();
             laserScene = GD.Load<PackedScene>(PATH_LASER_SCENE);
+            soundManager = SoundManager.GetInstance();
         }
 
         public void Init(float pRadius, float pSpeed ,float pShootDelay,  bool pRotating = false)
@@ -67,6 +73,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         private void Shoot()
         {
+            soundManager.GetAudioPlayer(soundLaser, this);
             EnemyLaser lLaser = laserScene.Instance<EnemyLaser>();
             AddChild(lLaser);
             timer.WaitTime = shootDelay + lLaser.drawingDuration + lLaser.attackDuration;

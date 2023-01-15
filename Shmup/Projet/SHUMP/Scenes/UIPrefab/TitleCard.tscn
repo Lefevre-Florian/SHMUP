@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/GameScene/KeybindScene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
@@ -53,6 +54,7 @@ margin_bottom = 64.0
 theme = ExtResource( 1 )
 text = "KEY_PLAY"
 script = ExtResource( 4 )
+sound = ExtResource( 6 )
 
 [node name="SettingsButton" type="Button" parent="TitleCard"]
 anchor_left = 0.311
@@ -67,6 +69,7 @@ rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
 text = "KEY_SETTING"
 script = ExtResource( 4 )
+sound = ExtResource( 6 )
 
 [node name="CreditButton" type="Button" parent="TitleCard"]
 anchor_left = 0.686
@@ -81,6 +84,7 @@ rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
 text = "KEY_CREDIT"
 script = ExtResource( 4 )
+sound = ExtResource( 6 )
 
 [node name="ExitButton" type="Button" parent="TitleCard"]
 anchor_left = 1.0
@@ -94,3 +98,4 @@ theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 1 )
 text = "KEY_EXIT"
 script = ExtResource( 4 )
+sound = ExtResource( 6 )

@@ -8,6 +8,8 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 	public class TranslableButton : Button
 	{
 
+		[Export] private AudioStreamOGGVorbis sound = null;
+
 		private LocalisationManager localisationManager = null;
 
 		private string translationKey;
@@ -22,12 +24,21 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 			localisationManager.Connect(nameof(LocalisationManager.LanguageChanged), this, nameof(Translate));
 			Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
+			Connect(EventButton.PRESSED, this, nameof(Press));
 		}
 
 		private void Translate()
 		{
 			Text = localisationManager.GetTranslation(translationKey);
 		}
+
+		private void Press()
+        {
+			if (sound == null)
+				return;
+
+			SoundManager.GetInstance().GetAudioPlayer(sound, this);
+        }
 
 		private void Destructor()
 		{

@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/HardEnemy.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/enemy0_explosion1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 32 )
@@ -15,6 +17,8 @@ rendererPath = NodePath("Renderer/Body")
 tweenDamageDuration = 0.3
 tweenEaseType = 2
 damageColor = Color( 0.890196, 0.890196, 0.890196, 0.960784 )
+soundDeath = ExtResource( 2 )
+soundShoot = ExtResource( 3 )
 moveDelay = 2.5
 chargeSpeed = 300.0
 maxLoop = 0

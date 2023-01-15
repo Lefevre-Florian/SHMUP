@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/PopcornEnemy.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/enemy_explosion.ogg" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.9942, 35.9913 )
@@ -9,6 +10,7 @@ extents = Vector2( 23.9942, 35.9913 )
 script = ExtResource( 1 )
 speed = 60.0
 margin = 50.0
+soundDeath = ExtResource( 2 )
 
 [node name="Renderer" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -40, 0, 32, -24, 32, 24 )

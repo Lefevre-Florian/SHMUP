@@ -26,6 +26,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private Tween.EaseType tweenEaseType = default;
 		[Export] private Color damageColor = default;
 
+		[Export] private AudioStreamOGGVorbis soundDeath = null;
+		[Export] private AudioStreamOGGVorbis soundShoot = null;
+
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
 
@@ -89,7 +92,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				QueueFree();
 		}
 
-        protected virtual void Shoot() { }
+        protected virtual void Shoot() 
+		{
+			soundManager.GetAudioPlayer(soundShoot, this);
+		}
 
         public override void TakeDamage(int pDamage)
         {
@@ -121,6 +127,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
+			soundManager.GetAudioPlayer(soundDeath, GetParent());
 			FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
 			GetParent().AddChild(lScore);
 			lScore.RectPosition = Position;

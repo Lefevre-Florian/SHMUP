@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Prefab/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Prefab/Enemies/Enemy2.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Scenes/Prefab/Wall/BatteryWall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Prefab/Collectibles/MedicKit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Sound/boss1_loop.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Sound/boss2_loop.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sound/boss0_loop.ogg" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -130,6 +133,7 @@ chargeSpeed = 275.0
 secondPhaseStart = 60
 thirdPhaseStart = 30
 droneRadius = 90.0
+themes = [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ]
 
 [node name="CollecitbleContainer" type="Node2D" parent="."]
 

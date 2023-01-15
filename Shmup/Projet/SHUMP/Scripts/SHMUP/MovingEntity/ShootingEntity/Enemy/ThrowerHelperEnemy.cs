@@ -50,6 +50,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Shoot()
         {
+            base.Shoot();
             if(entityThrowed++ == nEntity)
             {
                 spacingTimer.Stop();

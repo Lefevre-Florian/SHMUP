@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/GameEntities/SmartBomb.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/smart_bomb_iem.ogg" type="AudioStream" id=2]
 
 [node name="Smartbomb" type="Node"]
 script = ExtResource( 1 )
@@ -18,3 +19,4 @@ blipColor = Color( 0.992157, 1, 0, 1 )
 weakMotoroVibration = 0.05
 strongMotorVibration = 0.25
 vibrationDuration = 0.5
+soundBomb = ExtResource( 2 )

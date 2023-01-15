@@ -40,6 +40,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Shoot()
         {
+			base.Shoot();
 			EnemyBullet lBullet = bulletScene.Instance<EnemyBullet>();
             lBullet.Position = canon.GlobalPosition;
             bulletContainer.AddChild(lBullet);

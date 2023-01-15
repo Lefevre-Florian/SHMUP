@@ -4,6 +4,7 @@ using Com.IsartDigital.Utils.Events;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities;
 using Com.IsartDigital.SHMUP.GameEntities.SmartBombUtilities;
+using Com.IsartDigital.SHMUP.Structure;
 
 namespace Com.IsartDigital.SHMUP.GameEntities {
 
@@ -13,6 +14,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private PackedScene lightningScene = default;
 		[Export] private float lightningDuration;
 		[Export] private float lightningSize;
+
+		[Export] private AudioStreamOGGVorbis sound = null;
 
 		private const float REMANING_TIME = .5f;
 
@@ -85,6 +88,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			}
 			if(!IsConnected(EventArea2D.AREA_ENTERED, this, nameof(Destroy)))
 				Connect(EventArea2D.AREA_ENTERED, this, nameof(OnAreaEntered));
+			SoundManager.GetInstance().GetAudioPlayer(sound, this);
 			GetTree().CreateTimer(REMANING_TIME).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
         }
 

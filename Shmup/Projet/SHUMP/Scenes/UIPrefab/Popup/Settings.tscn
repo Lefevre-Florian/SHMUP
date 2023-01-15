@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Img/FR_FLAG.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/VibrationSetting.cs" type="Script" id=9]
+[ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=10]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -67,7 +68,6 @@ margin_top = -88.0
 margin_right = 192.0
 margin_bottom = -72.0
 rect_pivot_offset = Vector2( -40, 32 )
-min_value = -80.0
 max_value = 24.0
 script = ExtResource( 5 )
 storingKey = "VFX"
@@ -98,10 +98,10 @@ margin_top = -24.0
 margin_right = 192.0
 margin_bottom = -8.0
 rect_pivot_offset = Vector2( -40, 32 )
-min_value = -80.0
 max_value = 24.0
 script = ExtResource( 5 )
 storingKey = "Music"
+isAudioPrincipal = true
 
 [node name="Localisation" type="CheckButton" parent="Main"]
 margin_left = 384.0
@@ -111,6 +111,7 @@ margin_bottom = 312.0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
 script = ExtResource( 4 )
+sound = ExtResource( 10 )
 
 [node name="Close" type="Button" parent="Main"]
 anchor_left = 0.5
@@ -124,6 +125,7 @@ margin_bottom = -32.0
 theme = ExtResource( 1 )
 text = "KEY_CLOSE"
 script = ExtResource( 8 )
+sound = ExtResource( 10 )
 
 [node name="VibrationLabel" type="Label" parent="Main"]
 anchor_left = 0.5

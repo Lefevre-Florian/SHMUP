@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/GameEntities/StaticEntities/Collectible/MedicKit.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/powerup_life.ogg" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -8,6 +9,7 @@ radius = 40.0
 [node name="MedicKit" type="Area2D"]
 scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 1 )
+sound = ExtResource( 2 )
 
 [node name="Renderer" type="Node2D" parent="."]
 scale = Vector2( 0.5, 0.5 )

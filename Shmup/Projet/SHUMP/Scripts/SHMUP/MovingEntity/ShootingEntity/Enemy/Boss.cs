@@ -25,6 +25,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private int nhelperThrowingEntity = 3;
 
         [Export] private float inScreenPosition;
+        [Export] private List<AudioStreamOGGVorbis> themes = new List<AudioStreamOGGVorbis>();
 
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
@@ -45,6 +46,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private List<Position2D> weapons = new List<Position2D>();
 
         private Action phase;
+        private int musicIndex = 0;
 
         private bool invincibiliy = true;
         private BattleDrone drone = null;
@@ -95,6 +97,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             phase = TriggerFirstPhase;
             velocity = up;
 
+            soundManager.ChangeMainMusic(themes[musicIndex++]);
+
             InitChargeProcess();
             weapons.Add(canon);
         }
@@ -104,6 +108,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             phase = TriggerSecondPhase;
 
             GetNode<Node2D>(secondPhaseGraphics).Visible = true;
+
+            soundManager.ChangeMainMusic(themes[musicIndex++]);
 
             StopChargeProcess();
 
@@ -116,7 +122,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private void TriggerThridPhase()
         {
             phase = TriggerThridPhase;
-
+            soundManager.ChangeMainMusic(themes[musicIndex++]);
             AddThrower();
         }
 
@@ -131,6 +137,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Shoot()
         {
+            base.Shoot();
             EnemyBullet lBullet;
             foreach (Position2D lCanon in weapons)
             {
@@ -206,7 +213,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
-            UIManager.GetInstance().TriggerGameOver();
+            UIManager.GetInstance().TriggerGameOver(true);
             if (thrower != null)
                 thrower.QueueFree();
             base.Destroy();

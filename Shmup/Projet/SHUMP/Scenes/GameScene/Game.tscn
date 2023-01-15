@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://Scenes/Prefab/Enemies/Enemy1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Scenes/Prefab/Wall/BatteryWall.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Sound/level_loop.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Sound/win_jingle.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Sound/gameover_jingle.ogg" type="AudioStream" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -44,6 +47,8 @@ script = ExtResource( 5 )
 pause_mode = 2
 script = ExtResource( 3 )
 popupContainerPath = NodePath("../PopupContainer")
+gameoverMusic = ExtResource( 17 )
+winMusic = ExtResource( 16 )
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -374,6 +379,7 @@ color = Color( 0.243137, 0.243137, 0.243137, 0.541176 )
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 512, 320 )
+stream = ExtResource( 15 )
 autoplay = true
 
 [editable path="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy1"]

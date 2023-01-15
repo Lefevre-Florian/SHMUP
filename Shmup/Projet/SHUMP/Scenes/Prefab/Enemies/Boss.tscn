@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/Boss.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/boss_explosion.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sound/boss_shoot.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 64 )
@@ -16,6 +18,8 @@ rendererPath = NodePath("Renderer/Body")
 tweenDamageDuration = 0.3
 tweenEaseType = 2
 damageColor = Color( 0.960784, 0.113725, 0.113725, 0.960784 )
+soundDeath = ExtResource( 2 )
+soundShoot = ExtResource( 3 )
 moveDelay = 6.0
 chargeSpeed = 150.0
 secondPhaseStart = 15
@@ -28,7 +32,6 @@ droneShootDelay = 5.0
 droneRespawnDelay = 3.8
 helperSpeed = 200.0
 helperThrowingDelay = 0.15
-helperThrowingRespawn = 6.0
 
 [node name="Renderer" type="Node2D" parent="."]
 

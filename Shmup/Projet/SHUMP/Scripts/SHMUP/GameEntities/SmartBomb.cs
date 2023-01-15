@@ -32,6 +32,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private float strongMotorVibration;
 		[Export] private float vibrationDuration;
 
+		[Export] private AudioStreamOGGVorbis soundBomb = null;
+
 		private const string PROPERTY_SCALE = "scale";
 		private const string PROPERTY_MODULATE = "modulate";
 
@@ -143,6 +145,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		private void ScreenShake()
         {
+			SoundManager.GetInstance().GetAudioPlayer(soundBomb, this);
 			Camera.GetInstance().SetActionShake();
         }
 

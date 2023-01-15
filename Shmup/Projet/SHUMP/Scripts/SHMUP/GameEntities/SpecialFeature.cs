@@ -15,6 +15,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         [Export (PropertyHint.ExpRange, "0.1,1,0.05")] private float spacingTime = 0.25f;
         [Export (PropertyHint.Range, "0.1,1.0,0.1")] private float slowMotionRatio = 0.5f;
 
+        [Export] private AudioStreamOGGVorbis sound = null;
+
         #region Controls
         private const string MOVE_UP = "Up";
         private const string MOVE_DOWN = "Down";
@@ -63,6 +65,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             AddChild(timer);
             Draw();
             SetActionMove();
+        }
+
+        protected override void SetActionMove()
+        {
+            base.SetActionMove();
+            SoundManager.GetInstance().GetAudioPlayer(sound, this);
         }
 
         public override void _UnhandledInput(InputEvent pEvent)

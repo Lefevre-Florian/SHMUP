@@ -15,7 +15,10 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private List<AudioStreamPlayer2D> audioPlayerPool = new List<AudioStreamPlayer2D>();
         private List<AudioStreamPlayer2D> activeAudioPlayer = new List<AudioStreamPlayer2D>();
 
-        AudioStreamPlayer2D musicEmitter = null;
+        private AudioStreamPlayer2D musicEmitter = null;
+
+        private static float soundEffectLevel = 0f;
+        private static float musicLevel = 0f;
 
         private SoundManager():base() {}
 
@@ -29,7 +32,11 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
             Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 
-            musicEmitter = GetNode<AudioStreamPlayer2D>(musicEmitterPath);
+            if(musicEmitterPath != null)
+            {
+                musicEmitter = GetNode<AudioStreamPlayer2D>(musicEmitterPath);
+                musicEmitter.VolumeDb = musicLevel;
+            }
 
             for (int i = 0; i < nSoundEmitter; i++)
                 audioPlayerPool.Add(new AudioStreamPlayer2D());
@@ -50,20 +57,24 @@ namespace Com.IsartDigital.SHMUP.Structure {
             pStream.Loop = false;
             lAudio.Stream = pStream;
             lAudio.Autoplay = true;
+            lAudio.VolumeDb = soundEffectLevel;
 
             activeAudioPlayer.Add(lAudio);
 
             lAudio.Connect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
+            pTarget.Connect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
+            
             audioPlayerPool.Remove(lAudio);
 
             pTarget.AddChild(lAudio);
-            pTarget.Connect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
+            
         }
 
         private void CleanAudioPlayer(AudioStreamPlayer2D pAudio, Node pTarget)
         {
             pAudio.Stop();
-            pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
+            if(pTarget.IsInsideTree() && pTarget.IsConnected(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer)))
+                pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stream = null;
 
@@ -86,6 +97,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         public void ChangeAudioPlayersVFXVolume(float pDBVolume)
         {
+            soundEffectLevel = pDBVolume;
             int lLength = activeAudioPlayer.Count - 1;
             for (int i = lLength; i >= 0; i--)
             {
@@ -96,6 +108,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         public void ChangeAudioPlayerMusicVolume(float pDBVolume)
         {
             musicEmitter.VolumeDb = pDBVolume;
+            musicLevel = pDBVolume; 
         }
 
         public void ChangeMainMusic(AudioStreamOGGVorbis pMusic)

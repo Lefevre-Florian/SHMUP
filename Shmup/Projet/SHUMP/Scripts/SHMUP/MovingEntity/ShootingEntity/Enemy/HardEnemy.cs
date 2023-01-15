@@ -41,6 +41,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Shoot()
         {
+            base.Shoot();
             EnemyBullet lBullet;
 
             for (int i = 1; i < nBullet+1; i++)

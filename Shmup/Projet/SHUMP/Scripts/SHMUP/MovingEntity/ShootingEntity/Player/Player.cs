@@ -22,6 +22,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         [Export] private NodePath weaponPath = default;
 
+        [Export] private AudioStreamOGGVorbis soundDeath = null;
+
         #region Controls
         private const string MOVE_UP = "Up";
         private const string MOVE_DOWN = "Down";
@@ -179,7 +181,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                 EmitSignal(nameof(LifeState), healthpoint);
 
                 if (healthpoint == 0)
-                    uiManager.TriggerGameOver();
+                {
+                    soundManager.GetAudioPlayer(soundDeath, GetParent());
+                    uiManager.TriggerGameOver(false);
+                }
+                    
 
                 invincibility = true;
 

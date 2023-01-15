@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/BattleDrone.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/laser_iem.ogg" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -12,6 +13,7 @@ shootingSignalDelay = 0.5
 nBlipWarningSignal = 5
 shootingEase = 2
 warningSignalColor = Color( 1, 0.513726, 0, 1 )
+soundLaser = ExtResource( 2 )
 
 [node name="Renderer" type="Node2D" parent="."]
 

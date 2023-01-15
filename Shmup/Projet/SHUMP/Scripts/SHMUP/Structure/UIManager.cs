@@ -10,6 +10,9 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         [Export] private NodePath popupContainerPath = default;
 
+        [Export] private AudioStreamOGGVorbis gameoverMusic = null;
+        [Export] private AudioStreamOGGVorbis winMusic = null;
+
         private const string PATH_PAUSE_POPUP = "res://Scenes/UIPrefab/Popup/Pause.tscn";
         private const string PATH_GAMEOVER_POPUP = "res://Scenes/UIPrefab/Popup/GameOver.tscn";
 
@@ -61,8 +64,13 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
         }
 
-        public void TriggerGameOver()
+        public void TriggerGameOver(bool pWinState)
         {
+            if(pWinState)
+                SoundManager.GetInstance().ChangeMainMusic(winMusic);
+            else
+                SoundManager.GetInstance().ChangeMainMusic(gameoverMusic);
+
             gameOver = GD.Load<PackedScene>(PATH_GAMEOVER_POPUP).Instance<UI.Popup>();
             popupContainer.AddChild(gameOver);
             gameOver.OpenScreen();

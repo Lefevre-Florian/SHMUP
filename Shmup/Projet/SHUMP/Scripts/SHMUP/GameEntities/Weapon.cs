@@ -34,6 +34,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		private Node bulletContainer;
 		private List<Position2D> canonPositions = new List<Position2D>();
 
+		private SoundManager soundManager = null;
 
 		public override void _Ready()
 		{
@@ -44,6 +45,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			timer.Connect(EventTimer.TIMEOUT, this, nameof(Reset));
 
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
+			soundManager = SoundManager.GetInstance();
 
 			FirstPhaseShoot();
 		}
@@ -53,6 +55,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
             if (canShoot)
             {
 				VibrationManager.SetVibration(weakVibrationForce, strongVibrationForce, vibrationDuration);
+				soundManager.GetAudioPlayer(vfx, this);
 
 				canShoot = false;
 

@@ -8,6 +8,7 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 	public class LanguageSetting : CheckButton
 	{
+		[Export] private AudioStreamOGGVorbis sound = null;
 
 		private LocalisationManager localisationManager = null;
 
@@ -24,6 +25,11 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		private void ChangeLanguage()
 		{
+			if(sound != null)
+            {
+				SoundManager.GetInstance().GetAudioPlayer(sound, this);
+            }
+
 			if (Pressed)
 				localisationManager.SaveLanguageChange(Languages.FR);
 			else

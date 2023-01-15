@@ -1,6 +1,7 @@
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player;
+using Com.IsartDigital.SHMUP.Structure;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         [Export] private uint score = 100;
         [Export] private int damage = 1;
         [Export] private PackedScene drop = null;
+        [Export] private AudioStreamOGGVorbis soundDeath = null;
 
         private const string TRIGGER_TAG = "Trigger";
 
@@ -64,6 +66,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         public void Destroy()
         {
+            SoundManager.GetInstance().GetAudioPlayer(soundDeath, GetParent());
+
             FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
             GetParent().AddChild(lScore);
             lScore.RectPosition = Position;

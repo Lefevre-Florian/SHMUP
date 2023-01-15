@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/ThrowerHelperEnemy.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/enemy_explosion.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80, 17 )
@@ -14,6 +16,8 @@ rendererPath = NodePath("Renderer")
 tweenDamageDuration = 1.0
 tweenEaseType = 2
 damageColor = Color( 0.960784, 0.113725, 0.113725, 0.960784 )
+soundDeath = ExtResource( 2 )
+soundShoot = ExtResource( 3 )
 
 [node name="Renderer" type="Polygon2D" parent="."]
 color = Color( 0.498039, 0.498039, 0.498039, 1 )

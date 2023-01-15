@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/GameEntities/StaticEntities/Collectible/SmarbombKit.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/powerup_bomb.ogg" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.3333, 73.3333 )
@@ -9,6 +10,7 @@ extents = Vector2( 17.3333, 73.3333 )
 position = Vector2( -8, 0 )
 scale = Vector2( 0.55, 0.85 )
 script = ExtResource( 1 )
+sound = ExtResource( 2 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 10.6667, 4.26667 )
