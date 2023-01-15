@@ -12,6 +12,10 @@ namespace Com.IsartDigital.SHMUP.Structure {
         [Export] private int nSoundEmitter = 60;
         [Export] private NodePath musicEmitterPath = default;
 
+        private const string SECTION_NAME = "Settings";
+        private const string KEY_VFX_NAME = "VFX";
+        private const string KEY_MUSIC_NAME = "Music";
+
         private List<AudioStreamPlayer2D> audioPlayerPool = new List<AudioStreamPlayer2D>();
         private List<AudioStreamPlayer2D> activeAudioPlayer = new List<AudioStreamPlayer2D>();
 
@@ -34,9 +38,18 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
             if(musicEmitterPath != null)
             {
+
+                object lMusicData = SaveManager.LoadData(SECTION_NAME, KEY_MUSIC_NAME);
+                if (lMusicData != null)
+                    musicLevel = (float)lMusicData;
+
                 musicEmitter = GetNode<AudioStreamPlayer2D>(musicEmitterPath);
                 musicEmitter.VolumeDb = musicLevel;
             }
+
+            object lVFXData = SaveManager.LoadData(SECTION_NAME, KEY_VFX_NAME);
+            if (lVFXData != null)
+                soundEffectLevel = (float)lVFXData;
 
             for (int i = 0; i < nSoundEmitter; i++)
                 audioPlayerPool.Add(new AudioStreamPlayer2D());
