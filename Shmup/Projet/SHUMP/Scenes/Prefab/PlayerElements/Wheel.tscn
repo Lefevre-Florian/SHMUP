@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/SHMUP/Environment/Wheel.cs" type="Script" id=1]
 
 [node name="Tire" type="Polygon2D"]
-position = Vector2( 40, 24 )
+position = Vector2( 40, 16 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -8, 0, 0, -8, 8, 0, 0, 8 )
 script = ExtResource( 1 )
-rotationSpeed = 50.0
+rotationSpeed = 3.5
 
 [node name="Hubcap" type="Polygon2D" parent="."]
 scale = Vector2( 0.5, 0.5 )

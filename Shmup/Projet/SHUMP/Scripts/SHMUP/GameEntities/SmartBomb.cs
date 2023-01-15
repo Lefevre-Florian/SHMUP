@@ -129,13 +129,16 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 				return;
 
 			if (pEntity is Enemy)
-            {
+			{
 				if (pEntity is Boss)
 					((Boss)pEntity).TakeDamage(damage);
 				else
 					((Enemy)pEntity).Destroy();
 			}
-            else pEntity.QueueFree();
+			else if (pEntity is PopcornEnemy)
+				((PopcornEnemy)pEntity).Destroy();
+			else
+				pEntity.QueueFree();
         }
 
 		private void Destroy()

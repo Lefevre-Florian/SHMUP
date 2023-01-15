@@ -73,8 +73,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private void CleanAudioPlayer(AudioStreamPlayer2D pAudio, Node pTarget)
         {
             pAudio.Stop();
-            if(pTarget.IsInsideTree() && pTarget.IsConnected(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer)))
-                pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
+            pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stream = null;
 

@@ -66,7 +66,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         public void Destroy()
         {
-            SoundManager.GetInstance().GetAudioPlayer(soundDeath, GetParent());
+            SoundManager.GetInstance().GetAudioPlayer(soundDeath, this);
 
             FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
             GetParent().AddChild(lScore);

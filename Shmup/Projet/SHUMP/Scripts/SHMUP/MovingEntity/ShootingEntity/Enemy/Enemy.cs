@@ -127,7 +127,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
-			soundManager.GetAudioPlayer(soundDeath, GetParent());
+			soundManager.GetAudioPlayer(soundDeath, this);
 			FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
 			GetParent().AddChild(lScore);
 			lScore.RectPosition = Position;
