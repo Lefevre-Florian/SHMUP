@@ -7,14 +7,11 @@ namespace Com.IsartDigital.SHMUP.Particles {
 	public class Explosion : Particles2D
 	{
 
-		public void Init(Vector2 pPosition)
+        public override void _Ready()
         {
-			Position = pPosition;
-
-			GetTree().CreateTimer(Lifetime).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
-
 			Emitting = true;
-        }
+			GetTree().CreateTimer(Lifetime).Connect(EventTimer.TIMEOUT, this, nameof(Destroy));
+		}
 
 		private void Destroy()
         {

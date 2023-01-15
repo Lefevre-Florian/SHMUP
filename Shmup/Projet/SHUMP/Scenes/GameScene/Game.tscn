@@ -355,6 +355,47 @@ autowrap = true
 script = ExtResource( 11 )
 
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.858824 )
+
+[node name="Basket" type="Polygon2D" parent="ParallaxBackground/LayerForeground"]
+position = Vector2( 96, 592 )
+color = Color( 0, 0.14902, 0.0431373, 1 )
+polygon = PoolVector2Array( -24, 0, 24, 0, 24, -64, 32, -64, 32, -72, 24, -72, -24, -72, -32, -72, -32, -64, -24, -64 )
+
+[node name="Line2D" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 0, -0.202703 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D2" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( -8, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D3" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( -16, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D4" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 8, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D5" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 16, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
 scoreTweenRotation = 0.8

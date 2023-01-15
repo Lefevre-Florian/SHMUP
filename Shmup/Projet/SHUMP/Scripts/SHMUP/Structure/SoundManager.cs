@@ -62,8 +62,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
             activeAudioPlayer.Add(lAudio);
 
             lAudio.Connect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
-            pTarget.Connect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
-            
+            if(!pTarget.IsConnected(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer)))
+                pTarget.Connect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer), new Godot.Collections.Array(lAudio, pTarget));
             audioPlayerPool.Remove(lAudio);
 
             pTarget.AddChild(lAudio);
@@ -73,7 +73,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private void CleanAudioPlayer(AudioStreamPlayer2D pAudio, Node pTarget)
         {
             pAudio.Stop();
-            pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
+            if(pTarget.IsConnected(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer)))
+                pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stream = null;
 
@@ -119,7 +120,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         {
             int lLength = activeAudioPlayer.Count - 1;
             for (int i = lLength; i >= 0; i++)
-                activeAudioPlayer[i].QueueFree();
+                audioPlayerPool[i].QueueFree();
 
             Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
             QueueFree();

@@ -24,6 +24,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         [Export] private AudioStreamOGGVorbis soundDeath = null;
 
+        [Export] private NodePath firstRendererPath = default;
+        [Export] private NodePath secondRendererPath = default;
+
+        [Export] private NodePath smokePath = null;
+
         #region Controls
         private const string MOVE_UP = "Up";
         private const string MOVE_DOWN = "Down";
@@ -57,6 +62,15 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         
         private float forcedSpeed;
         private const float REPULSION = 8;
+        #endregion
+
+        #region Renderer
+
+        private Polygon2D fullLifeRenderer = null;
+        private Polygon2D damagedRenderer = null;
+
+        private Particles2D smoke = null;
+
         #endregion
 
         public Weapon canon;
@@ -104,6 +118,10 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             canon = GetNode<Weapon>(weaponPath);
 
             specialFeatureScene = GD.Load<PackedScene>(SPECIALFEATURE_PATH);
+
+            fullLifeRenderer = GetNode<Polygon2D>(firstRendererPath);
+            damagedRenderer = GetNode<Polygon2D>(secondRendererPath);
+            smoke = GetNode<Particles2D>(smokePath);
 
             AddChild(specialFeatureDelaytimer);
 
@@ -185,7 +203,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
                     soundManager.GetAudioPlayer(soundDeath, GetParent());
                     uiManager.TriggerGameOver(false);
                 }
-                    
+
+                if (!damagedRenderer.Visible)
+                {
+                    damagedRenderer.Visible = true;
+                    fullLifeRenderer.Visible = false;
+
+                    smoke.Emitting = true;
+                }
 
                 invincibility = true;
 
@@ -210,8 +235,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         public void RegainHealth(int pHealthPoint)
         {
             healthpoint += pHealthPoint;
-            if (healthpoint > maxHealthPoint)
+            if (healthpoint >= maxHealthPoint)
+            {
                 healthpoint = maxHealthPoint;
+                damagedRenderer.Visible = false;
+                fullLifeRenderer.Visible = true;
+
+                smoke.Emitting = false;
+            }
             EmitSignal(nameof(LifeState), healthpoint);
         }
 

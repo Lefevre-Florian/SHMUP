@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Com.IsartDigital.SHMUP.GameEntities;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.Particles;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
@@ -31,9 +32,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";
+		private const string PATH_EXPLOSION = "res://Scenes/Prefab/Juiciness/Particles/CarExplosion.tscn";
 
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
 		private const string PATH_COLLECTIBLE_CONTAINER = "../../CollecitbleContainer";
+		private const string PATH_PARTICLES_CONTAINER = "../../ParticlesContainer";
 
 		private const string TRIGGER_TAG = "Trigger";
 
@@ -127,7 +130,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
-			soundManager.GetAudioPlayer(soundDeath, this);
 			FlyingScore lScore = GD.Load<PackedScene>(PATH_SCORE_POPUP).Instance<FlyingScore>();
 			GetParent().AddChild(lScore);
 			lScore.RectPosition = Position;
@@ -139,6 +141,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 				collectibleContainer.AddChild(lCollectible);
 				lCollectible.Position = Position;
             }
+
+			Node2D lParticlesContainer = GetNode<Node2D>(PATH_PARTICLES_CONTAINER);
+			Explosion lExplosion = GD.Load<PackedScene>(PATH_EXPLOSION).Instance<Explosion>();
+			lParticlesContainer.AddChild(lExplosion);
+			lExplosion.Position = GlobalPosition;
+			soundManager.GetAudioPlayer(soundDeath, lExplosion);
 
 			QueueFree();
         }
