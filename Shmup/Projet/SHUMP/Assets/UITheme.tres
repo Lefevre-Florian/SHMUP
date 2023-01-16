@@ -1,32 +1,64 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=1]
 
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0.741176, 1, 1 )
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
+bg_color = Color( 0.541176, 0.807843, 0.980392, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0.741176, 1, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color( 0.513726, 0.694118, 0.811765, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color( 1, 1, 1, 0.764706 )
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 0.741176, 1, 1 )
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
+bg_color = Color( 0.4, 0.545098, 0.639216, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.247059, 0.607843, 0.764706, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 1 )
@@ -44,11 +76,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
-
 [resource]
 default_font = SubResource( 1 )
+Button/fonts/font = SubResource( 1 )
 Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 4 )
@@ -56,5 +86,7 @@ CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
 CheckButton/icons/on_disabled = null
+Panel/styles/panel = SubResource( 7 )
+ProgressBar/fonts/font = SubResource( 1 )
 ProgressBar/styles/bg = SubResource( 5 )
 ProgressBar/styles/fg = SubResource( 6 )

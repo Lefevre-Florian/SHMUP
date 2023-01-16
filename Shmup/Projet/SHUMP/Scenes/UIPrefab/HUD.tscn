@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/UI/Hud.cs" type="Script" id=1]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.976471, 1, 0, 1 )
@@ -13,6 +18,10 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="UI" type="Control"]
 margin_right = 1024.0
@@ -31,7 +40,7 @@ specialFeatureEase = 2
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.107
-margin_bottom = -0.200005
+margin_bottom = 15.8
 
 [node name="Heart" type="Polygon2D" parent="Panel"]
 position = Vector2( 32, 16 )
@@ -41,18 +50,20 @@ polygon = PoolVector2Array( -16, -8, -8, -16, 0, -8, 8, -16, 16, -8, 16, 0, 0, 1
 
 [node name="Lifebar" type="ProgressBar" parent="Panel"]
 margin_left = 64.0
-margin_top = 8.0
+margin_top = 3.0
 margin_right = 320.0
-margin_bottom = 28.0
+margin_bottom = 35.0
 theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 3 )
 step = 1.0
 
 [node name="SpecialFeature" type="ProgressBar" parent="Panel"]
 margin_left = 64.0
-margin_top = 35.0
+margin_top = 40.0
 margin_right = 192.0
-margin_bottom = 55.0
+margin_bottom = 72.0
 theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 step = 1.0
@@ -74,9 +85,9 @@ valign = 1
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -320.0
-margin_top = 16.0
+margin_top = 24.0
 margin_right = -64.0
-margin_bottom = 48.0
+margin_bottom = 56.0
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
 margin_right = 256.0
@@ -94,7 +105,7 @@ align = 1
 valign = 1
 
 [node name="Ligthning" type="Polygon2D" parent="Panel"]
-position = Vector2( 36, 49 )
+position = Vector2( 36, 59 )
 scale = Vector2( 0.5, 0.5 )
 color = Color( 0.992157, 1, 0, 1 )
 polygon = PoolVector2Array( -16, -32, 0, -32, -8, -16, 0, 0, -16, 24, -16, 24, -8, 0, -16, -16, -8, -32 )

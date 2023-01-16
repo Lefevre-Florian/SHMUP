@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Img/FR_FLAG.png" type="Texture" id=2]
@@ -10,6 +10,13 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/VibrationSetting.cs" type="Script" id=9]
 [ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 11 )
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -31,10 +38,12 @@ margin_left = -256.0
 margin_top = -236.0
 margin_right = 256.0
 margin_bottom = 244.0
+theme = ExtResource( 1 )
 
 [node name="SettingTitle" type="Label" parent="Main"]
 anchor_right = 1.0
-margin_bottom = 32.0
+margin_top = 8.0
+margin_bottom = 40.0
 theme = ExtResource( 1 )
 text = "KEY_SETTING"
 align = 1
@@ -53,6 +62,8 @@ margin_right = -128.0
 margin_bottom = -56.0
 rect_pivot_offset = Vector2( 40, 31 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "KEY_VFX"
 valign = 1
 autowrap = true
@@ -83,6 +94,8 @@ margin_right = -128.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( 40, 31 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "KEY_MUSIC"
 valign = 1
 autowrap = true
@@ -137,6 +150,8 @@ margin_top = 32.0
 margin_right = -112.0
 margin_bottom = 72.0
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "KEY_VIBRATION"
 valign = 1
 autowrap = true

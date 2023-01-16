@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=2]
@@ -10,6 +10,9 @@
 size = 32
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
 [node name="Credit" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,6 +22,11 @@ closeButtonPath = NodePath("Panel/Button")
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.247059, 0.607843, 0.764706, 1 )
 
 [node name="Title" type="Label" parent="Panel"]
 anchor_right = 1.0
@@ -53,6 +61,7 @@ margin_left = -144.0
 margin_top = -108.0
 margin_right = 142.0
 margin_bottom = -60.0
+custom_fonts/font = SubResource( 2 )
 text = "Game designer & developper
 
 LEFEVRE FLORIAN"
@@ -67,6 +76,7 @@ margin_left = -144.0
 margin_top = 36.0
 margin_right = 142.0
 margin_bottom = 84.0
+custom_fonts/font = SubResource( 2 )
 text = "Soud & Music Designer
 
 Stanislas D'ARNOUX DE FLEURY

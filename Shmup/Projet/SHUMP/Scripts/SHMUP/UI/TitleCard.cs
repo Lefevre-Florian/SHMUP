@@ -17,8 +17,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 
 		[Export] private PackedScene loadScene = default;
 
-		[Export] private AudioStreamOGGVorbis btnSound = null;
-
 		private Button btnStart = null;
 		private Button btnCredit = null;
 		private Button btnExit = null;

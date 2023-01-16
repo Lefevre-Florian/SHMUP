@@ -47,7 +47,7 @@ position = Vector2( 1832, 232 )
 position = Vector2( 1904, 168 )
 
 [node name="PopcornEnemy7" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1984, 104 )
+position = Vector2( 2024, 216 )
 
 [node name="PopcornEnemy4" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( 1832, 408 )
@@ -56,7 +56,7 @@ position = Vector2( 1832, 408 )
 position = Vector2( 1904, 472 )
 
 [node name="PopcornEnemy6" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 1976, 536 )
+position = Vector2( 2024, 424 )
 
 [node name="Enemy1" parent="EnemyContainer" instance=ExtResource( 3 )]
 position = Vector2( 3416, 320 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
@@ -7,10 +7,41 @@
 [ext_resource path="res://Scenes/GameScene/KeybindScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/SHMUP/Environment/NewsTitle.cs" type="Script" id=8]
+[ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefab/Decors/Character.tscn" type="PackedScene" id=10]
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 15
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
+size = 52
 font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
@@ -19,10 +50,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 0.662745 )
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="TitleCard" type="Control"]
 anchor_right = 1.0
@@ -38,10 +69,99 @@ loadScene = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="BG" type="ColorRect" parent="TitleCard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.247059, 0.607843, 0.764706, 1 )
+
+[node name="Decors" type="Node2D" parent="TitleCard"]
+
+[node name="Cloud" parent="TitleCard/Decors" instance=ExtResource( 9 )]
+position = Vector2( 80, 56 )
+
+[node name="Cloud2" parent="TitleCard/Decors" instance=ExtResource( 9 )]
+position = Vector2( 144, 64 )
+
+[node name="Cloud3" parent="TitleCard/Decors" instance=ExtResource( 9 )]
+position = Vector2( 840, 104 )
+
+[node name="Cloud4" parent="TitleCard/Decors" instance=ExtResource( 9 )]
+position = Vector2( 672, 48 )
+
+[node name="Cloud5" parent="TitleCard/Decors" instance=ExtResource( 9 )]
+position = Vector2( 408, 80 )
+
+[node name="CharacterRenderer" parent="TitleCard/Decors" instance=ExtResource( 10 )]
+position = Vector2( 504, 496 )
+scale = Vector2( 5, 5 )
+
+[node name="Bandeau" type="ColorRect" parent="TitleCard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+margin_bottom = -16.0
+color = Color( 0.313726, 0.313726, 0.313726, 1 )
+
+[node name="LineUp" type="Line2D" parent="TitleCard/Bandeau"]
+points = PoolVector2Array( 1024, 0, 0, 0 )
+width = 5.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="LineDown" type="Line2D" parent="TitleCard/Bandeau"]
+position = Vector2( 0, 48 )
+points = PoolVector2Array( 1024, 0, 0, 0 )
+width = 5.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="News" type="Label" parent="TitleCard/Bandeau"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = -32.0
+margin_right = -40.0
+margin_bottom = -12.0
+custom_fonts/font = SubResource( 4 )
+text = "KEY_NEWS_EIFFEL"
+script = ExtResource( 8 )
+speed = 125.0
+
+[node name="News2" type="Label" parent="TitleCard/Bandeau"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 312.0
+margin_top = -32.0
+margin_right = 512.0
+margin_bottom = -12.0
+custom_fonts/font = SubResource( 4 )
+text = "KEY_NEWS_ARC	"
+script = ExtResource( 8 )
+speed = 125.0
+
+[node name="BK" type="Polygon2D" parent="TitleCard/Bandeau"]
+position = Vector2( 9.41177, -3 )
+scale = Vector2( 1.29412, 0.4375 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 104, 0, 88, -48, -32, -48, -16, 0 )
+
+[node name="Subtitle" type="Label" parent="TitleCard/Bandeau"]
+margin_top = -24.0
+margin_right = 121.0
+margin_bottom = -4.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "BREAKING NEWS"
+
 [node name="Title" type="Label" parent="TitleCard"]
 anchor_right = 1.0
 anchor_bottom = 0.107
-margin_bottom = -0.200005
+margin_top = 96.0
+margin_bottom = 97.8
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "KEY_TITLE"
 align = 1
@@ -53,41 +173,47 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -64.0
-margin_right = 64.0
-margin_bottom = 64.0
+margin_left = -160.0
+margin_top = -108.0
+margin_right = 160.0
+margin_bottom = -44.0
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
 text = "KEY_PLAY"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
 
 [node name="SettingsButton" type="Button" parent="TitleCard"]
-anchor_left = 0.311
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.311
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.464
-margin_top = -36.0
-margin_right = 89.536
-margin_bottom = 92.0
+margin_left = -160.0
+margin_top = -12.0
+margin_right = 374.0
+margin_bottom = 95.0
 rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
 text = "KEY_SETTING"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
 
 [node name="CreditButton" type="Button" parent="TitleCard"]
-anchor_left = 0.686
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.686
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.4641
-margin_top = -36.0
-margin_right = 89.5359
-margin_bottom = 92.0
+margin_left = -160.0
+margin_top = 84.0
+margin_right = 373.0
+margin_bottom = 191.0
 rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
 text = "KEY_CREDIT"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
@@ -95,12 +221,13 @@ sound = ExtResource( 6 )
 [node name="ExitButton" type="Button" parent="TitleCard"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -88.0
-margin_top = 8.0
-margin_right = 40.0
-margin_bottom = 136.0
+margin_left = -136.0
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 112.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 1 )
+custom_styles/hover = SubResource( 3 )
 custom_styles/normal = SubResource( 1 )
 text = "KEY_EXIT"
 script = ExtResource( 4 )

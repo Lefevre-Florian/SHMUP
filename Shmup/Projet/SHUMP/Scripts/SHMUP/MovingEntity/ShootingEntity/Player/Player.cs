@@ -58,19 +58,18 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         private const float MARGINX = 50f;
         private const float MARGINY = 50f;
-        private const float HUDSIZE = 100f;
+        private const float HUDSIZE = 125f;
         
         private float forcedSpeed;
         private const float REPULSION = 8;
         #endregion
 
         #region Renderer
-
         private Polygon2D fullLifeRenderer = null;
         private Polygon2D damagedRenderer = null;
+        private Polygon2D ligthningRod = null;
 
         private Particles2D smoke = null;
-
         #endregion
 
         public Weapon canon;
