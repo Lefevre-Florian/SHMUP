@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/Boss.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Sound/boss_explosion.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Sound/boss_shoot.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sound/boss1_loop.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sound/boss2_loop.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sound/boss0_loop.ogg" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 64 )
@@ -32,6 +35,7 @@ droneShootDelay = 5.0
 droneRespawnDelay = 3.8
 helperSpeed = 200.0
 helperThrowingDelay = 0.15
+themes = [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="Renderer" type="Node2D" parent="."]
 

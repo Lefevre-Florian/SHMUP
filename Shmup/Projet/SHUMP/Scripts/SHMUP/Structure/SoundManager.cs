@@ -125,16 +125,15 @@ namespace Com.IsartDigital.SHMUP.Structure {
         }
 
         public void ChangeMainMusic(AudioStreamOGGVorbis pMusic)
-        {
+        {   
+            musicEmitter.Stop();
+            musicEmitter.Stream = null;
             musicEmitter.Stream = pMusic;
+            musicEmitter.Play();
         }
 
         private void Destructor()
         {
-            int lLength = activeAudioPlayer.Count - 1;
-            for (int i = lLength; i >= 0; i++)
-                audioPlayerPool[i].QueueFree();
-
             Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
             QueueFree();
         }

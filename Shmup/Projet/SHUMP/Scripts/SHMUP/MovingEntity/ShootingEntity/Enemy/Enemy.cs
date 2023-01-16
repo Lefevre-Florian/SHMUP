@@ -13,7 +13,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
 		public static List<Enemy> enemies = new List<Enemy>();
 
-		[Export] private float shootDelay = 1f;
+		[Export] protected float shootDelay = 1f;
 		[Export] private int bodyDamage = 1;
 		[Export] private uint score = 100;
 
