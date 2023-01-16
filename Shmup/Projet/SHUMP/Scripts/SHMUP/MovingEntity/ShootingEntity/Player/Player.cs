@@ -97,6 +97,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         [Signal]
         public delegate void SmarbombState(bool pState);
 
+        [Signal]
+        public delegate void SpecialFeatureState(float pDuration);
+
         private Player() : base() { }
 
 		public override void _Ready()
@@ -279,15 +282,26 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             specialFeatureDelaytimer.WaitTime = lSP.duration + specialFeatureDelay;
             specialFeatureDelaytimer.OneShot = true;
             specialFeatureDelaytimer.Start();
+
+            EmitSignal(nameof(SpecialFeatureState), true, lSP.duration + specialFeatureDelay);
         }
 
         private void DisableSpecialFeature(SpecialFeature pSpecialFeature)
         {
             specialFeature = false;
             pSpecialFeature.Disconnect(nameof(SpecialFeature.Finished), this, nameof(DisableSpecialFeature));
+
             specialFeatureDelaytimer.Disconnect(EventTimer.TIMEOUT, this, nameof(DisableSpecialFeature));
             if (specialFeatureDelaytimer.TimeLeft > specialFeatureDelay)
+            {
                 specialFeatureDelaytimer.WaitTime = specialFeatureDelay;
+                EmitSignal(nameof(SpecialFeatureState), false, specialFeatureDelay);
+            }
+            else
+            {
+                EmitSignal(nameof(SpecialFeatureState), false, specialFeatureDelaytimer.WaitTime);
+            }
+                
         }
 
         public int GetHealthPoint()

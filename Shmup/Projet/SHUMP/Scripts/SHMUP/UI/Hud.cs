@@ -11,6 +11,7 @@ namespace Com.IsartDigital.SHMUP.UI {
         [Export] private NodePath lifePath = default;
         [Export] private NodePath scorePath = default;
         [Export] private NodePath smartBombPath = default;
+        [Export] private NodePath specialFeaturePath = default;
 
         [Export] private float scoreTweenDuration;
         [Export] private float scoreTweenRotation;
@@ -18,13 +19,20 @@ namespace Com.IsartDigital.SHMUP.UI {
         [Export] private Tween.TransitionType scoreTweenTransition = default;
         [Export] private Tween.EaseType scoreTweenEase = default;
 
+        [Export] private Tween.TransitionType specialFeatureTransition = default;
+        [Export] private Tween.EaseType specialFeatureEase = default;
+
         private const string PROPERTY_LABEL_SCALE = "rect_scale";
         private const string PROPERTY_LABEL_ROTATION = "rect_rotation";
+        private const string PROPERTY_PROGRESSBAR_VALUE = "value";
+
+        private const double MIN_VALUE = 0;
 
         private Label score;
         private Label smartBomb;
 
         private ProgressBar lifeBar;
+        private ProgressBar specialFeatureBar;
 
         private uint nScore = 0;
         private Vector2 scoreLabelPosition;
@@ -37,6 +45,9 @@ namespace Com.IsartDigital.SHMUP.UI {
         private int maxSmartBomb = 0;
 
         private string scoreExtension;
+
+        private SceneTreeTween specialFeatureTween = null;
+        private double maxValue;
 
         private Hud() : base() { }
 
@@ -73,7 +84,11 @@ namespace Com.IsartDigital.SHMUP.UI {
             nSmartBomb = lPlayer.nSmartBomb;
             smartBomb.Text = $"{nSmartBomb}/{maxSmartBomb}";
 
+            specialFeatureBar = GetNode<ProgressBar>(specialFeaturePath);
+            maxValue = specialFeatureBar.MaxValue;
+
             lPlayer.Connect(nameof(Player.SmarbombState), this, nameof(UpdateSmartBombHUD));
+            lPlayer.Connect(nameof(Player.SpecialFeatureState), this, nameof(TweenSpecialFeature));
 
         }
 
@@ -116,6 +131,28 @@ namespace Com.IsartDigital.SHMUP.UI {
             
             nScore += pScore;
             score.Text = $"{scoreExtension}:\n{nScore}";
+        }
+
+        public void TweenSpecialFeature(bool pState, float pDuration)
+        {
+            if (specialFeatureTween != null && specialFeatureTween.IsRunning())
+                specialFeatureTween.Stop();
+
+            if (pState)
+            {
+                 specialFeatureTween = GetTree().CreateTween();
+                 specialFeatureTween.TweenProperty(specialFeatureBar, PROPERTY_PROGRESSBAR_VALUE, MIN_VALUE, pDuration * Engine.TimeScale)
+                               .SetTrans(specialFeatureTransition)
+                               .SetEase(specialFeatureEase);
+            }
+            else
+            {
+                specialFeatureTween = GetTree().CreateTween();
+                specialFeatureTween.TweenProperty(specialFeatureBar, PROPERTY_PROGRESSBAR_VALUE, maxValue, pDuration)
+                                   .SetTrans(specialFeatureTransition)
+                                   .SetEase(specialFeatureEase);
+            }
+           
         }
 
         public Vector2 GetScorePosition()

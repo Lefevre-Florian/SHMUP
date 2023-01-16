@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/GameScene/KeybindScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 7 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
@@ -37,6 +42,7 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.107
 margin_bottom = -0.200005
+custom_fonts/font = SubResource( 2 )
 text = "KEY_TITLE"
 align = 1
 valign = 1

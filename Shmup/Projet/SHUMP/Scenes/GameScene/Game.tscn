@@ -399,6 +399,7 @@ default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
 scoreTweenRotation = 0.8
+specialFeatureEase = 0
 
 [node name="PopupContainer" type="Node" parent="."]
 
