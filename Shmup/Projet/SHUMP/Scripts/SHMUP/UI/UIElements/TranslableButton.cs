@@ -9,10 +9,14 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 	{
 
 		[Export] private AudioStreamOGGVorbis sound = null;
+		[Export (PropertyHint.Range, "1f, 5f, 0.1f")] private float growthFactor = 1.15f;
 
+		private const string PROPERTY_RECT_SCALE = "rect_scale";
 		private LocalisationManager localisationManager = null;
 
 		private string translationKey;
+
+		private Vector2 initialRectScale;
 
 		public override void _Ready()
 		{
@@ -20,11 +24,15 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 			localisationManager = LocalisationManager.GetInstance();
 
+			initialRectScale = RectScale;
+
 			Translate();
 
 			localisationManager.Connect(nameof(LocalisationManager.LanguageChanged), this, nameof(Translate));
 			Connect(EventNode.TREE_EXITING, this, nameof(Destructor));
 			Connect(EventButton.PRESSED, this, nameof(Press));
+			Connect(EventControl.MOUSE_ENTERED, this, nameof(OnFocusEntered));
+			Connect(EventControl.MOUSE_EXITED, this, nameof(OnFocusExited));
 		}
 
 		private void Translate()
@@ -34,11 +42,22 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 		private void Press()
         {
+			RectScale = initialRectScale;
 			if (sound == null)
 				return;
 
 			SoundManager.GetInstance().GetAudioPlayer(sound, this);
         }
+
+		private void OnFocusEntered()
+        {
+			RectScale *= growthFactor;
+        }
+
+		private void OnFocusExited()
+        {
+			RectScale = initialRectScale;
+		}
 
 		private void Destructor()
 		{
@@ -48,6 +67,8 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 				localisationManager = null;
 			}
 
+			Disconnect(EventControl.MOUSE_ENTERED, this, nameof(OnFocusEntered));
+			Disconnect(EventControl.MOUSE_EXITED, this, nameof(OnFocusExited));
 			Disconnect(EventNode.TREE_EXITING, this, nameof(Destructor));
 		}
 

@@ -47,10 +47,12 @@ margin_left = -128.0
 margin_top = -80.0
 margin_right = 128.0
 margin_bottom = -32.0
+rect_pivot_offset = Vector2( 128, 24 )
 theme = ExtResource( 2 )
 text = "KEY_RETURN"
 script = ExtResource( 4 )
 sound = ExtResource( 5 )
+growthFactor = 1.15
 
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.5
