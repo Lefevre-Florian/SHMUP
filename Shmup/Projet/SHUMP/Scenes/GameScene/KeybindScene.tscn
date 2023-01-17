@@ -45,10 +45,10 @@ margin_bottom = -114.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel"]
-margin_left = 102.0
-margin_top = 15.0
+margin_left = 75.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_MOVEUP"
 script = ExtResource( 2 )
@@ -86,10 +86,10 @@ margin_bottom = -50.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel2"]
-margin_left = 75.0
-margin_top = 15.0
+margin_left = 41.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_MOVEDOWN"
 script = ExtResource( 2 )
@@ -127,10 +127,10 @@ margin_bottom = 14.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel3"]
-margin_left = 76.0
-margin_top = 15.0
+margin_left = 43.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_MOVERIGHT"
 script = ExtResource( 2 )
@@ -168,10 +168,10 @@ margin_bottom = 78.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel4"]
-margin_left = 87.0
-margin_top = 15.0
+margin_left = 55.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_MOVELEFT"
 script = ExtResource( 2 )
@@ -209,10 +209,10 @@ margin_bottom = -26.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel5"]
-margin_left = 115.0
-margin_top = 15.0
+margin_left = 91.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_SHOOT"
 script = ExtResource( 2 )
@@ -243,24 +243,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -424.0
+margin_left = -437.0
 margin_top = -12.0
 margin_right = -168.0
 margin_bottom = 38.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel6"]
-margin_left = 34.0
-margin_top = 15.0
-margin_right = 202.0
-margin_bottom = 35.0
+margin_top = 12.0
+margin_right = 215.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_SPECIALFEATURE"
 script = ExtResource( 2 )
 
 [node name="Panel" type="ColorRect" parent="Background/KeyBindingLabel6"]
-margin_left = 206.0
-margin_right = 256.0
+margin_left = 219.0
+margin_right = 269.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 theme = ExtResource( 1 )
@@ -291,10 +290,10 @@ margin_bottom = -90.0
 alignment = 2
 
 [node name="BindingLabel" type="Label" parent="Background/KeyBindingLabel7"]
-margin_left = 67.0
-margin_top = 15.0
+margin_left = 32.0
+margin_top = 12.0
 margin_right = 202.0
-margin_bottom = 35.0
+margin_bottom = 38.0
 theme = ExtResource( 1 )
 text = "KEY_SMARTBOMB"
 script = ExtResource( 2 )
@@ -329,6 +328,7 @@ margin_left = -128.0
 margin_top = -88.0
 margin_right = 128.0
 margin_bottom = -24.0
+rect_pivot_offset = Vector2( 128, 32 )
 theme = ExtResource( 1 )
 text = "KEY_SKIP"
 script = ExtResource( 6 )

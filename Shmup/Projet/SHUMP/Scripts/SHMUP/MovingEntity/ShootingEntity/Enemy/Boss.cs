@@ -31,6 +31,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private PackedScene droneScene;
 
         private const float YMARGIN = 80f;
+        private const float YTHROWERMARGIN = 120f;
 
         //Replace by boss size
         private const float XMARGIN = 80f;
@@ -202,7 +203,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             thrower = throwerScene.Instance<ThrowerHelperEnemy>();
             GetParent().AddChild(thrower);
             thrower.Init(helperSpeed, helperThrowingDelay, nhelperThrowingEntity);
-            thrower.GlobalPosition = new Vector2(screenSize.x / 2, screenSize.y - YMARGIN);
+            thrower.GlobalPosition = new Vector2(screenSize.x / 2, screenSize.y - YTHROWERMARGIN);
         }
 
         protected override void Dispose(bool pDisposing)

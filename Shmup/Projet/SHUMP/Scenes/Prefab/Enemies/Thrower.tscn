@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/ThrowerHelperEnemy.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Sound/enemy_explosion.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/SHMUP/Environment/CarLight.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/Prefab/PlayerElements/Wheel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -23,6 +24,8 @@ weaponRendererPath = NodePath("Renderer/Weapon")
 retractionPositionY = 16.0
 weaponRetractionDuration = 0.5
 retractationEaseType = 2
+frontLigthPath = NodePath("Renderer/FrontLight")
+backLightPath = NodePath("Renderer/BackLight")
 
 [node name="Renderer" type="Polygon2D" parent="."]
 color = Color( 0, 0, 0, 1 )
@@ -37,12 +40,15 @@ polygon = PoolVector2Array( -8, -8, 8, -8, 8, 16, -8, 16 )
 
 [node name="Tire" parent="Renderer" instance=ExtResource( 5 )]
 position = Vector2( -44, 29 )
+isActive = true
 
 [node name="Tire2" parent="Renderer" instance=ExtResource( 5 )]
 position = Vector2( 4, 29 )
+isActive = true
 
 [node name="Tire3" parent="Renderer" instance=ExtResource( 5 )]
 position = Vector2( 52, 29 )
+isActive = true
 
 [node name="Window" type="Polygon2D" parent="Renderer"]
 color = Color( 0, 0.717647, 1, 1 )
@@ -55,13 +61,23 @@ default_color = Color( 0, 0, 0, 1 )
 begin_cap_mode = 1
 end_cap_mode = 1
 
-[node name="Light" type="Polygon2D" parent="Renderer"]
+[node name="FrontLight" type="Polygon2D" parent="Renderer"]
 color = Color( 0.945098, 1, 0, 1 )
 polygon = PoolVector2Array( -80, 16, -72, 16, -80, 24 )
+script = ExtResource( 4 )
+ligheningFactor = 0.8
+switchingDuration = 0.75
+transitionType = 1
+easeType = 2
 
 [node name="BackLight" type="Polygon2D" parent="Renderer"]
 color = Color( 0.92549, 0.215686, 0, 1 )
 polygon = PoolVector2Array( 72, 16, 80, 16, 80, 24 )
+script = ExtResource( 4 )
+isLoop = true
+ligheningFactor = 0.8
+switchingDuration = 0.5
+transitionType = 5
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 15 )

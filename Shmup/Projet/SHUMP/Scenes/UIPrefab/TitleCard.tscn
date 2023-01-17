@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -64.0
 margin_bottom = -16.0
-color = Color( 0.313726, 0.313726, 0.313726, 1 )
+color = Color( 0.215686, 0.235294, 0.709804, 1 )
 
 [node name="LineUp" type="Line2D" parent="TitleCard/Bandeau"]
 points = PoolVector2Array( 1024, 0, 0, 0 )
@@ -173,9 +173,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -167.8
+margin_left = -159.8
 margin_top = -92.0
-margin_right = 152.2
+margin_right = 160.2
 margin_bottom = -28.0
 rect_pivot_offset = Vector2( 160, 32 )
 theme = ExtResource( 1 )
@@ -184,16 +184,15 @@ custom_fonts/font = SubResource( 6 )
 text = "KEY_PLAY"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
-growthFactor = 1.15
 
 [node name="SettingsButton" type="Button" parent="TitleCard"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -274.8
+margin_left = -266.8
 margin_top = -25.2
-margin_right = 259.2
+margin_right = 267.2
 margin_bottom = 81.8
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 267, 53 )
@@ -203,16 +202,15 @@ custom_fonts/font = SubResource( 6 )
 text = "KEY_SETTING"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
-growthFactor = 1.15
 
 [node name="CreditButton" type="Button" parent="TitleCard"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -274.0
+margin_left = -266.0
 margin_top = 66.0
-margin_right = 259.0
+margin_right = 267.0
 margin_bottom = 173.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 266, 53 )
@@ -222,7 +220,6 @@ custom_fonts/font = SubResource( 6 )
 text = "KEY_CREDIT"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
-growthFactor = 1.15
 
 [node name="ExitButton" type="Button" parent="TitleCard"]
 anchor_left = 1.0
@@ -239,4 +236,3 @@ custom_styles/normal = SubResource( 1 )
 text = "KEY_EXIT"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
-growthFactor = 1.15

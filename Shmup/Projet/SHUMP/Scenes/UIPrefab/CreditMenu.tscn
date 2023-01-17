@@ -52,7 +52,6 @@ theme = ExtResource( 2 )
 text = "KEY_RETURN"
 script = ExtResource( 4 )
 sound = ExtResource( 5 )
-growthFactor = 1.15
 
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.5

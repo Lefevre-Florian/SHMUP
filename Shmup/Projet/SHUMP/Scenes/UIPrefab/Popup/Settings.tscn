@@ -82,6 +82,7 @@ rect_pivot_offset = Vector2( -40, 32 )
 max_value = 24.0
 script = ExtResource( 5 )
 storingKey = "VFX"
+sound = ExtResource( 10 )
 
 [node name="MusicLabel" type="Label" parent="Main"]
 anchor_left = 0.5
@@ -115,6 +116,7 @@ max_value = 24.0
 script = ExtResource( 5 )
 storingKey = "Music"
 isAudioPrincipal = true
+sound = ExtResource( 10 )
 
 [node name="Localisation" type="CheckButton" parent="Main"]
 margin_left = 384.0
@@ -140,7 +142,6 @@ theme = ExtResource( 1 )
 text = "KEY_CLOSE"
 script = ExtResource( 8 )
 sound = ExtResource( 10 )
-growthFactor = 1.15
 
 [node name="VibrationLabel" type="Label" parent="Main"]
 anchor_left = 0.5

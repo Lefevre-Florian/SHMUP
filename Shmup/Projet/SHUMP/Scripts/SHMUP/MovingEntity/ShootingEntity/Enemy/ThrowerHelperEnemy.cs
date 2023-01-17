@@ -1,7 +1,8 @@
-using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
-using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
+using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.Environment;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
@@ -13,6 +14,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private float weaponRetractionDuration;
         [Export] private Tween.TransitionType retractionTransitionType = default;
         [Export] private Tween.EaseType retractationEaseType = default;
+
+        [Export] private NodePath frontLigthPath = default;
+        [Export] private NodePath backLightPath = default;
 
         private const string PROPERTY_POSITION = "position";
 
@@ -30,6 +34,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private Polygon2D weaponRenderer = null;
         private Vector2 initialPosition;
         private float throwingDelay;
+
+        private CarLight frontLight = null;
+        private CarLight backlight = null;
 
         public void Init(float pSpeed, float pThrowingDelay, int pNEntity)
         {
@@ -54,6 +61,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             weaponRetractionTimer.Start();
             initialPosition = Position;
 
+            frontLight = GetNode<CarLight>(frontLigthPath);
+            backlight = GetNode<CarLight>(backLightPath);
+
             SetActionMoveAndShoot();
         }
 
@@ -64,9 +74,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             if (GlobalPosition.x < XMARGIN)
             {
                 velocity = Vector2.Right * (speed + forcedSpeed);
+                frontLight.SwitchLight(false);
+                backlight.SwitchLight(true);
             }
             if (GlobalPosition.x > screenSize.x - XMARGIN)
+            {
                 velocity = Vector2.Left * Mathf.Abs(speed - forcedSpeed);
+                frontLight.SwitchLight(true);
+                backlight.SwitchLight(false);
+            }
+                
             base.DoActionMove();
         }
 

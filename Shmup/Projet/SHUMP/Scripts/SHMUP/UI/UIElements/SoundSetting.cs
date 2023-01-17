@@ -10,6 +10,8 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 		[Export] private string storingKey = "";
 		[Export] private bool isAudioPrincipal = false;
 
+		[Export] private AudioStreamOGGVorbis sound = null;
+
 		private const string FILE_PATH = "res://Ressources/Settings.cfg";
 		private const string SECTION_NAME = "Settings";
 
@@ -42,7 +44,11 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 				soundManager.ChangeAudioPlayersVFXVolume((float)Value);
 			
 			if (pChanged)
+            {
 				SaveManager.SaveData(SECTION_NAME, storingKey, Value);
+				soundManager.GetAudioPlayer(sound, this);
+			}
+				
         }
 
 	}
