@@ -14,6 +14,7 @@ script = ExtResource( 1 )
 speed = 250.0
 healthpoint = 10
 shootDelay = 1.5
+score = 1000
 weaponPath = NodePath("Renderer/Weapon/Position2D")
 rendererPath = NodePath("Renderer/Body")
 tweenDamageDuration = 0.3

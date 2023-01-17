@@ -46,50 +46,23 @@ musicEmitterPath = NodePath("../Music")
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
 polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 
-[node name="RoadLine" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 64, 448 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+[node name="Street2" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
+position = Vector2( 0, 120 )
+scale = Vector2( 1, 0.5 )
+color = Color( 0.835294, 0.835294, 0.835294, 1 )
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
 
-[node name="RoadLine2" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 256, 448 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+[node name="Torchlight2" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 896, 112 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="RoadLine3" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 448, 448 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+[node name="Torchlight3" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 512, 112 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="RoadLine4" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 640, 448 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine5" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 832, 448 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine6" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 128, 256 )
-scale = Vector2( 0.8, 0.8 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine7" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 320, 256 )
-scale = Vector2( 0.8, 0.8 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine8" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 512, 256 )
-scale = Vector2( 0.8, 0.8 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine9" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 704, 256 )
-scale = Vector2( 0.8, 0.8 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
-
-[node name="RoadLine10" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-position = Vector2( 896, 256 )
-scale = Vector2( 0.8, 0.8 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+[node name="Torchlight4" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 128, 112 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="LayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color( 1, 1, 1, 0.447059 )
@@ -99,11 +72,50 @@ position = Vector2( 0, 576 )
 color = Color( 0.835294, 0.835294, 0.835294, 1 )
 polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
 
-[node name="Street2" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
-position = Vector2( 0, 120 )
-scale = Vector2( 1, 0.5 )
-color = Color( 0.835294, 0.835294, 0.835294, 1 )
-polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+[node name="RoadLine" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 64, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine2" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 256, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine3" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 448, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine4" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 640, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine5" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 832, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine6" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 128, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine7" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 320, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine8" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 512, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine9" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 704, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine10" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 896, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
 
 [node name="LayerGameplay" parent="ParallaxBackground" instance=ExtResource( 2 )]
 
@@ -112,18 +124,6 @@ modulate = Color( 1, 1, 1, 0.858824 )
 
 [node name="Torchlight" parent="ParallaxBackground/LayerForeground" instance=ExtResource( 7 )]
 position = Vector2( 968, 568 )
-
-[node name="Torchlight2" parent="ParallaxBackground/LayerForeground" instance=ExtResource( 7 )]
-position = Vector2( 896, 112 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Torchlight3" parent="ParallaxBackground/LayerForeground" instance=ExtResource( 7 )]
-position = Vector2( 512, 112 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Torchlight4" parent="ParallaxBackground/LayerForeground" instance=ExtResource( 7 )]
-position = Vector2( 128, 112 )
-scale = Vector2( 0.5, 0.5 )
 
 [node name="Basket" type="Polygon2D" parent="ParallaxBackground/LayerForeground"]
 position = Vector2( 96, 592 )

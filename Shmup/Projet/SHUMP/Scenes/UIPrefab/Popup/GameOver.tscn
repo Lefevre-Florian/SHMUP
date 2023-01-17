@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/UIPrefab/Popup/Popup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=2]
@@ -10,9 +10,42 @@
 size = 20
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.694118, 0.0941176, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Popup" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 scoreLabelPath = NodePath("Panel/ScoreValue")
+unlockFirstStar = 0
+unlockSecondStar = 0
+unlockThirdStar = 0
+xpProgressPath = NodePath("Panel/ProgressBar")
+duration = 1.75
+transitionType = 0
+easeType = 2
 
 [node name="Label" parent="Panel" index="0"]
 text = "KEY_GAMEOVER"
@@ -22,6 +55,7 @@ script = ExtResource( 3 )
 text = "KEY_RETRY"
 
 [node name="Score" type="Label" parent="Panel" index="3"]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -37,6 +71,7 @@ valign = 1
 script = ExtResource( 3 )
 
 [node name="ScoreValue" type="Label" parent="Panel" index="4"]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,3 +84,60 @@ theme = ExtResource( 4 )
 align = 1
 valign = 1
 autowrap = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel" index="5"]
+margin_left = 128.0
+margin_top = 208.0
+margin_right = 512.0
+margin_bottom = 240.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 7200.0
+step = 100.0
+percent_visible = false
+
+[node name="Star" type="Polygon2D" parent="Panel/ProgressBar" index="0"]
+position = Vector2( 104, 19 )
+scale = Vector2( 1.15, 1.15 )
+color = Color( 1, 0.984314, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="BG" type="Polygon2D" parent="Panel/ProgressBar/Star" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="Border" type="Line2D" parent="Panel/ProgressBar/Star" index="1"]
+points = PoolVector2Array( 0, -24.3478, -7.82611, -7.82608, -24.3478, -7.82608, -7.82611, 0, -16.5218, 16.5217, 0, 7.82608, 16.5217, 16.5217, 7.82608, 0, 24.3478, -7.82608, 7.82608, -7.82608, 0, -24.3478 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Star2" type="Polygon2D" parent="Panel/ProgressBar" index="1"]
+position = Vector2( 260, 20 )
+scale = Vector2( 1.15, 1.15 )
+color = Color( 1, 0.984314, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="BG" type="Polygon2D" parent="Panel/ProgressBar/Star2" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="Border" type="Line2D" parent="Panel/ProgressBar/Star2" index="1"]
+points = PoolVector2Array( 0, -24.3478, -7.82611, -7.82608, -24.3478, -7.82608, -7.82611, 0, -16.5218, 16.5217, 0, 7.82608, 16.5217, 16.5217, 7.82608, 0, 24.3478, -7.82608, 7.82608, -7.82608, 0, -24.3478 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Star3" type="Polygon2D" parent="Panel/ProgressBar" index="2"]
+position = Vector2( 364, 20 )
+scale = Vector2( 1.15, 1.15 )
+color = Color( 1, 0.984314, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="BG" type="Polygon2D" parent="Panel/ProgressBar/Star3" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -24, -8, -8, -24, -8, -8, 0, -16, 16, 0, 8, 16, 16, 8, 0, 24, -8, 8, -8 )
+
+[node name="Border" type="Line2D" parent="Panel/ProgressBar/Star3" index="1"]
+points = PoolVector2Array( 0, -24.3478, -7.82611, -7.82608, -24.3478, -7.82608, -7.82611, 0, -16.5218, 16.5217, 0, 7.82608, 16.5217, 16.5217, 7.82608, 0, 24.3478, -7.82608, 7.82608, -7.82608, 0, -24.3478 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
