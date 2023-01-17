@@ -43,7 +43,7 @@ anchor_bottom = 0.107
 margin_bottom = 15.8
 
 [node name="Heart" type="Polygon2D" parent="Panel"]
-position = Vector2( 32, 16 )
+position = Vector2( 32, 17 )
 scale = Vector2( 0.75, 0.75 )
 color = Color( 1, 0, 0, 1 )
 polygon = PoolVector2Array( -16, -8, -8, -16, 0, -8, 8, -16, 16, -8, 16, 0, 0, 16, -16, 0 )

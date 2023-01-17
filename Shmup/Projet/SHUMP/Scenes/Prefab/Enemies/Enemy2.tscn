@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/HardEnemy.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Sound/enemy0_explosion1.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/Prefab/PlayerElements/Wheel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/CarSmoke.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68, 32 )
@@ -24,13 +25,15 @@ moveDelay = 2.5
 chargeSpeed = 300.0
 maxLoop = 0
 activationDelay = 0.8
+particlesPath = NodePath("Renderer/Body/Echap/Particles2D")
+wheelPaths = [ NodePath("Renderer/Tire"), NodePath("Renderer/Tire2") ]
 
 [node name="Renderer" type="Node2D" parent="."]
 
 [node name="Body" type="Polygon2D" parent="Renderer"]
 position = Vector2( 32, 16 )
 color = Color( 1, 0, 0, 1 )
-polygon = PoolVector2Array( -96, -16, 40, -16, 40, -48, 40, -72, -40, -72, -64, -48, -96, -48 )
+polygon = PoolVector2Array( -96, -16, 40, -16, 40, -48, 32, -72, -40, -72, -64, -48, -96, -48 )
 
 [node name="Door" type="Polygon2D" parent="Renderer/Body"]
 position = Vector2( -8, -48 )
@@ -40,6 +43,16 @@ polygon = PoolVector2Array( -16, -16, 16, -16, 16, 24, -16, 24 )
 [node name="Window" type="Polygon2D" parent="Renderer/Body"]
 color = Color( 0, 0.623529, 1, 1 )
 polygon = PoolVector2Array( -64, -48, -56, -48, -40, -64, -40, -72 )
+
+[node name="Echap" type="Polygon2D" parent="Renderer/Body"]
+position = Vector2( 40, -16 )
+rotation = -1.5708
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -4, 4, -4, 4, 0, 1, 1, 0, 3 )
+
+[node name="Particles2D" parent="Renderer/Body/Echap" instance=ExtResource( 5 )]
+rotation = 1.5708
+emitting = false
 
 [node name="Tire" parent="Renderer" instance=ExtResource( 4 )]
 position = Vector2( -24, 0 )

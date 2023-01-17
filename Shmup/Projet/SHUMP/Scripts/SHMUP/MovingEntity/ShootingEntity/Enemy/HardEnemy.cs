@@ -1,9 +1,10 @@
-using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
-using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
-using Com.IsartDigital.SHMUP.Structure;
-using Com.IsartDigital.Utils.Events;
 using Godot;
 using System;
+using Com.IsartDigital.SHMUP.Environment;
+using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
+using Com.IsartDigital.SHMUP.GameEntities.StaticEntities;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
@@ -12,12 +13,17 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private int nBullet = 3;
         [Export] private int maxLoop = 2;
         [Export] private float activationDelay = 0.5f;
+        [Export] private NodePath particlesPath = default;
+        [Export] private List<NodePath> wheelPaths = new List<NodePath>();
 
         private const string PATH_MINE_BULLET = "res://Scenes/Prefab/Bullets/EnemyMine.tscn";
 
         private int phase = 0;
 
         private PackedScene minePrefab;
+        private Particles2D smokeParticle = null;
+
+        private List<Wheel> wheels = new List<Wheel>();
 
         public override void _Ready()
 		{
@@ -25,11 +31,19 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
             velocity = Vector2.Left * Mathf.Abs(speed - forcedSpeed);
             minePrefab = GD.Load<PackedScene>(PATH_MINE_BULLET);
+            smokeParticle = GetNode<Particles2D>(particlesPath);
+
+            foreach (NodePath lPath in wheelPaths)
+                wheels.Add(GetNode<Wheel>(lPath));
         }
 
         protected override void SetActionMoveAndShoot()
         {
             GetTree().CreateTimer(activationDelay).Connect(EventTimer.TIMEOUT, this, nameof(InitChargeProcess));
+            smokeParticle.Emitting = true;
+
+            foreach (Wheel lWheel in wheels)
+                lWheel.SetActionSpin();
             base.SetActionMoveAndShoot();
         }
 

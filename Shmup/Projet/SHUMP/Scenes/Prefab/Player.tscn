@@ -20,6 +20,12 @@ smokePath = NodePath("Renderer/RendererBroken/Particles2D")
 
 [node name="Renderer" parent="." instance=ExtResource( 5 )]
 
+[node name="Tire" parent="Renderer" index="3"]
+isActive = true
+
+[node name="Tire2" parent="Renderer" index="4"]
+isActive = true
+
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 5.40721, -0.107631 )
 rotation = 1.5638

@@ -5,6 +5,7 @@ namespace Com.IsartDigital.SHMUP.Environment {
 
 	public class Wheel : Polygon2D
 	{
+		[Export] private bool isActive = false;
 		[Export] private float rotationSpeed = 0f;
 
 		private Action myAction = null;
@@ -12,7 +13,10 @@ namespace Com.IsartDigital.SHMUP.Environment {
 
 		public override void _Ready()
 		{
-			SetActionSpin();
+			if (isActive)
+				SetActionSpin();
+			else
+				SetActionVoid();
 		}
 
         public override void _Process(float pDelta)

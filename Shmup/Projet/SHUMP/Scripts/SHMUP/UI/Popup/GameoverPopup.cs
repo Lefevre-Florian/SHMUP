@@ -16,7 +16,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 			base._Ready();
 			hud = Hud.GetInstance();
 
-			GetNode<Label>(scoreLabelPath).Text = hud.GetScoreValue().ToString();
+			Label lLabel = GetNode<Label>(scoreLabelPath);
+			lLabel.Text = hud.GetScoreValue().ToString();
 		}
 
 	}
