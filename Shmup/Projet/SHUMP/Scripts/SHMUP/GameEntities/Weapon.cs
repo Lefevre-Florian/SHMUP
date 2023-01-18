@@ -21,6 +21,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 		[Export] private float vibrationDuration;
 
 		[Export] private AudioStreamOGGVorbis vfx = default;
+		[Export(PropertyHint.Range, "1, 20, 1")] private float random;
 
 		private const string PATH_BULLET = "res://Scenes/Prefab/Bullets/Bullet.tscn";
 		private const string PATH_BULLET_CONTAINER = "../../BulletContainer";
@@ -36,6 +37,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 		private SoundManager soundManager = null;
 
+		private RandomNumberGenerator rand = new RandomNumberGenerator();
+
 		public override void _Ready()
 		{
 			timer = new Timer();
@@ -46,6 +49,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 
 			bulletContainer = GetNode<Node>(PATH_BULLET_CONTAINER);
 			soundManager = SoundManager.GetInstance();
+
+			rand.Randomize();
 
 			FirstPhaseShoot();
 		}
@@ -73,7 +78,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			{
 				lBullet = GD.Load<PackedScene>(PATH_BULLET).Instance<PlayerBullet>();
 				lBullet.Rotation = lPosition.GlobalRotation;
-				lBullet.Position = lPosition.GlobalPosition;
+				lBullet.Position = new Vector2(lPosition.GlobalPosition.x , 
+											   rand.RandfRange(lPosition.GlobalPosition.y - random, lPosition.GlobalPosition.y + random));
 				bulletContainer.AddChild(lBullet);
 			}
 		}

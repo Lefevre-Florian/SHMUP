@@ -74,5 +74,9 @@ rotation = -1.5708
 position = Vector2( -112, -24 )
 rotation = 1.5708
 
+[node name="Polygon2D" type="Polygon2D" parent="Renderer"]
+color = Color( 0, 0.529412, 1, 1 )
+polygon = PoolVector2Array( 72, -64, 80, -64, 80, -56, 72, -40, 56, -16, 40, -8, 8, 8, -32, 16, -80, 0, -80, -8, -32, 8, 8, 0, 48, -24, 64, -48 )
+
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

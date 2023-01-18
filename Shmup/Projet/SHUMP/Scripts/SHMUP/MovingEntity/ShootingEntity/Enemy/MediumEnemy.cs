@@ -2,6 +2,8 @@ using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
 using Com.IsartDigital.Utils.Events;
+using System.Collections.Generic;
+using Com.IsartDigital.SHMUP.Environment;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
@@ -13,6 +15,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private NodePath dronePath = default;
 		[Export] private float droneRadius = 10f;
 		[Export] private float droneSpeed = 100f;
+
+		[Export] private NodePath animationPath = default;
+		[Export] private List<NodePath> wheelPaths = new List<NodePath>();
 
 		private float droneAngle = 0f;
 
@@ -33,6 +38,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			drone = GetNode<Drone>(dronePath);
 			drone.Init(droneRadius, droneSpeed, true);
 
+			GetNode<AnimationPlayer>(animationPath).Play();
+			foreach (NodePath lPath in wheelPaths)
+				GetNode<Wheel>(lPath).SetActionSpin();
 
 			drone.Connect(nameof(Drone.Destroyed), this, nameof(DestroyedDrone));
 			base.SetActionMoveAndShoot();

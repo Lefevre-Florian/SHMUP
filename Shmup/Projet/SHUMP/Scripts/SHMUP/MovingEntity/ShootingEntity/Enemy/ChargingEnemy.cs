@@ -10,11 +10,11 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private float moveDelay = 1f;
 		[Export] private float chargeSpeed;
 
-		private Timer chargeTimer = new Timer();
+		protected Timer chargeTimer = new Timer();
 
 		private const float ENDMARGIN = 50f;
 
-		private float internalTime;
+		protected float internalTime;
 
 		private bool isCharging = false;
 

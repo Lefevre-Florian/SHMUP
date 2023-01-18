@@ -31,7 +31,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private PackedScene droneScene;
 
         private const float YMARGIN = 80f;
-        private const float YTHROWERMARGIN = 120f;
+        private const float YTHROWERMARGIN = 20f;
 
         //Replace by boss size
         private const float XMARGIN = 80f;

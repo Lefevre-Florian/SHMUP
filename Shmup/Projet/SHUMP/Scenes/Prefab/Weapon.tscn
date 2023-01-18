@@ -11,6 +11,7 @@ pathSecondUpgrade = NodePath("Renderer/SecondStageUpgrade")
 weakVibrationForce = 1.0
 strongVibrationForce = 1.0
 vibrationDuration = 1.0
+random = 5.0
 
 [node name="Renderer" type="Node2D" parent="."]
 
