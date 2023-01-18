@@ -10,6 +10,7 @@ extents = Vector2( 24, 24 )
 script = ExtResource( 1 )
 speed = 60.0
 margin = 50.0
+score = 1000
 soundDeath = ExtResource( 2 )
 
 [node name="Renderer" type="Polygon2D" parent="."]

@@ -18,6 +18,8 @@ namespace Com.IsartDigital.SHMUP.UI {
 		[Export] private Tween.TransitionType starAnimationTransition = default;
 		[Export] private Tween.EaseType starEaseType = default;
 
+		[Export] private NodePath fireworkPath = default;
+
 		private const string PROPERTY_MODULATE = "modulate:a";
 
 		private List<float> scoreValues = new List<float>()
@@ -61,7 +63,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 		private void TweenXPProgress(float pValue)
         {
 			scoreProgress.Value = pValue;
-			GD.Print(pValue);
 			if (scoreIndex < scoreValues.Count && pValue >= scoreValues[scoreIndex])
             {
 				SceneTreeTween lTween = GetTree().CreateTween();
@@ -77,6 +78,14 @@ namespace Com.IsartDigital.SHMUP.UI {
 		private void WriteScore()
         {
 			scoreLabel.Text = value.ToString();
+			if(scoreProgress.Value >= scoreValues[scoreValues.Count - 1])
+            {
+                foreach (Particles2D lFirework in GetNode<Node2D>(fireworkPath).GetChildren())
+                {
+					lFirework.PauseMode = PauseModeEnum.Process;
+					lFirework.Emitting = true;
+                }
+            }
 		}
 
     }

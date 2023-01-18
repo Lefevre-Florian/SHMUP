@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/UIPrefab/Popup/Popup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=3]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=4]
 [ext_resource path="res://Scripts/SHMUP/UI/Popup/GameoverPopup.cs" type="Script" id=5]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -45,6 +46,7 @@ progressEase = 1
 starAnimationDuration = 0.8
 starAnimationTransition = 0
 starEaseType = 2
+fireworkPath = NodePath("Fireworks")
 
 [node name="Label" parent="Panel" index="0"]
 text = "KEY_GAMEOVER"
@@ -149,3 +151,12 @@ default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="Fireworks" type="Node2D" parent="." index="2"]
+position = Vector2( 512, 304 )
+
+[node name="Firework" parent="Fireworks" index="0" instance=ExtResource( 6 )]
+position = Vector2( -224, 0 )
+
+[node name="Firework2" parent="Fireworks" index="1" instance=ExtResource( 6 )]
+position = Vector2( 224, 0 )
