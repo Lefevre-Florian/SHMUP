@@ -90,4 +90,3 @@ position = Vector2( -8, -7 )
 shape = SubResource( 1 )
 
 [node name="Drone" parent="." instance=ExtResource( 2 )]
-scale = Vector2( 0.75, 0.75 )

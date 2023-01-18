@@ -112,7 +112,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Destructor()
         {
-            animationTimer.Disconnect(EventTimer.TIMEOUT, this, nameof(PlayAnimation));
+            if(animationTimer.IsConnected(EventTimer.TIMEOUT, this, nameof(PlayAnimation)))
+                animationTimer.Disconnect(EventTimer.TIMEOUT, this, nameof(PlayAnimation));
             base.Destructor();
         }
 

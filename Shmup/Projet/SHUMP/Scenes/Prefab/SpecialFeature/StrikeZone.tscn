@@ -13,7 +13,7 @@ lightningSize = 65.0
 sound = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 100.0
+width = 75.0
 default_color = Color( 0.85098, 1, 0, 1 )
 joint_mode = 2
 begin_cap_mode = 2
