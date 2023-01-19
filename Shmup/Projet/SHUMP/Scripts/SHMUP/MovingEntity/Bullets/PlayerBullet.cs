@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy;
 using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities;
+using Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 
@@ -12,7 +13,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.Bullets {
 		{
 			base._Ready();
 
-			velocity = Vector2.Right.Rotated(Rotation) * speed;
+            velocity = Vector2.Right.Rotated(Rotation) * (speed + Player.GetInstance().GetSpeed());
 		}
 
         protected override void OnAreaEnter(Area2D pBody)

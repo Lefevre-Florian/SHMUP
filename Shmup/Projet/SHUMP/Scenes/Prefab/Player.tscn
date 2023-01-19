@@ -17,6 +17,7 @@ soundDeath = ExtResource( 4 )
 firstRendererPath = NodePath("Renderer/Renderer")
 secondRendererPath = NodePath("Renderer/RendererBroken")
 smokePath = NodePath("Renderer/RendererBroken/Particles2D")
+collisionPath = NodePath("Collider")
 
 [node name="Renderer" parent="." instance=ExtResource( 5 )]
 

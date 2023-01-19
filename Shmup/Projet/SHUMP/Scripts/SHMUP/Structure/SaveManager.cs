@@ -6,7 +6,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 	public static class SaveManager
 	{
-		private const string FILE_PATH = "res://Ressources/Settings.cfg";
+		private const string FILE_PATH = "res://Settings.cfg";
 
 		private struct Data
         {

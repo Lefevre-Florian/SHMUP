@@ -29,6 +29,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         [Export] private NodePath smokePath = null;
 
+        [Export] private NodePath collisionPath = default;
+
         #region Controls
         private const string MOVE_UP = "Up";
         private const string MOVE_DOWN = "Down";
@@ -74,6 +76,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
 
         public Weapon canon;
 
+        private CollisionShape2D collider = null;
+
         private UIManager uiManager;
         private BackgroundManager backgroundManager;
 
@@ -118,6 +122,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             uiManager = UIManager.GetInstance();
 
             canon = GetNode<Weapon>(weaponPath);
+            collider = GetNode<CollisionShape2D>(collisionPath);
 
             specialFeatureScene = GD.Load<PackedScene>(SPECIALFEATURE_PATH);
 
@@ -157,11 +162,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             }
 
             if (Input.IsActionJustPressed(GOD_MODE))
+            {
                 godMode = !godMode;
-
+                if (godMode)
+                    collider.Disabled = true;
+                else
+                    collider.Disabled = false;
+            }
+                
             if (Input.IsActionJustPressed(SMART_BOMB) && canSmartBomb)
                 CallSmartbomb();
-
         }
 
         public static Player GetInstance()
@@ -179,11 +189,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
             direction = Vector2.Zero;
             if (isMovingUp && GlobalPosition.y > HUDSIZE)
                 direction += new Vector2(forcedSpeed, -1 * (forcedSpeed + speed));
-            if (isMovingDown && GlobalPosition.y < screenSize.y - MARGINY)
+            else if (isMovingDown && GlobalPosition.y < screenSize.y - MARGINY)
                 direction += new Vector2(forcedSpeed, 1 * (forcedSpeed + speed));
+
             if (isMovingBackward && GlobalPosition.x > MARGINX)
                 direction += new Vector2(-1 * (forcedSpeed + speed), 0);
-            if (isMovingForward && GlobalPosition.x < screenSize.x - MARGINX)
+            else if (isMovingForward && GlobalPosition.x < screenSize.x - MARGINX)
                 direction += new Vector2(1 * (forcedSpeed + speed), 0);
 
             if (direction == Vector2.Zero)
@@ -306,6 +317,16 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player {
         public int GetHealthPoint()
         {
             return healthpoint;
+        }
+
+        public float GetSpeed()
+        {
+            return speed + forcedSpeed;  
+        }
+
+        public Vector2 GetVelocity()
+        {
+            return velocity;
         }
 
         protected override void Destructor()

@@ -2,15 +2,12 @@
 
 importer="csv_translation"
 type="Translation"
+valid=false
 
 [deps]
 
-files=[ "res://Ressources/Translation.fr.translation", "res://Ressources/Translation.en.translation" ]
-
 source_file="res://Ressources/Translation.csv"
-dest_files=[ "res://Ressources/Translation.fr.translation", "res://Ressources/Translation.en.translation" ]
-
 [params]
 
 compress=true
-delimiter=1
+delimiter=0

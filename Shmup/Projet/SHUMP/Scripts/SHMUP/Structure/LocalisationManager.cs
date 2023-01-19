@@ -10,8 +10,6 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		private static Languages lang = Languages.FR;
 
-		private const string FILE_PATH = "res://Ressources/Settings.cfg";
-		
 		private const string SECTION_NAME = "Settings";
 		private const string KEY_LANGUAGE_NAME = "Language";
 

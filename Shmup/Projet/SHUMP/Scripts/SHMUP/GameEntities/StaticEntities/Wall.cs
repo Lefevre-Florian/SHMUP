@@ -18,7 +18,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
         private Vector2 direction;
 
         private Action doAction = null;
-        private Area2D body = null;
+        private Player body = null;
         private Polygon2D renderer = null;
 
         public override void _Ready()
@@ -41,7 +41,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
         {
             if(pBody is Player)
             {
-                body = pBody;
+                body = (Player)pBody;
                 ((Player)pBody).TakeDamage(DAMAGE);
                 SetActionCollide();
             }
@@ -73,17 +73,20 @@ namespace Com.IsartDigital.SHMUP.GameEntities.StaticEntities {
 
         protected virtual void DoActionCollide()
         {
-            if (body.GlobalPosition.x > GlobalPosition.x - size)
-                direction = Vector2.Right;
-            else if (body.GlobalPosition.x <= GlobalPosition.x + size)
-                direction = Vector2.Left;
 
-            else if (body.GlobalPosition.y > GlobalPosition.y + size)
+            if (body.GlobalPosition.y > GlobalPosition.y + size)
                 direction = Vector2.Down;
-            else if(body.GlobalPosition.y <= GlobalPosition.y - size)
+            else if (body.GlobalPosition.y <= GlobalPosition.y - size)
                 direction = Vector2.Up;
 
-            body.GlobalPosition += direction * size;
+            if (body.GlobalPosition.x > GlobalPosition.x)
+                direction = Vector2.Right;
+            else if (body.GlobalPosition.x <= GlobalPosition.x)
+                direction = Vector2.Left;
+
+            body.GlobalPosition += direction * (size + body.GetSpeed()) * delta;
+
+            //body.GlobalPosition += -1.1f * body.GetVelocity() * delta;
         }
 
         protected override void Dispose(bool pDisposing)
