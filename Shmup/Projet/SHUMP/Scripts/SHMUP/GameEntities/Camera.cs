@@ -55,7 +55,6 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
             initColor = shadow.Modulate;
             alteredColor = new Color(shadow.Modulate.r, shadow.Modulate.g, shadow.Modulate.b, 1f);
 
-            AddChild(timer);
             timer.Connect(EventTimer.TIMEOUT, this, nameof(StopShake));
             SetActionVoid();
         }
@@ -83,6 +82,7 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
         {
             timer.WaitTime = shakeDuration;
             timer.OneShot = true;
+            AddChild(timer);
             timer.Start();
 
             myAction = DoActionShake;

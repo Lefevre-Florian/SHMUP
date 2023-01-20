@@ -49,7 +49,9 @@ process_material = SubResource( 3 )
 [node name="Tire" parent="." instance=ExtResource( 2 )]
 position = Vector2( 26.6667, 16 )
 scale = Vector2( 1.5, 1.5 )
+isActive = true
 
 [node name="Tire2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -26.6667, 16 )
 scale = Vector2( 1.5, 1.5 )
+isActive = true

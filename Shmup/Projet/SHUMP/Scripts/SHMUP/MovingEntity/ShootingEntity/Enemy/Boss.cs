@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Com.IsartDigital.SHMUP.MovingEntities.Bullets;
 using Com.IsartDigital.SHMUP.Structure;
 using Com.IsartDigital.Utils.Events;
+using Com.IsartDigital.SHMUP.Environment;
 
 namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 	
@@ -19,6 +20,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private float droneSpeed = 0f;
         [Export] private float droneShootDelay = 1.5f;
         [Export] private float droneRespawnDelay = 2f;
+        [Export] private float droneStartAngle;
 
         [Export] private float helperSpeed;
         [Export] private float helperThrowingDelay;
@@ -27,10 +29,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         [Export] private float inScreenPosition;
         [Export] private List<AudioStreamOGGVorbis> themes = new List<AudioStreamOGGVorbis>();
 
+        [Export] private PackedScene boxScene = null;
+
         private const string BATTLE_DRONE_PATH = "res://Scenes/Prefab/Enemies/BattleDrone.tscn";
         private PackedScene droneScene;
 
-        private const float YMARGIN = 80f;
+        private const float YMARGIN = 100f;
         private const float YTHROWERMARGIN = 50f;
 
         //Replace by boss size
@@ -117,7 +121,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             foreach (Position2D lCanon in GetNode<Node2D>(secondPhaseWeapons).GetChildren())
                 weapons.Add(lCanon);
 
-            AddDrone();
+            DroneRespawnAnimation();
         }
 
         private void TriggerThridPhase()
@@ -177,11 +181,20 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             directionFlag = !directionFlag;
         }
 
+        private void DroneRespawnAnimation()
+        {
+            Box lBox = boxScene.Instance<Box>();
+            AddChild(lBox);
+            lBox.GlobalPosition = GlobalPosition + new Vector2(Mathf.Cos(droneStartAngle), Mathf.Sin(droneStartAngle)) * droneRadius;
+
+            GetTree().CreateTimer(lBox.animation.Length).Connect(EventTimer.TIMEOUT, this, nameof(AddDrone));
+        }
+
         private void AddDrone()
         {
             drone = droneScene.Instance<BattleDrone>();
             AddChild(drone);
-            drone.Init(droneRadius, droneSpeed, droneShootDelay);
+            drone.Init(droneRadius, droneSpeed, droneShootDelay, false, droneStartAngle);
             drone.Connect(nameof(BattleDrone.Destroyed), this, nameof(DroneDestroyed));
 
             invincibiliy = true;
@@ -195,7 +208,7 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             invincibiliy = false;
 
             if(phase == TriggerSecondPhase || phase == TriggerThridPhase)
-                GetTree().CreateTimer(droneRespawnDelay).Connect(EventTimer.TIMEOUT, this, nameof(AddDrone));
+                GetTree().CreateTimer(droneRespawnDelay).Connect(EventTimer.TIMEOUT, this, nameof(DroneRespawnAnimation));
         }
 
         private void AddThrower()

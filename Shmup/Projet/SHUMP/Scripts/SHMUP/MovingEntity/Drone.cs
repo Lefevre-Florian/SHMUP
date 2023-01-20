@@ -10,6 +10,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
         [Signal]
         public delegate void Destroyed();
 
+        protected const float BASE_ANGLE = 90f;
+
         private bool isRotating = false;
 
 		private float angle = 0f;
@@ -17,14 +19,14 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         private Area2D pParent = null;
 
-		public void Init(float pRadius, float pSpeed, bool pRotating = false)
+		public void Init(float pRadius, float pSpeed, bool pRotating = false, float pStartAngle = BASE_ANGLE)
         {
             pParent = GetParent<Area2D>();
 
             speed = pSpeed;
             radius = pRadius;
 
-            GlobalPosition = pParent.GlobalPosition + new Vector2(Mathf.Cos(90), Mathf.Sin(90)) * radius;
+            GlobalPosition = pParent.GlobalPosition + new Vector2(Mathf.Cos(pStartAngle), Mathf.Sin(pStartAngle)) * radius;
 
             if (pRotating)
                 SetActionMove();

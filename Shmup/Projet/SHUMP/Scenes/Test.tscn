@@ -8,7 +8,7 @@
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=8]
-[ext_resource path="res://Scenes/Prefab/Wall/Wall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -75,24 +75,13 @@ specialFeatureDelay = 1.5
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
+[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 1168, 320 )
+droneRadius = 100.0
+
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
 [node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
-
-[node name="Wall" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 992, 224 )
-
-[node name="Wall2" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 992, 288 )
-
-[node name="Wall3" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 992, 352 )
-
-[node name="Wall4" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 992, 416 )
-
-[node name="Wall5" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 9 )]
-position = Vector2( 992, 480 )
 
 [node name="Trigger" type="Node" parent="ParallaxBackground/LayerGameplay"]
 
@@ -108,6 +97,7 @@ shape = SubResource( 1 )
 [node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+specialFeatureEase = 1
 
 [node name="PopupContainer" type="Node" parent="."]
 

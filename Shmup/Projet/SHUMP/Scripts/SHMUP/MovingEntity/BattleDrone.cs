@@ -38,9 +38,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
             soundManager = SoundManager.GetInstance();
         }
 
-        public void Init(float pRadius, float pSpeed ,float pShootDelay,  bool pRotating = false)
+        public void Init(float pRadius, float pSpeed ,float pShootDelay,  bool pRotating = false, float pStartAngle = BASE_ANGLE)
         {
-            base.Init(pRadius, pSpeed, pRotating);
+            base.Init(pRadius, pSpeed, pRotating, pStartAngle);
 
             renderer = GetNode<Polygon2D>(rendererPath);
             initialColor = renderer.Color;
