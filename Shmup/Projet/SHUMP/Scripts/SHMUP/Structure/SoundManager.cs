@@ -19,7 +19,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
         private List<AudioStreamPlayer2D> audioPlayerPool = new List<AudioStreamPlayer2D>();
         private List<AudioStreamPlayer2D> activeAudioPlayer = new List<AudioStreamPlayer2D>();
 
-        private AudioStreamPlayer2D musicEmitter = null;
+        private AudioStreamPlayer musicEmitter = null;
 
         private static float soundEffectLevel = 0f;
         private static float musicLevel = 0f;
@@ -43,7 +43,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
                 if (lMusicData != null)
                     musicLevel = (float)lMusicData;
 
-                musicEmitter = GetNode<AudioStreamPlayer2D>(musicEmitterPath);
+                musicEmitter = GetNode<AudioStreamPlayer>(musicEmitterPath);
                 musicEmitter.VolumeDb = musicLevel;
             }
 

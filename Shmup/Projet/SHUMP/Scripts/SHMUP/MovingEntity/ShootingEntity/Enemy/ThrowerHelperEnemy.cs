@@ -94,11 +94,13 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             {
                 spacingTimer.Stop();
                 entityThrowed = 0;
+
+                weaponRetractionTimer.Start();
                 return;
             }
             spacingTimer.Start();
             EnemyBoomerang lBoomerang = boomerangScene.Instance<EnemyBoomerang>();
-
+            weaponRetractionTimer.Stop();
             bulletContainer.AddChild(lBoomerang);
             lBoomerang.Position = canon.GlobalPosition;
         }

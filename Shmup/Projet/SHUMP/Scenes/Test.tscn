@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -32,7 +33,7 @@ ratio = [ 0.0, 0.015, 0.025, 0.03 ]
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource( 8 )
-musicEmitterPath = NodePath("../AudioStreamPlayer2D")
+musicEmitterPath = NodePath("../AudioStreamPlayer")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -103,6 +104,17 @@ specialFeatureEase = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
+current = true
+script = ExtResource( 10 )
+shadowPath = NodePath("ColorRect")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+visible = false
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+color = Color( 0, 0, 0, 0.0235294 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
