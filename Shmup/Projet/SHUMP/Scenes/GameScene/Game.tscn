@@ -21,7 +21,7 @@ script = ExtResource( 9 )
 [node name="BackgroundManager" type="Node2D" parent="."]
 script = ExtResource( 1 )
 speed = 4000.0
-ratio = [ 0.005, 0.015, 0.025, 0.03 ]
+ratio = [ 0.005, 0.02, 0.025, 0.03 ]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 5 )

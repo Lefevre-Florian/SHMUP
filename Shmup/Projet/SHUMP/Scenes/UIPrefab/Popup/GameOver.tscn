@@ -103,7 +103,7 @@ percent_visible = false
 
 [node name="Star" type="Polygon2D" parent="Panel/XP" index="0"]
 position = Vector2( 152, 23 )
-color = Color( 0.0352941, 0.615686, 0, 1 )
+color = Color( 1, 0.752941, 0, 1 )
 polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
 
 [node name="BG" type="Polygon2D" parent="Panel/XP/Star" index="0"]
@@ -120,7 +120,7 @@ end_cap_mode = 2
 
 [node name="Star2" type="Polygon2D" parent="Panel/XP" index="1"]
 position = Vector2( 256, 23 )
-color = Color( 0.0352941, 0.615686, 0, 1 )
+color = Color( 1, 0.752941, 0, 1 )
 polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
 
 [node name="BG" type="Polygon2D" parent="Panel/XP/Star2" index="0"]
@@ -137,7 +137,7 @@ end_cap_mode = 2
 
 [node name="Star3" type="Polygon2D" parent="Panel/XP" index="2"]
 position = Vector2( 352, 23 )
-color = Color( 0.0352941, 0.615686, 0, 1 )
+color = Color( 1, 0.752941, 0, 1 )
 polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
 
 [node name="BG" type="Polygon2D" parent="Panel/XP/Star3" index="0"]

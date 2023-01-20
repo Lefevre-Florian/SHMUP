@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Sound/enemy0_explosion1.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/Prefab/PlayerElements/Wheel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Animations/DoorAnimation.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/BoxOpening.tres" type="Animation" id=6]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Light"
