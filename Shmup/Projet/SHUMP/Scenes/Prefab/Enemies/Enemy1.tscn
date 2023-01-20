@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/MovingEntity/ShootingEntity/Enemy/MediumEnemy.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Prefab/Enemies/Drone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sound/enemy0_explosion1.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Sound/enemy_shoot.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/Prefab/PlayerElements/Wheel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Animations/DoorAnimation.tres" type="Animation" id=6]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Light"
-length = 3.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
@@ -17,10 +17,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.6, 3.1 ),
+"times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0.345098, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 0, 0.345098, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.15, 0.15 ), Vector2( 0.25, 0.15 ), Vector2( 0.15, 0.15 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -46,6 +58,7 @@ droneRadius = 100.0
 droneSpeed = 2.0
 animationPath = NodePath("Renderer/Body/Sirene/Light")
 wheelPaths = [ NodePath("Renderer/Body/Tire"), NodePath("Renderer/Body/Tire2") ]
+animationFilm = ExtResource( 6 )
 
 [node name="Renderer" type="Node2D" parent="."]
 scale = Vector2( 0.6, 0.6 )

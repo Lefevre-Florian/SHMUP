@@ -19,6 +19,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private NodePath animationPath = default;
 		[Export] private List<NodePath> wheelPaths = new List<NodePath>();
 
+		[Export(PropertyHint.ResourceType)] private Animation animationFilm = default;
+
 		private float droneAngle = 0f;
 
 		private int inBetweenCount = 0;
@@ -38,7 +40,9 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 			drone = GetNode<Drone>(dronePath);
 			drone.Init(droneRadius, droneSpeed, true);
 
-			GetNode<AnimationPlayer>(animationPath).Play();
+			AnimationPlayer lAnimation = GetNode<AnimationPlayer>(animationPath);
+			lAnimation.AssignedAnimation = animationFilm.ResourceName;
+			lAnimation.Play();
 			foreach (NodePath lPath in wheelPaths)
 				GetNode<Wheel>(lPath).SetActionSpin();
 

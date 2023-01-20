@@ -80,7 +80,6 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
         private void PlayAnimation()
         {
             animation.AssignedAnimation = animationFilm.ResourceName;
-            GD.Print(animation.AssignedAnimation);
             animation.Play();
             animationTimer.Stop();
         }
