@@ -227,8 +227,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         public override void Destroy()
         {
-            UIManager.GetInstance().TriggerGameOver(true);
-            if (thrower != null)
+            GameManager.GetInstance().EndGame();
+            if (thrower.IsInsideTree())
                 thrower.QueueFree();
             base.Destroy();
         }

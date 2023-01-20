@@ -27,8 +27,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 		[Export] private Tween.EaseType tweenEaseType = default;
 		[Export] private Color damageColor = default;
 
-		[Export] private AudioStreamOGGVorbis soundDeath = null;
-		[Export] private AudioStreamOGGVorbis soundShoot = null;
+		[Export] protected AudioStreamOGGVorbis soundDeath = null;
+		[Export] protected AudioStreamOGGVorbis soundShoot = null;
 
 		private const string PATH_BULLET_PREFAB = "res://Scenes/Prefab/Bullets/EnemyBullet.tscn";
 		private const string PATH_SCORE_POPUP = "res://Scenes/Prefab/Juiciness/FlyingScore.tscn";

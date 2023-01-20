@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Prefab/Decors/TorchLight.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=9]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sound/level_loop.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Assets/Sound/win_jingle.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Assets/Sound/gameover_jingle.ogg" type="AudioStream" id=17]
@@ -25,6 +26,9 @@ ratio = [ 0.005, 0.02, 0.025, 0.03 ]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 5 )
+waitTime = 1.5
+particlePath = NodePath("../ParallaxBackground/LayerGameplay/ParticlesContainer")
+fireworkFactory = ExtResource( 10 )
 
 [node name="UIManager" type="Node" parent="."]
 pause_mode = 2
@@ -190,3 +194,7 @@ color = Color( 0.243137, 0.243137, 0.243137, 0.541176 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 autoplay = true
+
+[editable path="ParallaxBackground/LayerGameplay"]
+[editable path="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy1"]
+[editable path="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy2"]

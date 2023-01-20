@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=10]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -21,6 +22,10 @@ script = ExtResource( 7 )
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 1 )
+nFirework = 10
+waitTime = 1.5
+particlePath = NodePath("../ParallaxBackground/LayerGameplay/ParticlesContainer")
+fireworkFactory = ExtResource( 11 )
 
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -78,7 +83,6 @@ specialFeatureDelay = 1.5
 
 [node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
 position = Vector2( 1168, 320 )
-droneRadius = 100.0
 
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 

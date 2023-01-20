@@ -181,10 +181,10 @@ script = ExtResource( 14 )
 [node name="Label2" type="Label" parent="Tutorials/TutorialDrone"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 32.0
-margin_top = 152.0
-margin_right = 352.0
-margin_bottom = 176.0
+margin_left = 16.0
+margin_top = 136.0
+margin_right = 368.0
+margin_bottom = 160.0
 theme = ExtResource( 12 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
