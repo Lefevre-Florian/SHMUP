@@ -36,7 +36,6 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
 [node name="Popup" instance=ExtResource( 1 )]
-pause_mode = 2
 script = ExtResource( 5 )
 scoreLabelPath = NodePath("Panel/ScoreValue")
 scoreProgressPath = NodePath("Panel/XP")

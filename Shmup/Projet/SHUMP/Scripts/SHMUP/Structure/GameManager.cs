@@ -28,6 +28,8 @@ namespace Com.IsartDigital.SHMUP.Structure {
             }
 			instance = this;
 
+			GetTree().Paused = false;
+
 			// Clear list
 
 			PopcornEnemy.popcornEnemies.Clear();

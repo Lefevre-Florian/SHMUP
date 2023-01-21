@@ -15,8 +15,8 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 		private const string FILE_PATH = "res://Ressources/Settings.cfg";
 		private const string SECTION_NAME = "Settings";
 
-		private const int MIN_VALUE = -80;
-		private const int MAX_VALUE = 24;
+		private const int MIN_VALUE = 0;
+		private const int MAX_VALUE = 100;
 
 		private SoundManager soundManager;
 
@@ -33,22 +33,21 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 
 			object lVolume = SaveManager.LoadData(SECTION_NAME, storingKey);
 			if (lVolume != null)
-				Value = (float)lVolume;
+				Value = GD.Db2Linear((float)lVolume);
 		}
 
 		private void Save(bool pChanged)
         {
 			if (isAudioPrincipal)
-				soundManager.ChangeAudioPlayerMusicVolume((float)Value);
+				soundManager.ChangeAudioPlayerMusicVolume(GD.Linear2Db((float)Value));
 			else
-				soundManager.ChangeAudioPlayersVFXVolume((float)Value);
+				soundManager.ChangeAudioPlayersVFXVolume(GD.Linear2Db((float)Value));
 			
 			if (pChanged)
             {
 				SaveManager.SaveData(SECTION_NAME, storingKey, Value);
-				soundManager.GetAudioPlayer(sound, this);
+				soundManager.GetAudioPlayer(sound, this, PauseModeEnum.Process);
 			}
-				
         }
 
 	}

@@ -62,7 +62,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
         }
 
-        public void GetAudioPlayer(AudioStreamOGGVorbis pStream, Node pTarget)
+        public void GetAudioPlayer(AudioStreamOGGVorbis pStream, Node pTarget, PauseModeEnum pPauseMode = PauseModeEnum.Inherit)
         {
             AudioStreamPlayer2D lAudio = audioPlayerPool[0];
             if(lAudio == null)
@@ -71,6 +71,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
             lAudio.Stream = pStream;
             lAudio.Autoplay = true;
             lAudio.VolumeDb = soundEffectLevel;
+            lAudio.PauseMode = pPauseMode;
 
             activeAudioPlayer.Add(lAudio);
 
@@ -90,6 +91,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
                 pTarget.Disconnect(EventNode.TREE_EXITING, this, nameof(CleanAudioPlayer));
             pAudio.Disconnect(EventAudioStreamPlayer2D.FINISHED, this, nameof(CleanAudioPlayer));
             pAudio.Stream = null;
+            pAudio.PauseMode = PauseModeEnum.Inherit;
 
             activeAudioPlayer.Remove(pAudio);
 
@@ -124,11 +126,15 @@ namespace Com.IsartDigital.SHMUP.Structure {
             musicLevel = pDBVolume; 
         }
 
-        public void ChangeMainMusic(AudioStreamOGGVorbis pMusic)
+        public void ChangeMainMusic(AudioStreamOGGVorbis pMusic,bool pLooping = true, bool pPausedPlay = false)
         {   
             musicEmitter.Stop();
             musicEmitter.Stream = null;
             musicEmitter.Stream = pMusic;
+            musicEmitter.PauseMode = PauseModeEnum.Inherit;
+            if (pPausedPlay)
+                musicEmitter.PauseMode = PauseModeEnum.Process;
+            pMusic.Loop = pLooping;
             musicEmitter.Play();
         }
 

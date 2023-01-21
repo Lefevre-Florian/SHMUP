@@ -30,20 +30,6 @@ namespace Com.IsartDigital.SHMUP.UI {
 			GetTree().ChangeScene(PATH_MAIN_MENU_SCENE);
         }
 
-        public override void OpenScreen()
-        {
-            base.OpenScreen();
-            GetTree().Paused = true;
-            PauseMode = PauseModeEnum.Process;
-        }
-
-        public override void CloseScreen()
-        {
-            base.CloseScreen();
-            GetTree().Paused = false;
-            PauseMode = PauseModeEnum.Stop;
-        }
-
 
 	}
 

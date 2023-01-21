@@ -46,7 +46,7 @@ namespace Com.IsartDigital.SHMUP.UI.UIElements {
 			if (sound == null)
 				return;
 
-			SoundManager.GetInstance().GetAudioPlayer(sound, this);
+			SoundManager.GetInstance().GetAudioPlayer(sound, this, PauseModeEnum.Process);
         }
 
 		private void OnFocusEntered()

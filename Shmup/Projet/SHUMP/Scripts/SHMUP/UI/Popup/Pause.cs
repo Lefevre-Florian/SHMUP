@@ -7,16 +7,33 @@ namespace Com.IsartDigital.SHMUP.UI {
 	public class Pause : GamePopup
 	{
 
-		[Export] private NodePath resumePath = default;
+		[Export] private NodePath resumeBtnPath = default;
+		[Export] private NodePath settingBtnPath = default;
+
+		[Export] private PackedScene settingScene = default;
+
+		Popup setting = null;
 
 		public override void _Ready()
 		{
 			base._Ready();
 
-			Button lButton = GetNode<Button>(resumePath);
+			setting = settingScene.Instance<Popup>();
+
+			Button lButton = GetNode<Button>(resumeBtnPath);
 			lButton.GrabFocus();
-			lButton.Connect(EventButton.PRESSED, this, nameof(CloseScreen));
+			lButton.Connect(EventButton.PRESSED, this, nameof(UnPause));
+
+			AddChild(setting);
+			setting.CloseScreen();
+			GetNode<Button>(settingBtnPath).Connect(EventButton.PRESSED, setting, nameof(setting.OpenScreen));
 		}
+
+		private void UnPause()
+        {
+			GetTree().Paused = false;
+			CloseScreen();
+        }
 
 	}
 

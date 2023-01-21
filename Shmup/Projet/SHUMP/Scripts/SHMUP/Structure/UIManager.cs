@@ -56,24 +56,27 @@ namespace Com.IsartDigital.SHMUP.Structure {
             {
                 popupContainer.AddChild(pause);
                 pause.OpenScreen();
+                GetTree().Paused = true;
             }
             else
             {
                 pause.CloseScreen();
                 popupContainer.RemoveChild(pause);
+                GetTree().Paused = false;
             }
         }
 
         public void TriggerGameOver(bool pWinState)
         {
             if(pWinState)
-                SoundManager.GetInstance().ChangeMainMusic(winMusic);
+                SoundManager.GetInstance().ChangeMainMusic(winMusic, false, true);
             else
-                SoundManager.GetInstance().ChangeMainMusic(gameoverMusic);
+                SoundManager.GetInstance().ChangeMainMusic(gameoverMusic, false, true);
 
             gameOver = GD.Load<PackedScene>(PATH_GAMEOVER_POPUP).Instance<UI.Popup>();
             popupContainer.AddChild(gameOver);
             gameOver.OpenScreen();
+            GetTree().Paused = true;
         }
 
         protected override void Dispose(bool pDisposing)
