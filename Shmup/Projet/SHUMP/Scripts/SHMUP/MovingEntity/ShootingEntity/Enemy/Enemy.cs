@@ -154,7 +154,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
 
         protected override void Destructor()
         {
-			enemies.Remove(this);
+			if(enemies.Contains(this))
+				enemies.Remove(this);
 			if (timer.IsConnected(EventTimer.TIMEOUT, this, nameof(Shoot)))
 				timer.Disconnect(EventTimer.TIMEOUT, this, nameof(Shoot));
 			timer.QueueFree();

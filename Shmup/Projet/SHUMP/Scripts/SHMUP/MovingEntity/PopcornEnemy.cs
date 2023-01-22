@@ -92,7 +92,8 @@ namespace Com.IsartDigital.SHMUP.MovingEntities {
 
         protected override void Destructor()
         {
-            popcornEnemies.Remove(this);
+            if(popcornEnemies.Contains(this))
+                popcornEnemies.Remove(this);
             base.Destructor();
         }
 
