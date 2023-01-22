@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
@@ -6,25 +6,13 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/GameScene/KeybindScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/Fonts/MADE Sunflower PERSONAL USE.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://Scripts/SHMUP/Environment/NewsTitle.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Prefab/Decors/Cloud.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Prefab/Decors/Character.tscn" type="PackedScene" id=10]
 
-[sub_resource type="DynamicFont" id=4]
-size = 12
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 15
-font_data = ExtResource( 7 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 52
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 30
 font_data = ExtResource( 7 )
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -123,7 +111,7 @@ margin_left = -240.0
 margin_top = -32.0
 margin_right = -40.0
 margin_bottom = -12.0
-custom_fonts/font = SubResource( 4 )
+theme = ExtResource( 1 )
 text = "KEY_NEWS_EIFFEL"
 script = ExtResource( 8 )
 speed = 125.0
@@ -137,14 +125,14 @@ margin_left = 312.0
 margin_top = -32.0
 margin_right = 512.0
 margin_bottom = -12.0
-custom_fonts/font = SubResource( 4 )
+theme = ExtResource( 1 )
 text = "KEY_NEWS_ARC	"
 script = ExtResource( 8 )
 speed = 125.0
 
 [node name="BK" type="Polygon2D" parent="TitleCard/Bandeau"]
-position = Vector2( 9.41177, -3 )
-scale = Vector2( 1.29412, 0.4375 )
+position = Vector2( 16.9411, -3 )
+scale = Vector2( 1.52941, 0.4375 )
 color = Color( 1, 0, 0, 1 )
 polygon = PoolVector2Array( 104, 0, 88, -48, -32, -48, -16, 0 )
 
@@ -152,9 +140,10 @@ polygon = PoolVector2Array( 104, 0, 88, -48, -32, -48, -16, 0 )
 margin_top = -24.0
 margin_right = 121.0
 margin_bottom = -4.0
+theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 5 )
 text = "BREAKING NEWS"
+valign = 1
 
 [node name="Title" type="Label" parent="TitleCard"]
 anchor_right = 1.0
@@ -179,8 +168,7 @@ margin_right = 160.2
 margin_bottom = -28.0
 rect_pivot_offset = Vector2( 160, 32 )
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEY_PLAY"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
@@ -197,8 +185,7 @@ margin_bottom = 81.8
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 267, 53 )
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEY_SETTING"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
@@ -215,8 +202,7 @@ margin_bottom = 173.0
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 266, 53 )
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEY_CREDIT"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )
@@ -231,6 +217,7 @@ margin_bottom = 88.0
 rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 112, 48 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/normal = SubResource( 1 )
 text = "KEY_EXIT"

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Com.IsartDigital.SHMUP.Structure.Architecture;
+using Com.IsartDigital.Utils.Events;
 
 namespace Com.IsartDigital.SHMUP.Structure {
 
@@ -32,6 +33,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			object lRawData = SaveManager.LoadData(SECTION_NAME, KEY_LANGUAGE_NAME);
 			if (lRawData != null)
 				lang = (Languages)lRawData;
+
         }
 
 		public static LocalisationManager GetInstance()

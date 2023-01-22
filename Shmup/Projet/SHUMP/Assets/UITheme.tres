@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=9 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
-[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/MADE Sunflower PERSONAL USE.otf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
+size = 30
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -50,6 +51,9 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_size = 1
 
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.247059, 0.607843, 0.764706, 1 )
 border_width_left = 5
@@ -87,6 +91,8 @@ CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
 CheckButton/icons/on_disabled = null
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/fonts/font = SubResource( 8 )
 Panel/styles/panel = SubResource( 7 )
 ProgressBar/fonts/font = SubResource( 1 )
 ProgressBar/styles/bg = SubResource( 5 )

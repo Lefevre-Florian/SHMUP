@@ -79,6 +79,8 @@ margin_top = 8.0
 margin_right = 64.0
 margin_bottom = 56.0
 rect_pivot_offset = Vector2( 64, 24 )
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Score"
 align = 1
 valign = 1
@@ -92,16 +94,20 @@ margin_right = -64.0
 margin_bottom = 56.0
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
-margin_right = 256.0
-margin_bottom = 14.0
+margin_right = 262.0
+margin_bottom = 20.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "KEY_SMARTBOMB_AMUNATION"
 align = 1
 script = ExtResource( 3 )
 
 [node name="Smartbomb" type="Label" parent="Panel/HBoxContainer"]
-margin_top = 18.0
-margin_right = 256.0
-margin_bottom = 32.0
+margin_top = 24.0
+margin_right = 262.0
+margin_bottom = 44.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "5/5"
 align = 1
 valign = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
@@ -8,16 +8,12 @@
 [ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=6]
 [ext_resource path="res://Scenes/Prefab/Decors/TorchLight.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=8]
-[ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=9]
 [ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sound/level_loop.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Assets/Sound/win_jingle.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Assets/Sound/gameover_jingle.ogg" type="AudioStream" id=17]
 
 [node name="Root" type="Node2D"]
-
-[node name="LocallisationManager" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="BackgroundManager" type="Node2D" parent="."]
 script = ExtResource( 1 )

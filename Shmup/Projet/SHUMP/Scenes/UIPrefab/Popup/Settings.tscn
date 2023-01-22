@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Img/FR_FLAG.png" type="Texture" id=2]
@@ -10,12 +10,10 @@
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/VibrationSetting.cs" type="Script" id=9]
 [ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Assets/Fonts/MADE Sunflower PERSONAL USE.otf" type="DynamicFontData" id=11]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 11 )
-
-[sub_resource type="DynamicFont" id=2]
+size = 30
 font_data = ExtResource( 11 )
 
 [node name="Settings" type="Control"]
@@ -46,6 +44,7 @@ anchor_right = 1.0
 margin_top = 8.0
 margin_bottom = 40.0
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "KEY_SETTING"
 align = 1
 valign = 1
@@ -64,7 +63,6 @@ margin_bottom = -56.0
 rect_pivot_offset = Vector2( 40, 31 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "KEY_VFX"
 valign = 1
 autowrap = true
@@ -97,7 +95,6 @@ margin_bottom = 8.0
 rect_pivot_offset = Vector2( 40, 31 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "KEY_MUSIC"
 valign = 1
 autowrap = true
@@ -140,6 +137,7 @@ margin_right = 64.0
 margin_bottom = -32.0
 rect_pivot_offset = Vector2( 64, 32 )
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEY_CLOSE"
 script = ExtResource( 8 )
 sound = ExtResource( 10 )
@@ -152,10 +150,9 @@ anchor_bottom = 0.5
 margin_left = -248.0
 margin_top = 32.0
 margin_right = -112.0
-margin_bottom = 72.0
+margin_bottom = 75.0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 2 )
 text = "KEY_VIBRATION"
 valign = 1
 autowrap = true

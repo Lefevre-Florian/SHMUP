@@ -12,20 +12,20 @@
 [ext_resource path="res://Scenes/Prefab/Collectibles/MedicKit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=12]
-[ext_resource path="res://Assets/Fonts/Panton-Trial-ExtraBold.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=14]
+[ext_resource path="res://Assets/Fonts/MADE Sunflower PERSONAL USE.otf" type="DynamicFontData" id=15]
 
 [sub_resource type="DynamicFont" id=2]
 size = 18
-font_data = ExtResource( 13 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 10
-font_data = ExtResource( 13 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 10
-font_data = ExtResource( 13 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -104,6 +104,7 @@ margin_top = 96.0
 margin_right = 320.0
 margin_bottom = 160.0
 theme = ExtResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "L"
 align = 1
 valign = 1
@@ -241,6 +242,7 @@ anchor_right = 0.5
 margin_right = 64.0
 margin_bottom = 64.0
 theme = ExtResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "M"
 align = 1
 valign = 1
