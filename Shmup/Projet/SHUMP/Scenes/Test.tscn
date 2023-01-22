@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/SHMUP/Structure/LocalisationManager.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=8]
-[ext_resource path="res://Scenes/Prefab/Enemies/Boss.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefab/Collectibles/MedicKit.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=10]
 [ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Prefab/Wall/Wall.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 300 )
@@ -20,7 +21,7 @@ extents = Vector2( 10, 300 )
 [node name="LocalisationManager" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node2D" parent="."]
 script = ExtResource( 1 )
 nFirework = 10
 waitTime = 1.5
@@ -81,12 +82,18 @@ specialFeatureDelay = 1.5
 
 [node name="EnemyContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
-[node name="Boss" parent="ParallaxBackground/LayerGameplay/EnemyContainer" instance=ExtResource( 9 )]
-position = Vector2( 1168, 320 )
-
 [node name="CollecitbleContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
 
+[node name="MedicKit" parent="ParallaxBackground/LayerGameplay/CollecitbleContainer" instance=ExtResource( 9 )]
+position = Vector2( 976, 296 )
+
 [node name="WallContainer" type="Node2D" parent="ParallaxBackground/LayerGameplay"]
+
+[node name="Wall" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 12 )]
+position = Vector2( 672, 232 )
+
+[node name="Wall2" parent="ParallaxBackground/LayerGameplay/WallContainer" instance=ExtResource( 12 )]
+position = Vector2( 672, 352 )
 
 [node name="Trigger" type="Node" parent="ParallaxBackground/LayerGameplay"]
 

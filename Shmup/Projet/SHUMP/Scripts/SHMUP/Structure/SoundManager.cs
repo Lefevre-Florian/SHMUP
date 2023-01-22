@@ -41,7 +41,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
                 object lMusicData = SaveManager.LoadData(SECTION_NAME, KEY_MUSIC_NAME);
                 if (lMusicData != null)
-                    musicLevel = (float)lMusicData;
+                    musicLevel = GD.Linear2Db((float)lMusicData);
 
                 musicEmitter = GetNode<AudioStreamPlayer>(musicEmitterPath);
                 musicEmitter.VolumeDb = musicLevel;
@@ -49,7 +49,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
             object lVFXData = SaveManager.LoadData(SECTION_NAME, KEY_VFX_NAME);
             if (lVFXData != null)
-                soundEffectLevel = (float)lVFXData;
+                soundEffectLevel = GD.Linear2Db((float)lVFXData);
 
             for (int i = 0; i < nSoundEmitter; i++)
                 audioPlayerPool.Add(new AudioStreamPlayer2D());

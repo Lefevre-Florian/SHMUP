@@ -7,7 +7,7 @@ using System;
 
 namespace Com.IsartDigital.SHMUP.Structure {
 
-	public class GameManager : Node
+	public class GameManager : Node2D
 	{
 
 		private static GameManager instance;
@@ -50,7 +50,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 			RandomNumberGenerator lRand = new RandomNumberGenerator();
 			lRand.Randomize();
 
-			Vector2 lScreenSize = GetViewport().Size;
+			Vector2 lScreenSize = GetViewportRect().Size;
 
 			Particles2D lFirework = null;
 			for (int i = 0; i < nFirework; i++)

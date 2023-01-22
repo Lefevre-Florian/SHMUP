@@ -24,7 +24,7 @@ script = ExtResource( 1 )
 speed = 4000.0
 ratio = [ 0.005, 0.02, 0.025, 0.03 ]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node2D" parent="."]
 script = ExtResource( 5 )
 waitTime = 1.5
 particlePath = NodePath("../ParallaxBackground/LayerGameplay/ParticlesContainer")
@@ -193,6 +193,7 @@ color = Color( 0.243137, 0.243137, 0.243137, 0.541176 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
+volume_db = -80.0
 autoplay = true
 
 [editable path="ParallaxBackground/LayerGameplay"]
