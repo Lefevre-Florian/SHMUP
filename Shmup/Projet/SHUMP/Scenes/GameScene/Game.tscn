@@ -25,6 +25,7 @@ script = ExtResource( 5 )
 waitTime = 1.5
 particlePath = NodePath("../ParallaxBackground/LayerGameplay/ParticlesContainer")
 fireworkFactory = ExtResource( 10 )
+bulletContainerPath = NodePath("../ParallaxBackground/LayerGameplay/BulletContainer")
 
 [node name="UIManager" type="Node" parent="."]
 pause_mode = 2
@@ -43,7 +44,7 @@ musicEmitterPath = NodePath("../Music")
 [node name="LayerBackground2" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Background" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
+color = Color( 0.321569, 0.321569, 0.321569, 1 )
 polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 
 [node name="Street2" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]

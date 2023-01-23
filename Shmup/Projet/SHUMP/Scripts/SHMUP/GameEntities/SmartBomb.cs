@@ -64,26 +64,22 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
 			lLength = Enemy.enemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
             {
-				GD.Print(Enemy.enemies[i]);
 				if(Enemy.enemies[i] != null)
                 {
 					SetAnimation(pLightningScene, Enemy.enemies[i]);
-					if(!(Enemy.enemies[i] is Boss))
+					if(Enemy.enemies[i] is Boss == false)
 						Enemy.enemies.RemoveAt(i);
                 }	
-
             }		
 
 			lLength = PopcornEnemy.popcornEnemies.Count;
 			for (int i = lLength - 1; i >= 0; i--)
             {
-				GD.Print(PopcornEnemy.popcornEnemies[i].Name);
 				if (PopcornEnemy.popcornEnemies[i] != null)
                 {
 					SetAnimation(pLightningScene, PopcornEnemy.popcornEnemies[i]);
 					PopcornEnemy.popcornEnemies.RemoveAt(i);
-                }
-					
+                }	
             }
 			
 			GetTree().CreateTimer(lightningDuration).Connect(EventTimer.TIMEOUT, this, nameof(ScreenShake));

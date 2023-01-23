@@ -16,6 +16,7 @@ namespace Com.IsartDigital.SHMUP.Structure {
 		[Export] private float waitTime;
 		[Export] private NodePath particlePath = null;
 		[Export] private PackedScene fireworkFactory = default;
+		[Export] private NodePath bulletContainerPath = default;
 
         private GameManager(): base() { }
 
@@ -66,6 +67,9 @@ namespace Com.IsartDigital.SHMUP.Structure {
 
 		private void EndProcess()
         {
+			foreach (Bullet lBullet in GetNode<Node>(bulletContainerPath).GetChildren())
+				lBullet.QueueFree();
+
 			foreach (Particles2D lParticle in GetNode<Node2D>(particlePath).GetChildren())
 				lParticle.QueueFree();
 			UIManager.GetInstance().TriggerGameOver(true);

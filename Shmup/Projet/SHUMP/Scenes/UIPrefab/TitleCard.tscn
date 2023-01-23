@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/SHMUP/UI/TitleCard.cs" type="Script" id=2]
@@ -14,34 +14,6 @@
 [sub_resource type="DynamicFont" id=2]
 size = 52
 font_data = ExtResource( 7 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 0, 0, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 8.0
-expand_margin_right = 8.0
-expand_margin_top = 8.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.823529, 0.145098, 0.145098, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 0.662745 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="TitleCard" type="Control"]
 anchor_right = 1.0
@@ -112,6 +84,7 @@ margin_top = -32.0
 margin_right = -40.0
 margin_bottom = -12.0
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "KEY_NEWS_EIFFEL"
 script = ExtResource( 8 )
 speed = 125.0
@@ -126,6 +99,7 @@ margin_top = -32.0
 margin_right = 512.0
 margin_bottom = -12.0
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "KEY_NEWS_ARC	"
 script = ExtResource( 8 )
 speed = 125.0
@@ -195,12 +169,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -266.0
-margin_top = 66.0
-margin_right = 267.0
-margin_bottom = 173.0
+margin_left = -209.2
+margin_top = 63.0
+margin_right = 41.8
+margin_bottom = 170.0
 rect_scale = Vector2( 0.6, 0.6 )
-rect_pivot_offset = Vector2( 266, 53 )
+rect_pivot_offset = Vector2( 123, 53 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEY_CREDIT"
@@ -208,18 +182,18 @@ script = ExtResource( 4 )
 sound = ExtResource( 6 )
 
 [node name="ExitButton" type="Button" parent="TitleCard"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -192.0
-margin_top = -8.0
-margin_right = 32.0
-margin_bottom = 88.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.2
+margin_top = 52.0
+margin_right = 234.8
+margin_bottom = 180.0
 rect_scale = Vector2( 0.5, 0.5 )
-rect_pivot_offset = Vector2( 112, 48 )
+rect_pivot_offset = Vector2( 152, 64 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/normal = SubResource( 1 )
 text = "KEY_EXIT"
 script = ExtResource( 4 )
 sound = ExtResource( 6 )

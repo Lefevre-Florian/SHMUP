@@ -67,6 +67,12 @@ namespace Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy {
             SetActionMoveAndShoot();
         }
 
+        protected override void SetActionMoveAndShoot()
+        {
+            base.SetActionMoveAndShoot();
+            enemies.Remove(this);
+        }
+
         public override void TakeDamage(int pDamage){ }
 
         protected override void DoActionMove()

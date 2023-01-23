@@ -1,9 +1,9 @@
 ﻿keys;fr;en
 KEY_TITLE;Flee From Paris !;Flee From Paris !
 KEY_PLAY;Jouer;Play
-KEY_EXIT;Quitter;Exit
+KEY_EXIT;Quitter;Quit
 KEY_SETTING;Paramètres;Settings
-KEY_CREDIT;Credit;Credit
+KEY_CREDIT;Credits;Credits
 KEY_RETURN;Retour;Back
 KEY_GAMEOVER;Fin du jeu;Game over
 KEY_RETRY;Rejouer;Retry
@@ -22,7 +22,7 @@ KEY_VFX;Volume des effets spéciaux;Special effect volume
 KEY_MUSIC;Volume de la musique;Music volume
 KEY_SAVE;Enregistrer;Save
 KEY_PAUSE;Pause;Pause
-KEY_SMARTBOMB_AMUNATION;Munition;Amunation
+KEY_SMARTBOMB_AMUNATION;Munitions;Ammunitions
 KEY_CLOSE;Fermer;Close
 KEY_SKIP;Passer;Skip
 KEY_TUTO;Tutoriel;Tutorial

@@ -82,7 +82,8 @@ namespace Com.IsartDigital.SHMUP.GameEntities {
         {
             timer.WaitTime = shakeDuration;
             timer.OneShot = true;
-            AddChild(timer);
+            if(!timer.IsInsideTree())
+                AddChild(timer);
             timer.Start();
 
             myAction = DoActionShake;
