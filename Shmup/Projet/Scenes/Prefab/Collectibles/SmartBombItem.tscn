@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/GameEntities/StaticEntities/Collectible/SmarbombKit.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/powerup_bomb.ogg" type="AudioStream" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.3333, 73.3333 )
+
+[node name="SmartBombItem" type="Area2D"]
+position = Vector2( -8, 0 )
+scale = Vector2( 0.55, 0.85 )
+script = ExtResource( 1 )
+sound = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 10.6667, 4.26667 )
+scale = Vector2( 0.9, 0.8 )
+color = Color( 0.588235, 0.435294, 0.2, 1 )
+polygon = PoolVector2Array( -71.1111, -32, 86.9136, -32, 86.9136, 8, -71.1111, 8 )
+
+[node name="Line2D" type="Line2D" parent="Polygon2D"]
+points = PoolVector2Array( -71.1111, -32, 86.9136, -32, 86.9136, 8, -71.1111, 8, -71.1111, -32 )
+width = 5.0
+default_color = Color( 0.313726, 0.160784, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Polygon2D"]
+points = PoolVector2Array( 86.9136, 8, -71.1111, -32, -71.1111, 8, 86.9136, -32, 86.9136, 8 )
+width = 5.0
+default_color = Color( 0.313726, 0.160784, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Renderer" type="Polygon2D" parent="."]
+position = Vector2( -2.22221, -4 )
+scale = Vector2( 0.5, 0.5 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -32, 0, -24, -12, -10, -20, 16, -24, 48, -24, 96, -24, 112, -8, 112, 8, 96, 24, 16, 24, -10, 20, -24, 12 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Renderer"]
+position = Vector2( 48, 0 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 64, -8, 96, -24, 96, -24, 72, 0, 96, 24, 64, 8 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 17.7778, -5.33333 )
+rotation = 1.5708
+shape = SubResource( 1 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/smart_bomb_iem.ogg-b9a3fe69bd835ba515daf21bb6b45d57.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/smart_bomb_iem.ogg"
+dest_files=[ "res://.import/smart_bomb_iem.ogg-b9a3fe69bd835ba515daf21bb6b45d57.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

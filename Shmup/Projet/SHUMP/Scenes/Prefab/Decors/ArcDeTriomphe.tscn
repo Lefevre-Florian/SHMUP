@@ -1,6 +1,0 @@
-[gd_scene format=2]
-
-[node name="Body" type="Polygon2D"]
-position = Vector2( 0, -5 )
-scale = Vector2( 1, 1.06667 )
-polygon = PoolVector2Array( -80, 64, -32, 64, -32, 4, -24, -3.5, -8, -11, 8, -11, 24, -3.5, 32, 4, 32, 64, 80, 64, 80, -56, -80, -56 )

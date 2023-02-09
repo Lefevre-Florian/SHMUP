@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.MovingEntity" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQIAAAQAAAAAAAAAAAAAgAAAAAAgAQAACgQAAEAABAg=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\MovingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.SpecialFeature" Collapsed="true">
+    <Position X="1.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBQAAAIEAAAAggAICQAAAIAAAAAAAkAkoAACAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\SpecialFeature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Bullets.Bullet" Collapsed="true">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAQAAIAAgAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.ShootingEntity" Collapsed="true">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQCAAAAAAAAAIAAAAAABAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\ShootingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Drone" Collapsed="true">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQACACIAAAAAAAAAAAAAAAAAAAAAAACAABABAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Drone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.PopcornEnemy" Collapsed="true">
+    <Position X="20" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QUAAAAQAAAAAgAAAEAAIAAAAAQBgEAAUAAgAAAAADAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\PopcornEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Bullets.EnemyBoomerang" Collapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAEABABAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\EnemyBoomerang.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Bullets.EnemyBullet" Collapsed="true">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\EnemyBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Bullets.PlayerBullet" Collapsed="true">
+    <Position X="7.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\PlayerBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.Enemy" Collapsed="true">
+    <Position X="11.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQQgAAQAAAABBAQAGAAIACAAABBAAAARgAkAAAAADIA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Player.Player" Collapsed="true">
+    <Position X="14" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SRIAAAwEYCARJACICAQAQqBAxAVKIICEgCAQoQAAABM=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.ChargingEnemy" Collapsed="true">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAQAAAAAYAAAAAAAAAAgAgAABAAAAABAEAAAASAAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\ChargingEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.MediumEnemy" Collapsed="true">
+    <Position X="12.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAFAAAACAMAEAAgABgAAAAAAAAgAAAEAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\MediumEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.ThrowerHelperEnemy" Collapsed="true">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAQAAAAAAAABAAAAQAAAAAAAABAIAACAAQCAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\ThrowerHelperEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.Boss" Collapsed="true">
+    <Position X="9" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQCQMBCgECACBGAAAEAsEAAgjEBJAkAQQAAEkgAQMAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.ShootingEntities.Enemy.HardEnemy" Collapsed="true">
+    <Position X="12.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQQAAAAAAABAAAwAgIAAAgAAAAAAAAAAQEAAACAAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\ShootingEntity\Enemy\HardEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.BattleDrone" Collapsed="true">
+    <Position X="16.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAQAAAAABAAAAAAAAAQAAAAAAAAAAACCAAAABAA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\BattleDrone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.EnemyMine" Collapsed="true">
+    <Position X="2.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YYCAAAAAAAggAAAAAAAAAAAEAAAAAAAAAAwAAAAAABA=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\EnemyMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.MovingEntities.Bullets.EnemyLaser" Collapsed="true">
+    <Position X="2.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>REQAAAAEAAABggAAIAAAgQCAwABAAAAIAgARBEBAEEg=</HashCode>
+      <FileName>Scripts\SHMUP\MovingEntity\Bullets\EnemyLaser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.SmartBombUtilities.Lightning" Collapsed="true">
+    <Position X="2.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAACAAAAQgAAEAYAAAAAAAABABAAAQAAAAABAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\SmartBomb\Lightning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.StaticEntity" Collapsed="true">
+    <Position X="25.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\StaticEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible.MedicKit" Collapsed="true">
+    <Position X="22.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\Collectible\MedicKit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible.SmarbombKit" Collapsed="true">
+    <Position X="24.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\Collectible\SmarbombKit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Collectible.UpgradeKit" Collapsed="true">
+    <Position X="26.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\Collectible\UpgradeKit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.Wall" Collapsed="true">
+    <Position X="28.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAEACAAIAAACIAAgUAAAQAAAAAACgAABEAAggg=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.BreakableWall" Collapsed="true">
+    <Position X="27.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\BreakableWall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.StaticEntities.OverchargedWall" Collapsed="true">
+    <Position X="30" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\StaticEntities\OverchargedWall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.Camera" Collapsed="true">
+    <Position X="33" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RASkABAAACAYCAAAgAAAwBAIBAJQAAIAAgAAIEIIEAg=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.FlyingScore" Collapsed="true">
+    <Position X="33" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAgAIAAAAADAAAAIAAAAAABAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\FlyingScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.SmartBomb" Collapsed="true">
+    <Position X="33" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACAEAQAACCAgAAAAgACQAhAAIIAEQAoQAAAAAAwAig=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\SmartBomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.SPStrikeZone" Collapsed="true">
+    <Position X="33" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAABAEAAAAgAAAAACAAAAAAABgAAAQAgACAAAAAAI=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\SPStrikeZone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.GameEntities.Weapon" Collapsed="true">
+    <Position X="33" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAwAACAACGAABAQIgAAACKAAABAACABgAAkEAAAAABA=</HashCode>
+      <FileName>Scripts\SHMUP\GameEntities\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.Particles.Explosion" Collapsed="true">
+    <Position X="33" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\Particles\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.Screen" Collapsed="true">
+    <Position X="39.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAQAAAAAAAAAAAAAIAAAAAAAAAAggAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.Credit" Collapsed="true">
+    <Position X="35.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAE=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Credit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.Hud" Collapsed="true">
+    <Position X="38" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UQIAAAAAQCAYAQAAQAAIAAAABAFCABBQAIAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Hud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.LoadingScreen" Collapsed="true">
+    <Position X="40.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEBAAAAAAAAAEAAgAQAAAIAAAEACQIAAAAAAAIRA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\LoadingScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.Popup" Collapsed="true">
+    <Position X="42.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQAAAACAAAAAAAAAAAAAAAAACAAAAgwAAAAAAAAgA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Popup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.TitleCard" Collapsed="true">
+    <Position X="44.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>aAAAAAQAAAAAEQAAAAAEAgAIACCAAAAAAAAAAACAAgA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\TitleCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.GamePopup" Collapsed="true">
+    <Position X="42.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAQAAAACAAAAAAAAAAAAAAAAAAAAAIACAAAAAAAAgA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Popup\GamePopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.Pause" Collapsed="true">
+    <Position X="42.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\Popup\Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.LanguageSetting" Collapsed="true">
+    <Position X="49.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\UIElements\LanguageSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.UIElements.SoundSetting" Collapsed="true">
+    <Position X="46.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAAAAAACQAAAAIgAAAAAEAAABAgEAAAAQAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\UIElements\SoundSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.UIElements.TranslableButton" Collapsed="true">
+    <Position X="46.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAQAAAAAAAAAAAAEAAAAAAAAAgAAAAAEAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\UIElements\TranslableButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.IsartDigital.SHMUP.UI.UIElements.VibrationSetting" Collapsed="true">
+    <Position X="49.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\SHMUP\UI\UIElements\VibrationSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,198 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/Structure/BackgroundManager.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/GameScene/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/SHMUP/Structure/UIManager.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/UIPrefab/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/SHMUP/Structure/GameManager.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/SHMUP/Structure/SoundManager.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/Prefab/Decors/TorchLight.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/SHMUP/GameEntities/Camera.cs" type="Script" id=8]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sound/level_loop.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Sound/win_jingle.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Sound/gameover_jingle.ogg" type="AudioStream" id=17]
+
+[node name="Root" type="Node2D"]
+
+[node name="BackgroundManager" type="Node2D" parent="."]
+script = ExtResource( 1 )
+speed = 4000.0
+ratio = [ 0.005, 0.02, 0.025, 0.03 ]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+waitTime = 1.5
+particlePath = NodePath("../ParallaxBackground/LayerGameplay/ParticlesContainer")
+fireworkFactory = ExtResource( 10 )
+bulletContainerPath = NodePath("../ParallaxBackground/LayerGameplay/BulletContainer")
+
+[node name="UIManager" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 3 )
+popupContainerPath = NodePath("../PopupContainer")
+gameoverMusic = ExtResource( 17 )
+winMusic = ExtResource( 16 )
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource( 6 )
+nSoundEmitter = 150
+musicEmitterPath = NodePath("../Music")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="LayerBackground2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
+color = Color( 0.321569, 0.321569, 0.321569, 1 )
+polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
+
+[node name="Street2" type="Polygon2D" parent="ParallaxBackground/LayerBackground2"]
+position = Vector2( 0, 120 )
+scale = Vector2( 1, 0.5 )
+color = Color( 0.835294, 0.835294, 0.835294, 1 )
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+
+[node name="Torchlight2" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 896, 112 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Torchlight3" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 512, 112 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Torchlight4" parent="ParallaxBackground/LayerBackground2" instance=ExtResource( 7 )]
+position = Vector2( 128, 112 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="LayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.447059 )
+
+[node name="Street" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 0, 576 )
+color = Color( 0.835294, 0.835294, 0.835294, 1 )
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+
+[node name="RoadLine" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 64, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine2" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 256, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine3" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 448, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine4" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 640, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine5" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 832, 448 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine6" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 128, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine7" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 320, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine8" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 512, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine9" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 704, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="RoadLine10" type="Polygon2D" parent="ParallaxBackground/LayerBackground"]
+position = Vector2( 896, 256 )
+scale = Vector2( 0.8, 0.8 )
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 8, 0, 8 )
+
+[node name="LayerGameplay" parent="ParallaxBackground" instance=ExtResource( 2 )]
+
+[node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.858824 )
+
+[node name="Torchlight" parent="ParallaxBackground/LayerForeground" instance=ExtResource( 7 )]
+position = Vector2( 968, 568 )
+
+[node name="Basket" type="Polygon2D" parent="ParallaxBackground/LayerForeground"]
+position = Vector2( 96, 592 )
+color = Color( 0, 0.14902, 0.0431373, 1 )
+polygon = PoolVector2Array( -24, 0, 24, 0, 24, -64, 32, -64, 32, -72, 24, -72, -24, -72, -32, -72, -32, -64, -24, -64 )
+
+[node name="Line2D" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 0, -0.202703 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D2" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( -8, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D3" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( -16, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D4" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 8, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Line2D5" type="Line2D" parent="ParallaxBackground/LayerForeground/Basket"]
+position = Vector2( 16, 0 )
+scale = Vector2( 1, 1.04054 )
+points = PoolVector2Array( 0, -64, 0, 0 )
+width = 5.0
+default_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+scoreTweenRotation = 0.8
+specialFeatureEase = 0
+
+[node name="PopupContainer" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 300 )
+current = true
+script = ExtResource( 8 )
+shakeAmount = 8.0
+offsetEase = 2
+shadowPath = NodePath("Shadow")
+
+[node name="Shadow" type="ColorRect" parent="Camera2D"]
+visible = false
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+color = Color( 0.243137, 0.243137, 0.243137, 0.541176 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -80.0
+autoplay = true
+
+[editable path="ParallaxBackground/LayerGameplay"]
+[editable path="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy1"]
+[editable path="ParallaxBackground/LayerGameplay/Tutorials/TutorialDrone/TutorialRenderer/Enemy2"]

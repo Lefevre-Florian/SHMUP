@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/UIPrefab/Popup/Popup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=2]
+[ext_resource path="res://Scripts/SHMUP/UI/Popup/Pause.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableButton.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=8]
+[ext_resource path="res://Assets/Sound/click.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Scenes/UIPrefab/Popup/Settings.tscn" type="PackedScene" id=10]
+
+[node name="Popup" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+resumeBtnPath = NodePath("Panel/Resume")
+settingBtnPath = NodePath("Panel/Setting")
+settingScene = ExtResource( 10 )
+
+[node name="Label" parent="Panel" index="0"]
+text = "KEY_PAUSE"
+script = ExtResource( 8 )
+
+[node name="Reload" parent="Panel" index="1"]
+margin_top = -44.0
+margin_bottom = 4.0
+text = "KEY_RETRY"
+
+[node name="Resume" type="Button" parent="Panel" index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -132.0
+margin_right = 192.0
+margin_bottom = -84.0
+rect_pivot_offset = Vector2( 192, 24 )
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KEY_RESUME"
+script = ExtResource( 7 )
+sound = ExtResource( 9 )
+
+[node name="MainMenu" parent="Panel" index="3"]
+margin_top = 44.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( 136, -40 )
+
+[node name="Setting" type="Button" parent="Panel" index="4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = 132.0
+margin_right = 192.0
+margin_bottom = 180.0
+rect_pivot_offset = Vector2( 192, 24 )
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KEY_SETTING"
+script = ExtResource( 7 )
+sound = ExtResource( 9 )

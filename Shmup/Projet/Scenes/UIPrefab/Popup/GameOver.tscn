@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/UIPrefab/Popup/Popup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Fonts/MADE Sunflower PERSONAL USE.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/SHMUP/UI/UIElements/TranslableLabel.cs" type="Script" id=3]
+[ext_resource path="res://Assets/UITheme.tres" type="Theme" id=4]
+[ext_resource path="res://Scripts/SHMUP/UI/Popup/GameoverPopup.cs" type="Script" id=5]
+[ext_resource path="res://Scenes/Prefab/Juiciness/Particles/Explosion.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.176471, 1, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="Popup" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+scoreLabelPath = NodePath("Panel/ScoreValue")
+scoreProgressPath = NodePath("Panel/XP")
+progressDuration = 1.25
+progressTransition = 0
+progressEase = 1
+starAnimationDuration = 0.8
+starAnimationTransition = 0
+starEaseType = 2
+fireworkPath = NodePath("Fireworks")
+
+[node name="Label" parent="Panel" index="0"]
+text = "KEY_GAMEOVER"
+script = ExtResource( 3 )
+
+[node name="Reload" parent="Panel" index="1"]
+text = "KEY_RETRY"
+
+[node name="Score" type="Label" parent="Panel" index="3"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -164.0
+margin_right = 128.0
+margin_bottom = -100.0
+custom_fonts/font = SubResource( 1 )
+text = "KEY_SCORE"
+align = 1
+valign = 1
+script = ExtResource( 3 )
+
+[node name="ScoreValue" type="Label" parent="Panel" index="4"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -116.0
+margin_right = 128.0
+margin_bottom = -52.0
+theme = ExtResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+
+[node name="XP" type="ProgressBar" parent="Panel" index="5"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -13.0
+margin_right = 192.0
+margin_bottom = 13.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 7500.0
+step = 10.0
+percent_visible = false
+
+[node name="Star" type="Polygon2D" parent="Panel/XP" index="0"]
+position = Vector2( 152, 23 )
+color = Color( 1, 0.752941, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="BG" type="Polygon2D" parent="Panel/XP/Star" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="Border" type="Line2D" parent="Panel/XP/Star" index="1"]
+points = PoolVector2Array( 16, 8, 0, 0, -16, 8, -8, -8, -24, -16, -8, -16, 0, -32, 8, -16, 24, -16, 8, -8, 16, 8 )
+width = 1.5
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Star2" type="Polygon2D" parent="Panel/XP" index="1"]
+position = Vector2( 256, 23 )
+color = Color( 1, 0.752941, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="BG" type="Polygon2D" parent="Panel/XP/Star2" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="Border" type="Line2D" parent="Panel/XP/Star2" index="1"]
+points = PoolVector2Array( 16, 8, 0, 0, -16, 8, -8, -8, -24, -16, -8, -16, 0, -32, 8, -16, 24, -16, 8, -8, 16, 8 )
+width = 1.5
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Star3" type="Polygon2D" parent="Panel/XP" index="2"]
+position = Vector2( 352, 23 )
+color = Color( 1, 0.752941, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="BG" type="Polygon2D" parent="Panel/XP/Star3" index="0"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -32, -8, -16, -24, -16, -8, -8, -16, 8, 0, 0, 16, 8, 8, -8, 24, -16, 8, -16 )
+
+[node name="Border" type="Line2D" parent="Panel/XP/Star3" index="1"]
+points = PoolVector2Array( 16, 8, 0, 0, -16, 8, -8, -8, -24, -16, -8, -16, 0, -32, 8, -16, 24, -16, 8, -8, 16, 8 )
+width = 1.5
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Fireworks" type="Node2D" parent="." index="2"]
+position = Vector2( 512, 304 )
+
+[node name="Firework" parent="Fireworks" index="0" instance=ExtResource( 6 )]
+position = Vector2( -224, 0 )
+
+[node name="Firework2" parent="Fireworks" index="1" instance=ExtResource( 6 )]
+position = Vector2( 224, 0 )

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/MovingEntity/Bullets/EnemyLaser.cs" type="Script" id=1]
+
+[node name="LaserBeam" type="Area2D"]
+script = ExtResource( 1 )
+drawingDuration = 1.75
+attackDuration = 1.0
+precision = 6
+nodePath = NodePath("Renderer")
+
+[node name="Renderer" type="Line2D" parent="."]
+width = 50.0
+default_color = Color( 1, 0, 0.678431, 1 )

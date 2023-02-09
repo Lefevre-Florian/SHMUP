@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/MovingEntity/PopcornEnemy.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/enemy_explosion.ogg" type="AudioStream" id=2]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.479532, 1 )
+colors = PoolColorArray( 0.831373, 0.831373, 0.831373, 1, 0.447059, 0.447059, 0.447059, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 24 )
+
+[node name="PopcornEnemy" type="Area2D"]
+script = ExtResource( 1 )
+speed = 60.0
+margin = 50.0
+soundDeath = ExtResource( 2 )
+
+[node name="Renderer" type="Polygon2D" parent="."]
+color = Color( 0.831373, 0.831373, 0.831373, 1 )
+polygon = PoolVector2Array( -8, -24, 8, -24, 18, -19, 24, -8, 24, 8, 18, 19, 8, 24, -8, 24, -18, 19, -24, 8, -24, -0.129807, -24, -8, -19, -18 )
+
+[node name="Beak" type="Polygon2D" parent="Renderer"]
+color = Color( 0.807843, 0.682353, 0, 1 )
+polygon = PoolVector2Array( -24, -8, -32, 0, -24, 8 )
+
+[node name="Bread" type="Polygon2D" parent="Renderer"]
+position = Vector2( 1, 15 )
+rotation = -0.771771
+color = Color( 0.933333, 0.752941, 0.482353, 1 )
+polygon = PoolVector2Array( -17, -9, -18, -13, -17, -17, -13, -18, -9, -17, 15, 7, 16, 11, 15, 15, 11, 16, 7, 15 )
+
+[node name="Wing" type="Polygon2D" parent="Renderer"]
+position = Vector2( 0, 8 )
+color = Color( 0.682353, 0.682353, 0.682353, 1 )
+texture = SubResource( 3 )
+polygon = PoolVector2Array( -8, 0, 16, 0, 0, 16, -16, 0 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )

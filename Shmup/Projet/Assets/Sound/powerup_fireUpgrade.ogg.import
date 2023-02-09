@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/powerup_fireUpgrade.ogg-86b9346e634bfe84d70718b14730e5b0.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/powerup_fireUpgrade.ogg"
+dest_files=[ "res://.import/powerup_fireUpgrade.ogg-86b9346e634bfe84d70718b14730e5b0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

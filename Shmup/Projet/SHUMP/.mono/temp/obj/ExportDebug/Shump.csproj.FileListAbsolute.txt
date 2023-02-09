@@ -1,8 +1,0 @@
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\bin\ExportDebug\Shump.dll
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\bin\ExportDebug\Shump.pdb
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.csprojAssemblyReference.cache
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.AssemblyInfoInputs.cache
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.AssemblyInfo.cs
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.csproj.CoreCompileInputs.cache
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.dll
-C:\Users\lefev\Desktop\Cours\ISART\LEFEVRE_Florian_GDP1_A_SHMUP\SHMUP\Shmup\Projet\SHUMP\.mono\temp\obj\ExportDebug\Shump.pdb

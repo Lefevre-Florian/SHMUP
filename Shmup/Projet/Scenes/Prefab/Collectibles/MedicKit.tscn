@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/SHMUP/GameEntities/StaticEntities/Collectible/MedicKit.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/powerup_life.ogg" type="AudioStream" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 40.0
+
+[node name="MedicKit" type="Area2D"]
+scale = Vector2( 0.75, 0.75 )
+script = ExtResource( 1 )
+sound = ExtResource( 2 )
+
+[node name="Renderer" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Bag" type="Polygon2D" parent="Renderer"]
+position = Vector2( 0, 64 )
+color = Color( 0.709804, 0.607843, 0.486275, 1 )
+polygon = PoolVector2Array( 64, 0, 64, -128, 56, -120, 48, -128, 40, -120, 32, -128, 24, -120, 16, -128, 8, -120, 0, -128, -8, -120, -16, -128, -24, -120, -32, -128, -40, -120, -48, -128, -56, -120, -64, -128, -64, 0 )
+
+[node name="Cross" type="Polygon2D" parent="Renderer"]
+position = Vector2( 0, 16 )
+color = Color( 0, 1, 0.0156863, 1 )
+polygon = PoolVector2Array( -16, -64, 16, -64, 16, -32, 48, -32, 48, 0, 16, 0, 16, 32, -16, 32, -16, 0, -48, 0, -48, -32, -16, -32 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

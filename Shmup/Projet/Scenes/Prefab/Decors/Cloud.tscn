@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="Cloud" type="Polygon2D"]
+position = Vector2( -20, 11 )
+polygon = PoolVector2Array( -2, 6, -17, 4, -48, 0, -40, -8, -26, -20, -8, -24, 9, -27, 32, -24, 40, -27, 56, -26, 72, -24, 80, -8, 88, 0, 4, 4 )
